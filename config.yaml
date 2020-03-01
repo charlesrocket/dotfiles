@@ -1,6 +1,0 @@
-config:
-  backup: true
-  create: true
-  dotpath: dotfiles
-dotfiles:
-profiles:
