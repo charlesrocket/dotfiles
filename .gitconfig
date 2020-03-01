@@ -8,6 +8,6 @@
       email = slowdive@me.com
       signingkey = 5AC27140
 [pull]
-      rebase = true
+      rebase = false
 [credential]
       helper = osxkeychain
