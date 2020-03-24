@@ -11,3 +11,5 @@
       rebase = true
 [credential]
       helper = osxkeychain
+[url "git+ssh://charlesrocket@git.launchpad.net/"]
+      insteadof = lp:
