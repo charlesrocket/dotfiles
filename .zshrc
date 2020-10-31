@@ -1,4 +1,3 @@
-export ZSH="/Users/rocket/.oh-my-zsh"
 ZSH_THEME="flazz"
 DISABLE_UPDATE_PROMPT=true
 plugins=(git)
