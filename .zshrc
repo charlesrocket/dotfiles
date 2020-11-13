@@ -1,4 +1,4 @@
-ZSH_THEME="flazz"
+ZSH_THEME="cypher"
 DISABLE_AUTO_UPDATE="false"
 DISABLE_UPDATE_PROMPT="true"
 plugins=(git)
