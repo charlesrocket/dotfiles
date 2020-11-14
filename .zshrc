@@ -1,4 +1,4 @@
-ZSH_THEME="cypher"
+ZSH_THEME="gozilla"
 DISABLE_AUTO_UPDATE="false"
 DISABLE_UPDATE_PROMPT="true"
 plugins=(git)
