@@ -1,15 +1,15 @@
 [filter "lfs"]
-      clean = git-lfs clean -- %f
-      smudge = git-lfs smudge -- %f
-      process = git-lfs filter-process
-      required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [user]
-      name = -k
-      email = slowdive@me.com
-      signingkey = 5AC27140
+	name = -k
+	email = slowdive@me.com
+	signingkey = 5AC27140
 [pull]
-      rebase = true
+	rebase = true
 [credential]
-      helper = osxkeychain
+	helper = osxkeychain
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
-      insteadof = lp:
+	insteadof = lp:
