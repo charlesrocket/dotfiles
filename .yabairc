@@ -11,3 +11,5 @@ yabai -m config bottom_padding   11
 yabai -m config left_padding     11
 yabai -m config right_padding    11
 yabai -m config window_gap       9
+
+echo "yabai config loaded"
