@@ -6,7 +6,7 @@
 [user]
 	name = -k
 	email = slowdive@me.com
-	signingkey = 5AC27140
+	signingkey = 4A2340C1
 [pull]
 	rebase = true
 [credential]
