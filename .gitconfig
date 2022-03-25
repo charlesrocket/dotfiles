@@ -9,8 +9,6 @@
 	signingkey = 4A2340C1
 [pull]
 	rebase = true
-[credential]
-	helper = osxkeychain
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
 	insteadof = lp:
 [init]
