@@ -67,7 +67,7 @@ Fallback Encoding=ISO 8859-15
 [KTextEditor Renderer]
 Animate Bracket Matching=true
 Auto Color Theme Selection=false
-Color Theme=gruvbox Dark
+Color Theme=Atom One Dark
 Font=IBM Plex Mono,11,-1,5,50,0,0,0,0,0
 Show Indentation Lines=true
 Show Whole Bracket Expression=true
