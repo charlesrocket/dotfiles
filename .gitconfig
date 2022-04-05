@@ -14,4 +14,4 @@
 [init]
 	defaultBranch = master
 [credential]
-	helper = store
+	helper = netrc
