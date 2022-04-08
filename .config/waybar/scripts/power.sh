@@ -3,7 +3,7 @@
 charge="$(hwstat | grep -E 'Cap remain:' | tr -cd '[[:digit:]]')"
 
 charged=100
-critical=20
+critical=15
 
 case $charge in
   *[0-9]*)
