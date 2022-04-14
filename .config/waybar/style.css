@@ -86,7 +86,7 @@ window#waybar {
   margin: 6px 0px 0px 3px;
 }
 
-#pulseaudio {
+#sndio {
   margin: 6px 3px 0px 3px;
   padding: 5px 10px 5px 10px;
   background: rgba(7, 7, 7, 0.7);
