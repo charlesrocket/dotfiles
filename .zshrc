@@ -1,4 +1,4 @@
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.cargo/bin
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 export XDG_PICTURES_DIR=$HOME/pictures
