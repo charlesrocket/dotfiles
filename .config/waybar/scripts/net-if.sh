@@ -13,25 +13,25 @@ else
 vpn="inactive"
 fi
 
-if [ "${ifc}" == "wlan0" ]
+if [ "${ifc}" = "wlan0" ]
 then
 interface=""
-elif [ "${ifc}" == "eth0" ]
+elif [ "${ifc}" = "eth0" ]
 then
 interface=""
-elif [ "${ifc}" == "ue0" ]
+elif [ "${ifc}" = "ue0" ]
 then
 interface=""
-elif [ "${ifc}" == "re0" ]
+elif [ "${ifc}" = "re0" ]
 then
 interface=""
-elif [ "${ifc}" == "em0" ]
+elif [ "${ifc}" = "em0" ]
 then
 interface=""
 else
 interface=""
 fi
 
-echo -e '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "", "percentage": "" }'
+echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "", "percentage": "" }'
 
 exit 0

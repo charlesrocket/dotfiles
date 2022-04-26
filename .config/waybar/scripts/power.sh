@@ -16,7 +16,7 @@ case $charge in
     then
     crw=critical
     fi
-    if [ "$time" == "unknown" ]
+    if [ "$time" = "unknown" ]
     then
     stat=ac
     time=" $charge%"
@@ -28,6 +28,6 @@ case $charge in
     ;;
 esac
 
-echo -e '{"text": "", "alt": "'$source'", "tooltip": "'$time'", "class": ["'$stat'", "'$crw'"], "percentage": '$charge' }'
+echo '{"text": "", "alt": "'$source'", "tooltip": "'$time'", "class": ["'$stat'", "'$crw'"], "percentage": '$charge' }'
 
 exit 0
