@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | egrep -o -m 1 '^[^\t:]+')
+ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
 wg=$(wg show | grep "latest handshake" |  tr -cd '[[:digit:]]')
 
 if [ -n "$wg" ]
