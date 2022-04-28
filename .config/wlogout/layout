@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot.jpg -s fill",
     "text" : "Lock",
     "keybind" : "l"
 }
