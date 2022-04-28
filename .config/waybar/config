@@ -72,7 +72,7 @@
     },
     "custom/quit": {
         "format": "",
-        "on-click": "swaynag -f 'IBM Plex Sans Normal'  -t warning -m 'Do you really want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'"
+        "on-click": "wlogout"
     },
     "custom/network": {
         "format": "{icon} {}",
