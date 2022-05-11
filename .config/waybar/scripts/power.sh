@@ -1,6 +1,6 @@
 #!/bin/sh
 
-charge="$(hwstat | grep -E 'Cap remain:' | tr -cd '[[:digit:]]')"
+charge=$(hwstat | grep -E 'Cap remain:' | tr -cd '[:digit:]')
 
 charged=100
 critical=15
