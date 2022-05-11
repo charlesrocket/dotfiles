@@ -78,7 +78,7 @@
         "format": "{icon} {}",
         "format-icons": {
             "active": "",
-            "inactive": ""
+            "inactive": ""
         },
         "return-type": "json",
         "exec": "$HOME/.config/waybar/scripts/net-if.sh",
