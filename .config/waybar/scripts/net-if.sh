@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
-wg=$(wg show | grep "latest handshake" |  tr -cd '[[:digit:]]')
+wg=$(wg show | grep "latest handshake" |  tr -cd '[:digit:]')
 tun=$(ifconfig | grep "tun0" )
 
 if [ -n "$wg" ]
