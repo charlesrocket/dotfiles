@@ -2,15 +2,19 @@
 
 ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
 wg=$(wg show | grep "latest handshake" |  tr -cd '[[:digit:]]')
+tun=$(ifconfig | grep "tun0" )
 
 if [ -n "$wg" ]
 then
-if [ "${wg}" -ge 0 ]
+  if [ "${wg}" -ge 0 ]
+  then
+    vpn="active"
+  fi
+elif [ -n "$tun" ]
 then
-vpn="active"
-fi
+  vpn="active"
 else
-vpn="inactive"
+  vpn="inactive"
 fi
 
 if [ "${ifc}" = "wlan0" ]
