@@ -19,21 +19,21 @@ fi
 
 if [ "${ifc}" = "wlan0" ]
 then
-interface=""
+  interface=""
 elif [ "${ifc}" = "eth0" ]
 then
-interface=""
+  interface=""
 elif [ "${ifc}" = "ue0" ]
 then
-interface=""
+  interface=""
 elif [ "${ifc}" = "re0" ]
 then
-interface=""
+  interface=""
 elif [ "${ifc}" = "em0" ]
 then
-interface=""
+  interface=""
 else
-interface=""
+  interface=""
 fi
 
 echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "", "percentage": "" }'

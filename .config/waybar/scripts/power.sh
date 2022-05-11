@@ -11,15 +11,15 @@ case $charge in
     time="$(acpiconf -i 0 | grep "Remaining time" | tr -d '[:space:]' | sed 's/Remainingtime://')"
     if [ "$charge" -eq "$charged" ]
     then
-    crw=charged
+      crw=charged
     elif [ "$charge" -lt "$critical" ]
     then
-    crw=critical
+      crw=critical
     fi
     if [ "$time" = "unknown" ]
     then
-    stat=ac
-    time=" $charge%"
+      stat=ac
+      time=" $charge%"
     fi
     ;;
   *)
