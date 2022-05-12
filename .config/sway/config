@@ -7,6 +7,7 @@ set $menu dmenu_path | dmenu -i -b -p ×︁ -sb red | xargs swaymsg exec --
 set $term alacritty
 
 default_border none
+default_floating_border none
 default_orientation auto
 gaps inner 6
 
