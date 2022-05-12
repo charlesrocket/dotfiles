@@ -21,7 +21,7 @@ output * bg ~/pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg fill
 bar {
     swaybar_command waybar
 }
-
+exec dunst
 exec dsbmc-cli -a&
 exec swayidle -w \
          timeout 421 'swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot.jpg -s fill' \
