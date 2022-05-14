@@ -75,8 +75,6 @@ bindsym --to-code {
 
 floating_modifier $mod normal
 
-bindsym $mod+Shift+c reload
-
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
