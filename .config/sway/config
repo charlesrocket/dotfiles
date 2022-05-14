@@ -11,10 +11,10 @@ default_floating_border none
 default_orientation auto
 gaps inner 6
 
-client.focused          #00000000 #c3000073 #c5c8c6 #cf8787 #5e81acaa
-client.focused_inactive #00000000 #c3000042 #c5c8c6 #cf8787 #4c566aaa
-client.unfocused        #00000000 #000000aa #c3c3c3 #ebbe7a #4c566aaa
-client.urgent           #00000000 #ff6305aa #c5c8c6 #900000 #8d7c7caa
+client.focused          #c3000073 #c3000073 #c5c8c6 #cf8787 #5e81acaa
+client.focused_inactive #c3000065 #c3000065 #c5c8c6 #cf8787 #4c566aaa
+client.unfocused        #c3000073 #000000aa #c3c3c3 #ebbe7a #4c566aaa
+client.urgent           #ff6305aa #ff6305aa #c5c8c6 #900000 #8d7c7caa
 client.placeholder      #000000   #0c0c0c   #c5c8c6 #000000 #000000
 
 output * bg ~/pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg fill
