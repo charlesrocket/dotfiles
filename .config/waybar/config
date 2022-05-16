@@ -76,7 +76,7 @@
         "on-click": "wlogout"
     },
     "custom/network": {
-        "format": "{icon} {}",
+        "format": "{icon}  {}",
         "format-icons": {
             "active": "",
             "inactive": ""
