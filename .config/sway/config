@@ -22,7 +22,7 @@ client.placeholder      #000000   #0c0c0c   #c5c8c6 #000000 #000000
 
 input type:touchpad {
         events enabled
-        pointer_accel 0.4
+        pointer_accel 0.3
         accel_profile adaptive
         natural_scroll enadled
         left_handed disabled
