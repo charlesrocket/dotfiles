@@ -33,7 +33,7 @@ elif [ "${ifc}" = "em0" ]
 then
   interface=""
 else
-  interface=""
+  interface=""
 fi
 
 echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "", "percentage": "" }'
