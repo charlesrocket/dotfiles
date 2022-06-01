@@ -49,9 +49,9 @@
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": " {icon}",
+        "format": "  {icon}",
         "interval": 2,
-        "format-icons": ["≡", "≢", "≣"]
+        "format-icons": ["☰", "☴", "☲", "☱", "☵", "☷"]
     },
     "memory": {
         "format": " {:2}%"
