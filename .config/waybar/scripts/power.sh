@@ -9,6 +9,7 @@ case $charge in
   *[0-9]*)
     source="battery"
     time="$(acpiconf -i 0 | grep "Remaining time" | tr -d '[:space:]' | sed 's/Remainingtime://')"
+
     if [ "$charge" -eq "$charged" ]
     then
       crw=charged
