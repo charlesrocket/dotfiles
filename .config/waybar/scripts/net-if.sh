@@ -3,6 +3,7 @@
 ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
 wg=$(wg show | grep "latest handshake" |  tr -cd '[:digit:]')
 tun=$(ifconfig | grep "tun0" )
+call=$(wget -q --spider https://google.com; echo $?)
 
 if [ -n "$wg" ]
 then
@@ -36,6 +37,12 @@ else
   interface=""
 fi
 
-echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "", "percentage": "" }'
+if [ $((call)) -eq 0 ]; then
+  status="online"
+else
+  status="offline"
+fi
+
+echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "'$status'", "percentage": "" }'
 
 exit 0
