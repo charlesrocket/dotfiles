@@ -36,6 +36,10 @@ window#waybar {
     border-top: 1px solid red;
 }
 
+#custom-network.vpn {
+    border-top: 1px solid springgreen;
+}
+
 #custom-network {
   margin: 6px 3px 0px 3px;
   padding: 5px 10px 5px 10px;
