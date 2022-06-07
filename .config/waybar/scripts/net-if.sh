@@ -37,7 +37,8 @@ else
   interface=""
 fi
 
-if [ $((call)) -eq 0 ]; then
+if [ $((call)) -eq 0 ]
+then
   status="online"
 else
   status="offline"
