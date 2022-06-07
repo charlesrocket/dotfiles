@@ -40,6 +40,10 @@ fi
 if [ $((call)) -eq 0 ]
 then
   status="online"
+  if [ vpn="active" ]
+  then
+    status="vpn"
+  fi
 else
   status="offline"
 fi
