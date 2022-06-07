@@ -34,7 +34,7 @@ elif [ "${ifc}" = "em0" ]
 then
   interface=""
 else
-  interface=""
+  interface=""
 fi
 
 if [ $((call)) -eq 0 ]; then
