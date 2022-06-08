@@ -73,7 +73,8 @@
     },
     "custom/quit": {
         "format": "",
-        "on-click": "wlogout"
+        "on-click": "wlogout",
+        "tooltip": false
     },
     "custom/network": {
         "format": "{icon}  {}",
