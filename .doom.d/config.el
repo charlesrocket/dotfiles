@@ -6,6 +6,7 @@
 (setq doom-theme 'doom-one)
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
+(setq confirm-kill-emacs nil)
 
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
