@@ -8,5 +8,7 @@
 (setq org-directory "~/org/")
 (setq confirm-kill-emacs nil)
 
+(setq +doom-dashboard-menu-sections (cl-subseq +doom-dashboard-menu-sections 0 3))
+
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
