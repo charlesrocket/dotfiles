@@ -13,4 +13,4 @@
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
 
-(add-hook 'window-setup-hook #'treemacs 'append)
+;;(add-hook 'window-setup-hook #'treemacs 'append)
