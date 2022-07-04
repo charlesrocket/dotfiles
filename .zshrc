@@ -17,10 +17,10 @@ export ZSH=$HOME/.oh-my-zsh
 export RUST_BACKTRACE=1
 eval "$(direnv hook zsh)"
 eval "$(rbenv init - zsh)"
+source $ZSH/oh-my-zsh.sh
 ZSH_THEME="gozilla"
 DISABLE_AUTO_UPDATE="false"
 DISABLE_UPDATE_PROMPT="true"
-source $ZSH/oh-my-zsh.sh
 
 if test -z "${XDG_RUNTIME_DIR}"; then
     export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
