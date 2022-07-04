@@ -14,6 +14,7 @@ export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GPG_TTY=$(tty)
 export ZSH=$HOME/.oh-my-zsh
+export RUST_BACKTRACE=1
 eval "$(direnv hook zsh)"
 eval "$(rbenv init - zsh)"
 ZSH_THEME="gozilla"
