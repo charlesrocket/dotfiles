@@ -1,0 +1,25 @@
+add_newline = false
+
+format = "$directory$character"
+right_format = """$all"""
+
+[line_break]
+disabled = true
+
+[time]
+disabled = true
+time_format = "%T"
+format = "🕙[$time ](bold blue)"
+
+[sudo]
+disabled = false
+style = "bold green"
+symbol = "💪"
+format = "[<SUDO>$symbol]($style)"
+
+[status]
+disabled = false
+style = "bg:blue"
+symbol = "🔴"
+map_symbol = true
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
