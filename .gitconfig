@@ -3,4 +3,4 @@
 	email = slowdive@me.com
 	signingkey = 4A2340C1
 [init]
-	defaultBranch = master
+	defaultBranch = trunk
