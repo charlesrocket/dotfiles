@@ -14,4 +14,4 @@
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
 	insteadof = lp:
 [init]
-	defaultBranch = master
+	defaultBranch = trunk
