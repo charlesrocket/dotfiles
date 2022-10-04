@@ -2,5 +2,7 @@
 	name = -k
 	email = slowdive@me.com
 	signingkey = 4A2340C1
+[pull]
+	rebase = true
 [init]
 	defaultBranch = trunk
