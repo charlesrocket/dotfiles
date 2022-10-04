@@ -6,3 +6,5 @@
 	rebase = true
 [init]
 	defaultBranch = trunk
+[credential]
+	helper = netrc
