@@ -7,4 +7,4 @@
 [init]
 	defaultBranch = trunk
 [credential]
-	helper = netrc -f ~/netrc.gpg -v
+	helper = netrc -f ~/.netrc.gpg -v
