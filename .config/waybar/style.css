@@ -101,13 +101,6 @@ window#waybar {
   color: #c5c8c6;
 }
 
-#idle_inhibitor {
-  background: rgba(7, 7, 7, 0.7);
-  color: #c5c8c6;
-  margin: 6px 3px 0px 3px;
-  padding: 5px 10px 5px 10px;
-}
-
 #clock {
   margin: 6px 0px 0px 0px;
   padding: 5px 5px 5px 5px;

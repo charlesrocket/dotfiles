@@ -5,7 +5,7 @@
     "height": 35,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "cpu", "memory", "custom/network", "sndio", "custom/power", "sway/language", "clock", "custom/quit"],
+    "modules-right": ["cpu", "memory", "custom/network", "sndio", "custom/power", "sway/language", "clock", "custom/quit"],
     "sway/workspaces": {
        "disable-scroll": true,
        "all-outputs": true,
@@ -35,13 +35,6 @@
         "icon": false,
         "rewrite": {
             "": "∧ ∨ ∧"
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
         }
     },
     "clock": {
