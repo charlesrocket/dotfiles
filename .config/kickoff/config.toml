@@ -1,16 +1,16 @@
-prompt = ''
-padding = 120
+prompt = '~  '
+padding = 185
 fonts = ['IBM Plex Mono']
-font_size = 22.0
+font_size = 18.0
 
 [history]
-decrease_interval = 48
+decrease_interval = 24
 
 [colors]
 background = '#070707bb'
 prompt = '#abb2bfff'
 text = '#ffffffff'
-text_query = '#e5c07bff'
+text_query = '#00ffffff'
 text_selected = '#ff0000ff'
 
 [keybindings]
