@@ -3,7 +3,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $menu tofi-drun | xargs swaymsg exec --
+set $menu tofi-run | xargs swaymsg exec --
 set $term alacritty
 
 default_border none
