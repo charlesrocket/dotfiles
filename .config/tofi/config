@@ -1,0 +1,16 @@
+width = 100%
+height = 100%
+
+border-width = 0
+outline-width = 0
+padding-left = 35%
+padding-top = 35%
+
+result-spacing = 17
+num-results = 7
+
+font = IBM Plex Mono
+font-size = 18
+
+background-color = #000A
+selection-color = #ff0000ff
