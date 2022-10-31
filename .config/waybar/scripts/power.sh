@@ -29,6 +29,6 @@ case $charge in
     ;;
 esac
 
-echo '{"text": "", "alt": "'$source'", "tooltip": "'$time'", "class": ["'$stat'", "'$crw'"], "percentage": '$charge' }'
+echo '{"text": "", "alt": "'$source'", "tooltip": "'$time'", "class": ["'$stat'", "'$crw'"], "percentage": '"$charge"' }'
 
 exit 0
