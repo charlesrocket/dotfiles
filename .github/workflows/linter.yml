@@ -41,4 +41,5 @@ jobs:
           DEFAULT_BRANCH: "master"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_BASH: false
+          VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: .*README\.md*
