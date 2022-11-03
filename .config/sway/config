@@ -21,18 +21,18 @@ client.urgent           #ff6305aa #ff6305aa #c5c8c6 #900000 #8d7c7caa
 client.placeholder      #000000   #0c0c0c   #c5c8c6 #000000 #000000
 
 input type:touchpad {
-        events enabled
-        pointer_accel 0.3
-        accel_profile adaptive
-        natural_scroll enadled
-        left_handed disabled
-        scroll_factor 1
-        middle_emulation disabled
-        scroll_method two_finger
-        dwt enabled
-        tap disabled
-        tap_button_map lrm
-        click_method clickfinger
+    events enabled
+    pointer_accel 0.3
+    accel_profile adaptive
+    natural_scroll enadled
+    left_handed disabled
+    scroll_factor 1
+    middle_emulation disabled
+    scroll_method two_finger
+    dwt enabled
+    tap disabled
+    tap_button_map lrm
+    click_method clickfinger
 }
 
 output * bg ~/pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg fill
@@ -44,9 +44,9 @@ bar {
 exec dunst
 exec dsbmc-cli -a&
 exec swayidle -w \
-         timeout 421 'swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot-2.jpg -s fill' \
-         timeout 650 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot-2.jpg -s fill'
+    timeout 421 'swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot-2.jpg -s fill' \
+    timeout 650 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot-2.jpg -s fill'
 
 assign [app_id="Alacritty"] workspace 2
 assign [app_id="firefox"] workspace 3
