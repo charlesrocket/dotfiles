@@ -37,6 +37,10 @@
             "": ""
         }
     },
+    "sway/language": {
+    "format": "{short}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
