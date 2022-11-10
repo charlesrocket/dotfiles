@@ -3,7 +3,7 @@
 ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
 wg=$(wg show | grep "latest handshake" |  tr -cd '[:digit:]')
 tun=$(ifconfig | grep "tun0" )
-call=$(wget -q --spider https://google.com; echo $?)
+call=$(nc -z -w 5 8.8.8.8 53 > /dev/null 2>&1; echo $?)
 
 if [ -n "$wg" ]
 then
