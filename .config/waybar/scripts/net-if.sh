@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grep -E -o -m 1 '^[^\t:]+')
+ifc=$(ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: (active|associated)' | grep -E -o -m 1 '^[^\t:]+')
 wg=$(wg show | grep "latest handshake" |  tr -cd '[:digit:]')
 tun=$(ifconfig | grep "tun0" )
 call=$(nc -z -w 4 8.8.8.8 53 > /dev/null 2>&1; echo $?)
