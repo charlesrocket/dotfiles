@@ -2,7 +2,7 @@
     "position": "top",
     "layer": "top",
     "fixed-center": true,
-    "height": 37,
+    "height": 38,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
     "modules-right": ["cpu", "memory", "custom/network", "sndio", "custom/power", "sway/language", "clock", "custom/quit"],
