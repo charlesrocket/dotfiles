@@ -32,7 +32,7 @@ colors:
 
 cursor:
   style:
-    shape: Block
+    shape: block
     blinking: on
 
   blink_interval: 600
