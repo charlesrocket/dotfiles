@@ -35,4 +35,5 @@ cursor:
     blinking: on
 
   blink_interval: 600
+  blink_timeout: 240
   unfocused_hollow: true
