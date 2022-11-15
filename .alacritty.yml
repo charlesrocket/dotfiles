@@ -38,3 +38,5 @@ cursor:
   blink_interval: 600
   blink_timeout: 240
   unfocused_hollow: true
+
+live_config_reload: false
