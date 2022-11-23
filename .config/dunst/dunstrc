@@ -40,7 +40,7 @@
     icon_path = /usr/local/share/icons/gnome/16x16/status/:/usr/local/share/icons/gnome/16x16/devices/
     sticky_history = yes
     history_length = 20
-    dmenu = /usr/local/bin/dmenu -p dunst:
+    dmenu = /usr/local/bin/tofi-run --prompt "dunst: "
     browser = /usr/local/bin/xdg-open
 
     always_run_script = true
