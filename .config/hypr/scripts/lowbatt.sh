@@ -33,5 +33,5 @@ while true
 do
     checkStatus
     notifySend
-    sleep 500
+    sleep 600
 done
