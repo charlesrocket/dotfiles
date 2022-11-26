@@ -3,10 +3,6 @@
 L2=30
 L1=10
 
-notifyStart() {
-    NOTIFY=true
-}
-
 checkStatus() {
     POWER=$(apm -a)
 
@@ -32,8 +28,6 @@ notifySend() {
         /usr/local/bin/notify-send "Low battery ($CHARGE%)"
     fi
 }
-
-notifyStart
 
 while true
 do
