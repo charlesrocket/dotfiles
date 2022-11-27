@@ -25,7 +25,7 @@ notifySend() {
 
     if [ "$CHARGE" -le "$L2" ] && [ "$NOTIFY" = true ]
     then
-        /usr/local/bin/notify-send "Low battery ($CHARGE%)"
+        /usr/local/bin/notify-send "Low battery" "$CHARGE%"
     fi
 }
 
