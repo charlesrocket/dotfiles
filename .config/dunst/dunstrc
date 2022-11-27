@@ -61,17 +61,17 @@
 
 
 [urgency_low]
-    background = "#131313"
+    background = "#131313aa"
     foreground = "#c3c3c3"
     timeout = 10
 
 [urgency_normal]
-    background = "#131313"
+    background = "#131313aa"
     foreground = "#c5c8c6"
     timeout = 10
 
 [urgency_critical]
-    background = "#900000"
+    background = "#900000aa"
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 0
