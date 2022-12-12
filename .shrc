@@ -2,7 +2,7 @@ alias h='fc -l'
 alias j=jobs
 alias m="$PAGER"
 alias ll='ls -laFo'
-alias l='ls -l'
+alias l='ls -la'
 alias g='egrep -i'
 
 PS1="\u@\H x: "
