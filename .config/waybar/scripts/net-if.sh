@@ -41,7 +41,7 @@ if [ $((call)) -eq 0 ]
 then
   status="online"
 
-  if [ $vpn = "active" ]
+  if [ "$vpn" = "active" ]
   then
     status="vpn"
   fi
@@ -49,6 +49,6 @@ else
   status="offline"
 fi
 
-echo '{"text": "'$interface'", "alt": "'$vpn'", "tooltip": "", "class": "'$status'", "percentage": "" }'
+echo '{"text": "'$interface'", "alt": "'"$vpn"'", "tooltip": "", "class": "'$status'", "percentage": "" }'
 
 exit 0
