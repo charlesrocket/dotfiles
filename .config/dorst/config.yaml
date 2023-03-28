@@ -9,8 +9,7 @@ targets:
   - https://github.com/charlesrocket/webpixels
   - https://github.com/charlesrocket/hell
   - https://github.com/charlesrocket/dorst
-  - https://github.com/charlesrocket/dotfiles_role
-  - https://github.com/charlesrocket/git_role
+  - https://github.com/charlesrocket/essential_collection
   - https://github.com/charlesrocket/openbsd-station
   - https://github.com/charlesrocket/freebsd-station
   - https://github.com/charlesrocket/freebsd-server
