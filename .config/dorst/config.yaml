@@ -9,10 +9,9 @@ targets:
   - https://github.com/charlesrocket/webpixels
   - https://github.com/charlesrocket/hell
   - https://github.com/charlesrocket/dorst
-  - https://github.com/charlesrocket/essential_collection
+  - https://github.com/charlesrocket/essential-collection
+  - https://github.com/charlesrocket/freebsd-collection
   - https://github.com/charlesrocket/openbsd-station
-  - https://github.com/charlesrocket/freebsd-station
-  - https://github.com/charlesrocket/freebsd-server
   - https://github.com/charlesrocket/debian-server
   - https://github.com/charlesrocket/macos-station
   - https://github.com/charlesrocket/htb-files
