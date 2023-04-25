@@ -1,5 +1,5 @@
 * {
-    font-size: 13px;
+    font-size: 12px;
     font-family: IBM Plex Mono;
     font-weight: bold;
     border-radius: 0;
@@ -7,29 +7,28 @@
 }
 
 window#waybar {
-    background: rgba(15, 15, 15, 0);
-}
-
-#window {
     color: #c5c8c6;
     background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 5px 10px 5px 10px;
 }
 
-#workspaces {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 6px 0 6px;
-    padding: 0 5px;
+.modules-left {
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.modules-center {
+}
+
+.modules-right {
+    padding-right: 12px;
+    padding-left: 12px;
 }
 
 #workspaces button {
-    padding: 0 5px;
     color: #c5c8c6;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     color: #c5c8c6;
     border-top: 2px solid red;
 }
@@ -40,20 +39,6 @@ window#waybar {
 
 #custom-network.vpn {
     border-top: 1px solid springgreen;
-}
-
-#custom-network {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 0 10px;
-}
-
-#custom-power {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 0 10px;
 }
 
 #custom-power.ac:not(.charged) {
@@ -68,44 +53,14 @@ window#waybar {
     color: green;
 }
 
-#custom-quit {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 6px 0 0;
-    padding: 0 10px 0 5px;
-}
-
 #cpu {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 0 10px 0 10px;
-}
-
-#memory {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 0 10px 0 10px;
 }
 
 #language {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    padding: 0 5px 0 10px;
-    margin: 6px 0 0 3px;
 }
 
 #sndio {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 3px 0 3px;
-    padding: 0 10px 0 10px;
 }
 
 #clock {
-    color: #c5c8c6;
-    background: rgba(7, 7, 7, 0.7);
-    margin: 6px 0 0 0;
-    padding: 0 5px 0 5px;
 }

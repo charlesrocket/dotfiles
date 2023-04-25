@@ -1,12 +1,15 @@
 {
     "position": "top",
     "layer": "top",
-    "fixed-center": true,
-    "height": 38,
-    "modules-left": ["sway/workspaces"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["cpu", "memory", "custom/network", "sndio", "custom/power", "sway/language", "clock", "custom/quit"],
-    "sway/workspaces": {
+    "margin-top": 0,
+    "margin-left": 8,
+    "margin-bottom": 0,
+    "margin-right": 8,
+    "spacing": 20,
+    "modules-left": ["wlr/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["cpu", "memory", "custom/network", "sndio", "custom/power", "hyprland/language", "clock", "custom/quit"],
+    "wlr/workspaces": {
        "disable-scroll": true,
        "all-outputs": true,
        "format": "{icon}",
@@ -25,11 +28,12 @@
             "focused": "",
             "default": ""
         },
+        "on-click": "activate",
         "persistent_workspaces": {
             "1": []
         }
     },
-    "sway/window": {
+    "hyprland/window": {
         "format": "{}",
         "max-length": 93,
         "icon": false,
@@ -37,13 +41,14 @@
             "": ""
         }
     },
-    "sway/language": {
-    "format": "{short}",
-    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "US"
+
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
     },
     "cpu": {
         "format": "  {icon}",
