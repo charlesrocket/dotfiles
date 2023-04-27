@@ -1,0 +1,5 @@
+#!/bin/sh
+
+hyprctl monitors -j | jq -r '.[0].activeWorkspace.id'
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock -\
+    | stdbuf -o0 awk -F '>>|,' "/^workspace>>/{print $2}"
