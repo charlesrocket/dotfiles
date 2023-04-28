@@ -19,20 +19,32 @@
 (defwidget stats []
   (box :class "stats" :orientation "h" :space-evenly false :halign "end"
     (metric :label ""
+            :label-visible true
+            :label-class "stats-cpu"
             :value {EWW_CPU.avg}
             :tooltip {EWW_CPU.avg}
+            :visible true
             :onchange "")
     (metric :label ""
+            :label-visible true
+            :label-class "stats-ram"
             :value {EWW_RAM.used_mem_perc}
             :tooltip {EWW_RAM.used_mem}
+            :visible true
             :onchange "")
     (metric :label ""
+            :label-class "stats-disk"
+            :label-visible true
             :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :tooltip {EWW_DISK["/"].free}
+            :visible true
             :onchange "")
-    (metric :label "${battery_info.source == "psu" ? "" : ""}"
+    (metric :label "${battery_info.stat == "ac" ? "" : ""}"
+            :label-visible {battery_info.source == "battery" ? true : false}
+            :label-class "${battery_info.message == "critical" ? "stats-batt-low" : "stats-batt"} ${battery_info.message == "charged" ? "stats-batt-charged" : ""}"
             :value {battery_info.percentage}
             :tooltip {battery_info.time}
+            :visible {battery_info.source == "battery" ? true : false}
             :onchange "")
     time))
 
@@ -60,11 +72,11 @@
     )
   ))
 
-(defwidget metric [label value tooltip onchange]
+(defwidget metric [label label-class value tooltip visible label-visible onchange]
   (box :orientation "h"
        :class "metric"
        :space-evenly false
-    (box :class "label" label)
+    (box :visible label-visible :class label-class label)
     (scale :min 0
            :max 101
            :orientation "v"
@@ -72,6 +84,7 @@
            :active {onchange != ""}
            :value value
            :tooltip tooltip
+           :visible visible
            :onchange onchange)))
 
 (defpoll time :interval "10s"
