@@ -20,18 +20,26 @@
   (box :class "stats" :orientation "h" :space-evenly false :halign "end"
     (metric :label ""
             :value {EWW_CPU.avg}
+            :tooltip {EWW_CPU.avg}
             :onchange "")
     (metric :label ""
             :value {EWW_RAM.used_mem_perc}
+            :tooltip {EWW_RAM.used_mem_perc}
             :onchange "")
     (metric :label ""
             :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :tooltip {EWW_DISK["/"].free}
+            :onchange "")
+    (metric :label "${battery_info.source == "psu" ? "" : ""}"
+            :value {battery_info.percentage}
+            :tooltip {battery_info.time}
             :onchange "")
     time))
 
 (deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "sh ~/.config/eww/scripts/get-active-workspace")
 (deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
+(defpoll battery_info :interval "3s" "perl ~/.config/eww/scripts/get-battery")
 
 (defwidget workspaces []
   (box :space-evenly false :spacing 6 :class "workspaces"
@@ -52,7 +60,7 @@
     )
   ))
 
-(defwidget metric [label value onchange]
+(defwidget metric [label value tooltip onchange]
   (box :orientation "h"
        :class "metric"
        :space-evenly false
@@ -63,6 +71,7 @@
            :flipped true
            :active {onchange != ""}
            :value value
+           :tooltip tooltip
            :onchange onchange)))
 
 (defpoll time :interval "10s"

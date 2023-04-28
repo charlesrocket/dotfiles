@@ -1,0 +1,34 @@
+#!/usr/local/bin/perl
+
+use strict;
+use warnings;
+
+my $charge = `hwstat | grep -E 'Cap remain:' | tr -cd '[:digit:]'`;
+my $charged = 100;
+my $critical = 15;
+my ($source, $time, $crw, $stat);
+
+if ($charge =~ /[0-9]+/) {
+    $source = "battery";
+    $time =
+        `acpiconf -i 0 | grep "Remaining time" |
+        tr -d '[:space:]' | sed 's/Remainingtime://'`;
+
+    if ($charge == $charged) {
+        $crw = "charged";
+    } elsif ($charge < $critical) {
+        $crw = "critical";
+    }
+
+    if ($time eq "unknown") {
+        $stat = "ac";
+        $time = "Charge $charge%";
+    }
+} else {
+    $source = "psu";
+    $time = "PSU";
+}
+
+print '{"source": "' . $source . '", "time": "' . $time . '", "stat": "'
+    . ($stat // '') . '", "message": "' . ($crw // '') . '", "percentage": '
+    . $charge . ' }';
