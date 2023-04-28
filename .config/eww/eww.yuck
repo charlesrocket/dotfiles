@@ -41,7 +41,7 @@
             :onchange "")
     (metric :label "${battery_info.stat == "ac" ? "" : ""}"
             :label-visible {battery_info.source == "battery" ? true : false}
-            :label-class "${battery_info.message == "critical" ? "stats-batt-low" : "stats-batt"} ${battery_info.message == "charged" ? "stats-batt-charged" : ""}"
+            :label-class "${battery_info.message == "critical" ? "stats-batt-low" : ""} ${battery_info.message == "charged" ? "stats-batt-charged" : ""}"
             :value {battery_info.percentage}
             :tooltip {battery_info.time}
             :visible {battery_info.source == "battery" ? true : false}
