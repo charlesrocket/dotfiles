@@ -4,7 +4,19 @@ spaces() {
     WORKSPACE_WINDOWS=$(hyprctl workspaces -j \
         | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
     seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
-        'map(tostring) | map({id: ., windows: ($windows[.]//0)}) | map(select(.windows | length > 0))'
+        'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
+         map(select(.windows | length > 0)) | map(
+         if .id == "1" then .name = "\uf015"
+         elif .id == "2" then .name = "\uf120"
+         elif .id == "3" then .name = "\ue007"
+         elif .id == "4" then .name = "\uf121"
+         elif .id == "5" then .name = "\uf5ad"
+         elif .id == "6" then .name = "\uf187"
+         elif .id == "7" then .name = "\uf0e0"
+         elif .id == "8" then .name = "\uf4b8"
+         elif .id == "9" then .name = "\uf0c3"
+         elif .id == "10" then .name = "\uf2cd"
+         else . end)'
 }
 
 spaces
