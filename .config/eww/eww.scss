@@ -1,0 +1,37 @@
+* {
+  all: unset;
+  font-family: IBM Plex Mono;
+  font-weight: bold;
+}
+
+.bar {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #b0b4bc;
+}
+
+.workspaces {
+  margin-left: 5px;
+}
+
+.stats {
+  margin-right: 5px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 1px;
+  min-height: 10px;
+  min-width: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #cc0000;
+  color: #000000;
+  border-radius: 1px;
+}

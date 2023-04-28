@@ -1,0 +1,80 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (left)
+    (center)
+    (right)))
+
+(defwidget left []
+  (box
+    (workspaces)))
+
+(defwidget center []
+  (box
+    (window_w)))
+
+(defwidget right []
+  (box
+    (stats)))
+
+(defwidget stats []
+  (box :class "stats" :orientation "h" :space-evenly false :halign "end"
+    (metric :label ""
+            :value {EWW_CPU.avg}
+            :onchange "")
+    (metric :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label ""
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    time))
+
+(deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "sh ~/.config/eww/scripts/get-active-workspace")
+(deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
+
+(defwidget workspaces []
+  (box :space-evenly false :spacing 6 :class "workspaces"
+    (label :text "${workspaces}${current_workspace}" :visible false)
+    (for workspace in workspaces
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+          (label :text "${workspace.name}" )
+          )
+        )
+      )
+    )
+  )
+
+(defwidget window_w []
+  (box
+    (label :text "${window}"
+    )
+  ))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :orientation "v"
+           :flipped true
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defpoll time :interval "10s"
+  "date '+%H:%M | %b %d %Y'")
+
+(defwindow bar
+  :monitor 0
+  :namespace "eww-bar"
+  :exclusive true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "99%"
+                      :height "25px"
+                      :anchor "top center")
+  (bar))
