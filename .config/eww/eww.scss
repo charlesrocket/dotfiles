@@ -19,35 +19,27 @@
 
 .stats-batt-low {
   all: unset;
-  border-top: 2px;
-  border-bottom: 2px;
-  border-style: solid;
-  border-color: #cc0000;
+  color: #cc0000;
 }
 
 .stats-batt-charged {
   all: unset;
-  border-top: 2px;
-  border-bottom: 2px;
-  border-style: solid;
-  border-color: green;
+  color: green;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #b0b4bc;
+  color: #000000;
 }
 
 .metric scale trough {
   all: unset;
   background-color: #4e4e4e;
-  border-radius: 1px;
   min-height: 10px;
-  min-width: 7px;
+  min-width: 8px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 10px;
   margin-right: 20px;
-}
-
-.metric scale trough highlight {
-  all: unset;
-  background-color: #cc0000;
-  color: #000000;
-  border-radius: 1px;
 }
