@@ -18,18 +18,18 @@
 
 (defwidget stats []
   (box :class "stats" :orientation "h" :space-evenly false :halign "end"
-    (metric :label ""
-            :label-visible true
-            :label-class "stats-ram"
-            :value {EWW_RAM.used_mem_perc}
-            :tooltip {EWW_RAM.used_mem}
-            :visible true
-            :onchange "")
     (metric :label ""
             :label-visible true
             :label-class "stats-cpu"
             :value {EWW_CPU.avg}
             :tooltip {EWW_CPU.avg}
+            :visible true
+            :onchange "")
+    (metric :label ""
+            :label-visible true
+            :label-class "stats-ram"
+            :value {EWW_RAM.used_mem_perc}
+            :tooltip {EWW_RAM.used_mem}
             :visible true
             :onchange "")
     (metric :label ""
