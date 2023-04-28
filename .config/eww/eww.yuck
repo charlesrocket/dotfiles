@@ -18,18 +18,18 @@
 
 (defwidget stats []
   (box :class "stats" :orientation "h" :space-evenly false :halign "end"
-    (metric :label ""
-            :label-visible true
-            :label-class "stats-cpu"
-            :value {EWW_CPU.avg}
-            :tooltip {EWW_CPU.avg}
-            :visible true
-            :onchange "")
     (metric :label ""
             :label-visible true
             :label-class "stats-ram"
             :value {EWW_RAM.used_mem_perc}
             :tooltip {EWW_RAM.used_mem}
+            :visible true
+            :onchange "")
+    (metric :label ""
+            :label-visible true
+            :label-class "stats-cpu"
+            :value {EWW_CPU.avg}
+            :tooltip {EWW_CPU.avg}
             :visible true
             :onchange "")
     (metric :label ""
@@ -46,6 +46,7 @@
             :tooltip {battery_info.time}
             :visible {battery_info.source == "battery" ? true : false}
             :onchange "")
+    (stats-separator)
     time))
 
 (deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
@@ -69,14 +70,21 @@
 (defwidget window_w []
   (box
     (label :text "${window}"
-    )
+           :limit-width 65)
   ))
+
+(defwidget stats-separator []
+  (box
+    (label :text "|"
+           :class "stats-separator"
+           :justify "center")))
 
 (defwidget metric [label label-class value tooltip visible label-visible onchange]
   (box :orientation "h"
        :class "metric"
        :space-evenly false
-    (box :visible label-visible :class label-class label)
+    (box :visible label-visible
+         :class label-class label)
     (scale :min 0
            :max 101
            :orientation "v"
@@ -88,7 +96,7 @@
            :onchange onchange)))
 
 (defpoll time :interval "10s"
-  "date '+%H:%M | %b %d %Y'")
+  "date '+%H:%M  %b %d %Y'")
 
 (defwindow bar
   :monitor 0
@@ -97,6 +105,6 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "99%"
-                      :height "25px"
+                      :height "26px"
                       :anchor "top center")
   (bar))

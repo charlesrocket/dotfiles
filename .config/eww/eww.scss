@@ -29,17 +29,28 @@
 
 .metric scale trough highlight {
   all: unset;
+  border-radius: 0px;
   background-color: #b0b4bc;
   color: #000000;
 }
 
 .metric scale trough {
   all: unset;
+  border: 1px;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: #b0b4bc;
   background-color: #4e4e4e;
   min-height: 10px;
-  min-width: 8px;
+  min-width: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin-left: 6px;
+  margin-right: 12px;
+}
+
+.stats-separator {
+  all: unset;
+  color: #4e4e4e;
+  margin-right: 12px;
 }
