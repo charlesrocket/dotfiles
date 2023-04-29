@@ -3,22 +3,18 @@
 use strict;
 use warnings;
 
-my $hwstats = 'hwstat';
-my $charge = `$hwstats | grep -E 'Cap remain:' | tr -cd '[:digit:]'`;
-my $charged = 100;
-my $critical = 15;
-my ($source, $time, $crw, $stat);
+my $acpi = `acpiconf -i 0 2> /dev/null`;
+my ($source, $time, $message, $stat, $charge);
 
-if ($charge =~ /[0-9]+/) {
+if ($acpi =~ /Remaining capacity:\s+(\d+)/) {
+    $charge = $1;
     $source = "battery";
-    $time =
-        `'$hwstats' | grep "Remaining time" |
-        tr -d '[:space:]' | sed 's/Remainingtime://'`;
+    $time = ($acpi =~ /Remaining time:\s+(.*)/) ? $1 : "unknown";
 
-    if ($charge == $charged) {
-        $crw = "charged";
-    } elsif ($charge < $critical) {
-        $crw = "critical";
+    if ($charge == 100) {
+        $message = "charged";
+    } elsif ($charge <= 15) {
+        $message = "critical";
     }
 
     if ($time eq "unknown") {
@@ -33,5 +29,5 @@ if ($charge =~ /[0-9]+/) {
 
 print '{"source": "'.$source.'", "time": "'.$time.'", "stat": "'
     .(defined $stat ? $stat : '').'", "message": "'
-    .(defined $crw ? $crw : '').'", "percentage": '
-    .$charge.'}';
+    .(defined $message ? $message : '').'", "percentage": '
+    .(defined $charge ? $charge : '').'}';
