@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 
-my $charge = `hwstat | grep -E 'Cap remain:' | tr -cd '[:digit:]'`;
+my $hwstats = 'hwstat';
+my $charge = `$hwstats | grep -E 'Cap remain:' | tr -cd '[:digit:]'`;
 my $charged = 100;
 my $critical = 15;
 my ($source, $time, $crw, $stat);
@@ -11,7 +12,7 @@ my ($source, $time, $crw, $stat);
 if ($charge =~ /[0-9]+/) {
     $source = "battery";
     $time =
-        `acpiconf -i 0 | grep "Remaining time" |
+        `'$hwstats' | grep "Remaining time" |
         tr -d '[:space:]' | sed 's/Remainingtime://'`;
 
     if ($charge == $charged) {
@@ -24,11 +25,13 @@ if ($charge =~ /[0-9]+/) {
         $stat = "ac";
         $time = "Charge $charge%";
     }
+
 } else {
     $source = "psu";
     $time = "PSU";
 }
 
-print '{"source": "' . $source . '", "time": "' . $time . '", "stat": "'
-    . ($stat // '') . '", "message": "' . ($crw // '') . '", "percentage": '
-    . $charge . ' }';
+print '{"source": "'.$source.'", "time": "'.$time.'", "stat": "'
+    .(defined $stat ? $stat : '').'", "message": "'
+    .(defined $crw ? $crw : '').'", "percentage": '
+    .$charge.'}';
