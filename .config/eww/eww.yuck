@@ -1,3 +1,19 @@
+(defwindow bar
+  :monitor 0
+  :namespace "eww-bar"
+  :exclusive true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "99%"
+                      :height "26px"
+                      :anchor "top center")
+  (bar))
+
+(deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "sh ~/.config/eww/scripts/get-active-workspace")
+(deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
+(defpoll battery_info :interval "5s" "perl ~/.config/eww/scripts/get-battery")
+
 (defwidget bar []
   (centerbox :orientation "h"
     (left)
@@ -49,17 +65,12 @@
     (stats-separator)
     time))
 
-(deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "sh ~/.config/eww/scripts/get-active-workspace")
-(deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
-(defpoll battery_info :interval "3s" "perl ~/.config/eww/scripts/get-battery")
-
 (defwidget workspaces []
-  (box :space-evenly false :spacing 6 :class "workspaces"
+  (box :space-evenly false :spacing 8 :class "workspaces"
     (label :text "${workspaces}${current_workspace}" :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-        (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+        (box :class "workspace-entry ${workspace.id == current_workspace ? "workspace-current" : ""} ${workspace.windows > 0 ? "workspace-occupied" : "workspace-empty"}"
           (label :text "${workspace.name}" )
           )
         )
@@ -82,7 +93,7 @@
 (defwidget metric [label label-class value tooltip visible label-visible onchange]
   (box :orientation "h"
        :class "metric"
-       :space-evenly false
+       :space-evenly true
     (box :visible label-visible
          :class label-class label)
     (scale :min 0
@@ -97,14 +108,3 @@
 
 (defpoll time :interval "10s"
   "date '+%H:%M  %b %d %Y'")
-
-(defwindow bar
-  :monitor 0
-  :namespace "eww-bar"
-  :exclusive true
-  :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "99%"
-                      :height "26px"
-                      :anchor "top center")
-  (bar))

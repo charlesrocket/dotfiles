@@ -10,11 +10,21 @@
 }
 
 .workspaces {
-  margin-left: 5px;
+  margin-left: 10px;
+}
+
+.workspace-current {
+  border-top: 2px;
+  border-style: solid;
+  border-color: #cc0000;
+}
+
+.workspace-empty {
+  color: rgba(78, 78, 78, 0.7);
 }
 
 .stats {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .stats-batt-low {
@@ -45,12 +55,12 @@
   min-width: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 6px;
-  margin-right: 12px;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .stats-separator {
   all: unset;
   color: #4e4e4e;
-  margin-right: 12px;
+  margin-right: 10px;
 }
