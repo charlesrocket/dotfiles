@@ -10,7 +10,7 @@
 }
 
 .workspaces {
-  margin-left: 10px;
+  margin-left: 13px;
 }
 
 .workspace-current {
@@ -23,8 +23,9 @@
   color: rgba(78, 78, 78, 0.7);
 }
 
-.stats {
-  margin-right: 10px;
+.clock {
+  margin-left: 10px;
+  margin-right: 3px;
 }
 
 .stats-batt-low {
@@ -59,8 +60,7 @@
   margin-right: 10px;
 }
 
-.stats-separator {
+.separator {
   all: unset;
   color: #4e4e4e;
-  margin-right: 10px;
 }

@@ -4,7 +4,7 @@
   :exclusive true
   :geometry (geometry :x "0%"
                       :y "0%"
-                      :width "99%"
+                      :width "100%"
                       :height "26px"
                       :anchor "top center")
   (bar))
@@ -12,7 +12,12 @@
 (deflisten workspaces :initial "[]" "sh ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "sh ~/.config/eww/scripts/get-active-workspace")
 (deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
+
 (defpoll battery_info :interval "5s" "perl ~/.config/eww/scripts/get-battery")
+(defpoll time :interval "10s" "date '+%H:%M'")  
+(defpoll date :interval "1m" "date '+ %d %B %Y'")
+
+(defvar clock_rev false)
 
 (defwidget bar []
   (centerbox :orientation "h"
@@ -29,8 +34,29 @@
     (window_w)))
 
 (defwidget right []
+  (box :halign "end" :space-evenly false
+    (stats)
+    (separator)
+    (clock)))
+
+(defwidget window_w []
+  (box :halign "center"
+    (label :text "${window}"
+           :limit-width 65)
+  ))
+
+(defwidget clock []
+  (eventbox :onhover "${EWW_CMD} update clock_rev=true" :onhoverlost "${EWW_CMD} update clock_rev=false"
+    (box :space-evenly false :class "clock" :spacing 10
+      (label :text time)
+        (revealer :transition "slideleft"
+                  :reveal clock_rev
+                  :duration "600ms"
+          (date)))))
+
+(defwidget date []
   (box
-    (stats)))
+    (label :text date)))
 
 (defwidget stats []
   (box :class "stats" :orientation "h" :space-evenly false :halign "end"
@@ -61,12 +87,10 @@
             :value {battery_info.percentage}
             :tooltip {battery_info.time}
             :visible {battery_info.source == "battery" ? true : false}
-            :onchange "")
-    (stats-separator)
-    time))
+            :onchange "")))
 
 (defwidget workspaces []
-  (box :space-evenly false :spacing 8 :class "workspaces"
+  (box :space-evenly false :spacing 11 :class "workspaces"
     (label :text "${workspaces}${current_workspace}" :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
@@ -77,18 +101,6 @@
       )
     )
   )
-
-(defwidget window_w []
-  (box
-    (label :text "${window}"
-           :limit-width 65)
-  ))
-
-(defwidget stats-separator []
-  (box
-    (label :text "|"
-           :class "stats-separator"
-           :justify "center")))
 
 (defwidget metric [label label-class value tooltip visible label-visible onchange]
   (box :orientation "h"
@@ -106,5 +118,8 @@
            :visible visible
            :onchange onchange)))
 
-(defpoll time :interval "10s"
-  "date '+%H:%M  %b %d %Y'")
+(defwidget separator []
+  (box
+    (label :text "|"
+           :class "separator"
+           :justify "center")))
