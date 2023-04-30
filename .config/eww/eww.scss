@@ -2,6 +2,7 @@
   all: unset;
   font-family: IBM Plex Mono;
   font-weight: bold;
+  font-size: 13px;
 }
 
 .bar {
@@ -9,23 +10,34 @@
   color: #b0b4bc;
 }
 
-.workspaces {
-  margin-left: 13px;
+.left-bar {
+  padding: 5px;
 }
 
-.workspace-current {
-  border-top: 2px;
-  border-style: solid;
-  border-color: #cc0000;
+.center-bar {
+  padding: 5px;
+}
+
+.right-bar {
+  padding: 5px;
+}
+
+.workspace-entry * {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .workspace-empty {
   color: rgba(78, 78, 78, 0.7);
 }
 
+.workspace-current {
+  border-radius: 6px;
+  color: #cc0000;
+}
+
 .clock {
   margin-left: 10px;
-  margin-right: 3px;
 }
 
 .stats-batt-low {
@@ -54,8 +66,8 @@
   background-color: #4e4e4e;
   min-height: 10px;
   min-width: 6px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   margin-left: 5px;
   margin-right: 10px;
 }
