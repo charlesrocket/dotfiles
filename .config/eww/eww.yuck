@@ -46,9 +46,9 @@
   (box :halign "end"
        :space-evenly false
        :class "right-bar"
-    (network)
-    (separator)
     (stats)
+    (separator)
+    (network)
     (separator)
     (clock)))
 
@@ -77,7 +77,6 @@
 (defwidget stats []
   (box :class "stats"
        :orientation "h"
-       :space-evenly false
        :halign "end"
     (metric :label ""
             :label-visible true
@@ -127,7 +126,7 @@
   )
 
 (defwidget network []
-  (box :class "network" :spacing 8
+  (box :class "network" :spacing 10
     (label :text "${network_info.vpn == "active" ? "" : ""}"
            :class "${network_info.status == "online" ?
               "network-online" : "network-offline"}")
