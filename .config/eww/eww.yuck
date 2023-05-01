@@ -16,6 +16,7 @@
 (deflisten window :initial
   "..." "sh ~/.config/eww/scripts/get-window-title")
 
+(defpoll network_info :interval "5s" "perl ~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "5s" "perl ~/.config/eww/scripts/get-battery")
 (defpoll time :interval "10s" "date '+%H:%M'")  
 (defpoll date :interval "1m" "date '+ %d %B %Y'")
@@ -45,6 +46,8 @@
   (box :halign "end"
        :space-evenly false
        :class "right-bar"
+    (network)
+    (separator)
     (stats)
     (separator)
     (clock)))
@@ -123,6 +126,13 @@
     )
   )
 
+(defwidget network []
+  (box :class "network" :spacing 8
+    (label :text "${network_info.vpn == "active" ? "" : ""}"
+           :class "${network_info.status == "online" ?
+              "network-online" : "network-offline"}")
+    (label :text "${network_info.interface}")))
+
 (defwidget metric [
   label label-class value tooltip visible label-visible onchange]
   (box :orientation "h"
@@ -143,5 +153,4 @@
 (defwidget separator []
   (box
     (label :text "|"
-           :class "separator"
-           :justify "center")))
+           :class "separator")))
