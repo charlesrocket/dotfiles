@@ -83,6 +83,16 @@
   margin-right: 10px;
 }
 
+tooltip.background {
+    background-color: rgba(0, 0 ,0 , 0.7);
+    font-size: 13;
+    border-radius: 4px;
+}
+
+tooltip label {
+    margin: 5px;
+}
+
 .separator {
   all: unset;
   color: #4e4e4e;

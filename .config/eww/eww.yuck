@@ -82,14 +82,14 @@
             :label-visible true
             :label-class "stats-cpu"
             :value {EWW_CPU.avg}
-            :tooltip {EWW_CPU.avg}
+            :tooltip "Avg. ${round(EWW_CPU.avg, 3)}"
             :visible true
             :onchange "")
     (metric :label ""
             :label-visible true
             :label-class "stats-ram"
             :value {EWW_RAM.used_mem_perc}
-            :tooltip {EWW_RAM.used_mem}
+            :tooltip "${round(EWW_RAM.used_mem_perc, 0)}% used"
             :visible true
             :onchange "")
     (metric :label ""
@@ -97,7 +97,7 @@
             :label-visible true
             :value
               {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-            :tooltip {EWW_DISK["/"].free}
+            :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
             :visible true
             :onchange "")
     (metric :label "${battery_info.stat == "ac" ? "" : ""}"
