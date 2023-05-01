@@ -1,11 +1,11 @@
 * {
   all: unset;
-  font-family: IBM Plex Mono;
-  font-weight: bold;
-  font-size: 13px;
 }
 
 .bar {
+  font-family: Droid Sans;
+  font-size: 14px;
+  font-weight: bold;
   background-color: rgba(0, 0, 0, 0.7);
   color: #b0b4bc;
 }
@@ -46,6 +46,8 @@
 }
 
 .clock {
+  font-family: IBM Plex Mono;
+  font-weight: bold;
   margin-left: 10px;
 }
 
