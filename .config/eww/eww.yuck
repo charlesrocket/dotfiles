@@ -111,14 +111,17 @@
             :onchange "")))
 
 (defwidget workspaces []
-  (box :space-evenly false :spacing 5 :class "workspaces"
-    (label :text "${workspaces}${current_workspace}" :visible false)
+  (box :space-evenly false
+       :spacing 5
+       :class "workspaces"
+    (label :text "${workspaces}${current_workspace}"
+           :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
         (box :class "workspace-entry ${workspace.id == current_workspace ?
             "workspace-current" : "workspace-inactive"} ${workspace.windows > 0 ?
             "workspace-occupied" : "workspace-empty"}"
-          (label :text "${workspace.name}" )
+          (label :text "${workspace.name}")
           )
         )
       )
@@ -126,7 +129,8 @@
   )
 
 (defwidget network []
-  (box :class "network" :spacing 10
+  (box :class "network"
+       :spacing 10
     (label :text "${network_info.vpn == "active" ? "" : ""}"
            :class "${network_info.status == "online" ?
               "network-online" : "network-offline"}")
