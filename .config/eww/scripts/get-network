@@ -55,4 +55,7 @@ if ($call == 0) {
     $status = "offline";
 }
 
-print '{"interface":"'.$interface.'", "vpn":"'.$vpn.'","status":"'.$status.'"}'."\n";
+print '{"interface":"'
+    . $interface . '","vpn":"'
+    . $vpn . '","status":"'
+    . $status . '"}' . "\n";
