@@ -19,7 +19,7 @@ if ($acpi =~ /Remaining capacity:\s+(\d+)/) {
 
     if ($time eq "unknown") {
         $stat = "ac";
-        $time = "Charge $charge%";
+        $time = "$charge% charged";
     }
 
 } else {
