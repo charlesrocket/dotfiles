@@ -22,6 +22,7 @@
 (defpoll date :interval "1m" "date '+ %d %B %Y'")
 
 (defvar clock_rev false)
+(defvar network_rev false)
 
 (defwidget bar []
   (box :orientation "h"
@@ -122,13 +123,31 @@
     )
   )
 
-(defwidget network []
-  (box :class "network"
+(defwidget network_stats []
+  (box :class "network-stats"
        :spacing 10
-    (label :text "${network_info.vpn == "active" ? "" : ""}"
-           :class "${network_info.status == "online" ?
-              "network-online" : "network-offline"}")
-    (label :text "${network_info.interface}")))
+       :vexpand false
+       :hexpand false
+       :space-eveny false
+    (label :text "${round(EWW_NET["${network_info.if_name}"].NET_DOWN / 1000000, 4)} ")
+    (label :text "${round(EWW_NET["${network_info.if_name}"].NET_UP / 1000000, 4)} ")))
+
+(defwidget network []
+  (eventbox :onhover "${EWW_CMD} update network_rev=true"
+            :onhoverlost "${EWW_CMD} update network_rev=false"
+    (box :class "network"
+         :vexpand false
+         :hexpand false
+         :spacing 10
+         :space-evenly false
+      (label :text "${network_info.vpn == "active" ? "" : ""}"
+             :class "${network_info.status == "online" ?
+               "network-online" : "network-offline"}")
+      (label :text "${network_info.interface}")
+        (revealer :transition "slideleft"
+                  :reveal network_rev
+                  :duration "600ms"
+          (network_stats)))))
 
 (defwidget metric [
   label label-class value tooltip ?visible ?label-visible onchange]
