@@ -9,12 +9,11 @@
                       :anchor "top center")
   (bar))
 
+(deflisten window "sh ~/.config/eww/scripts/get-window-title")
 (deflisten workspaces :initial
   "[]" "sh ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial
   "1" "sh ~/.config/eww/scripts/get-active-workspace")
-(deflisten window :initial
-  "..." "sh ~/.config/eww/scripts/get-window-title")
 
 (defpoll network_info :interval "5s" "perl ~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "5s" "perl ~/.config/eww/scripts/get-battery")
@@ -55,7 +54,7 @@
 
 (defwidget window_w []
   (box :halign "center"
-    (label :text "${window}"
+    (label :text {window != "" ? "${window}" : ""}
            :limit-width 65)
   ))
 
@@ -129,8 +128,8 @@
        :vexpand false
        :hexpand false
        :space-eveny false
-    (label :text "${round(EWW_NET["${network_info.if_name}"].NET_DOWN / 1000000, 4)} ")
-    (label :text "${round(EWW_NET["${network_info.if_name}"].NET_UP / 1000000, 4)} ")))
+    (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_DOWN / 1000000, 4)}")
+    (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_UP / 1000000, 4)}")))
 
 (defwidget network []
   (eventbox :onhover "${EWW_CMD} update network_rev=true"
