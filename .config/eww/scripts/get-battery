@@ -27,7 +27,10 @@ if ($acpi =~ /Remaining capacity:\s+(\d+)/) {
     $time = "PSU";
 }
 
-print '{"source":"' . $source . '","time":"' . $time . '","stat":"'
-    . (defined $stat ? $stat : '') . '","message":"'
-    . (defined $message ? $message : '') . '","percentage":'
-    . (defined $charge ? $charge : '') . '}' . "\n";
+print
+    '{"source":"' . $source .
+    '","time":"' . $time .
+    '","stat":"' . (defined $stat ? $stat : '') .
+    '","message":"' . (defined $message ? $message : '') .
+    '","percentage":' . (defined $charge ? $charge : '') .
+    '}' . "\n";
