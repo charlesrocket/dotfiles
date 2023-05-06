@@ -9,7 +9,7 @@
                       :anchor "top center")
   (bar))
 
-(deflisten window "sh ~/.config/eww/scripts/get-window-title")
+(deflisten window_title "sh ~/.config/eww/scripts/get-window-title")
 (deflisten workspaces :initial
   "[]" "sh ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial
@@ -40,7 +40,7 @@
   (box :class "center-bar"
        :halign "center"
        :valign "fill"
-    (window_w)))
+    (window)))
 
 (defwidget right []
   (box :halign "end"
@@ -52,9 +52,10 @@
     (separator)
     (clock)))
 
-(defwidget window_w []
+(defwidget window []
   (box :halign "center"
-    (label :text {window != "" ? "${window}" : ""}
+    (label :text {window_title == "" ? "" :
+                  window_title == "null" ? "" : window_title }
            :limit-width 65)
   ))
 
