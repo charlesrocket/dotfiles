@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+"""
+Convert images to PNG
+"""
+
+import sys
+from PIL import Image
+
+if len(sys.argv) > 2:
+    print("Provide filename only")
+
+else:
+    src = Image.open(sys.argv[1])
+    src.save('new-image.png')
