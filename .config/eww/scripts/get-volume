@@ -1,0 +1,33 @@
+#!/usr/local/bin/perl
+
+use strict;
+use warnings;
+
+my $mixer = `mixer -s`;
+my ($vol, $pcm, $rec, $ogain) = ([], [], [], []);
+
+while ($mixer =~ /(\w+)\s+(\d+):(\d+)/g) {
+    my $type = $1;
+    my $value = [$2, $3];
+
+    if ($type eq 'vol') {
+        $vol = $value;
+    } elsif ($type eq 'pcm') {
+        $pcm = $value;
+    } elsif ($type eq 'rec') {
+        $rec = $value;
+    } elsif ($type eq 'ogain') {
+        $ogain = $value;
+    }
+}
+
+my $output = '{';
+
+$output .= "\"vol\":[$vol->[0],$vol->[1]]," if scalar(@$vol) == 2;
+$output .= "\"pcm\":[$pcm->[0],$pcm->[1]]," if scalar(@$pcm) == 2;
+$output .= "\"rec\":[$rec->[0],$rec->[1]]," if scalar(@$rec) == 2;
+$output .= "\"ogain\":[$ogain->[0],$ogain->[1]]," if scalar(@$ogain) == 2;
+$output =~ s/,$//;
+$output .= "}\n";
+
+print $output;
