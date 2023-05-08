@@ -1,6 +1,5 @@
 (defwindow bar
   :monitor 0
-  :namespace "eww-bar"
   :exclusive true
   :geometry (geometry :x "0%"
                       :y "0%"
@@ -109,8 +108,6 @@
   (box :space-evenly false
        :spacing 5
        :class "workspaces"
-    (label :text "${workspaces}${current_workspace}"
-           :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
         (box :class "workspace-entry ${workspace.id == current_workspace ?
@@ -128,7 +125,6 @@
        :spacing 10
        :vexpand false
        :hexpand false
-       :space-eveny false
     (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_DOWN / 1000000, 4)}")
     (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_UP / 1000000, 4)}")))
 
