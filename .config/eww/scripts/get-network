@@ -60,4 +60,4 @@ print
     '","if_name":"' . $ifconfig .
     '","vpn":"' . $vpn .
     '","status":"' . $status .
-    '"}' . "\n";
+    '"}';

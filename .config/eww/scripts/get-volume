@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 my $mixer = `mixer -s`;
-my ($vol, $pcm, $rec, $ogain) = ([], [], [], []);
+my ($vol, $pcm, $rec, $mic, $igain, $ogain) = ([], [], [], [], [], []);
 
 while ($mixer =~ /(\w+)\s+(\d+):(\d+)/g) {
     my $type = $1;
@@ -16,6 +16,10 @@ while ($mixer =~ /(\w+)\s+(\d+):(\d+)/g) {
         $pcm = $value;
     } elsif ($type eq 'rec') {
         $rec = $value;
+    } elsif ($type eq 'mic') {
+        $mic = $value;
+    } elsif ($type eq 'igain') {
+        $igain = $value;
     } elsif ($type eq 'ogain') {
         $ogain = $value;
     }
@@ -26,8 +30,9 @@ my $output = '{';
 $output .= "\"vol\":[$vol->[0],$vol->[1]]," if scalar(@$vol) == 2;
 $output .= "\"pcm\":[$pcm->[0],$pcm->[1]]," if scalar(@$pcm) == 2;
 $output .= "\"rec\":[$rec->[0],$rec->[1]]," if scalar(@$rec) == 2;
+$output .= "\"mic\":[$mic->[0],$mic->[1]]," if scalar(@$mic) == 2;
+$output .= "\"igain\":[$igain->[0],$igain->[1]]," if scalar(@$igain) == 2;
 $output .= "\"ogain\":[$ogain->[0],$ogain->[1]]," if scalar(@$ogain) == 2;
 $output =~ s/,$//;
-$output .= "}\n";
 
 print $output;

@@ -33,4 +33,4 @@ print
     '","stat":"' . (defined $stat ? $stat : '') .
     '","message":"' . (defined $message ? $message : '') .
     '","percentage":' . (defined $charge ? $charge : '') .
-    '}' . "\n";
+    '}';

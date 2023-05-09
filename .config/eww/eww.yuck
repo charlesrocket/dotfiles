@@ -10,12 +10,12 @@
 
 (deflisten window_title "sh ~/.config/eww/scripts/get-window-title")
 (deflisten workspaces :initial
-  "[]" "sh ~/.config/eww/scripts/get-workspaces")
+  "[]" "~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial
-  "1" "sh ~/.config/eww/scripts/get-active-workspace")
+  "1" "~/.config/eww/scripts/get-active-workspace")
 
-(defpoll network_info :interval "5s" "perl ~/.config/eww/scripts/get-network")
-(defpoll battery_info :interval "5s" "perl ~/.config/eww/scripts/get-battery")
+(defpoll network_info :interval "5s" "~/.config/eww/scripts/get-network")
+(defpoll battery_info :interval "5s" "~/.config/eww/scripts/get-battery")
 (defpoll time :interval "10s" "date '+%H:%M'")  
 (defpoll date :interval "1m" "date '+ %d %B %Y'")
 
