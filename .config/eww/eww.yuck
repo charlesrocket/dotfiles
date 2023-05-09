@@ -72,7 +72,7 @@
       (label :text time)
         (revealer :transition "slideleft"
                   :reveal clock_rev
-                  :duration "600ms"
+                  :duration "320ms"
           (date)))))
 
 (defwidget date []
@@ -138,7 +138,7 @@
       (label :text "${network_info.interface}")
         (revealer :transition "slideleft"
                   :reveal network_rev
-                  :duration "600ms"
+                  :duration "320ms"
           (network_stats)))))
 
 (defwidget network []
@@ -171,7 +171,7 @@
       (label :text {sound_info.vol[0] == 0 ? "" : ""})
         (revealer :transition "slideleft"
                   :reveal sound_vol_rev
-                  :duration "600ms"
+                  :duration "320ms"
           (scale :min 0
                  :max 101
                  :orientation "h"
@@ -189,7 +189,7 @@
       (label :text {sound_info.rec[0] == 0 ? "" : ""})
         (revealer :transition "slideleft"
                   :reveal sound_rec_rev
-                  :duration "600ms"
+                  :duration "320ms"
           (scale :min 0
                  :max 101
                  :orientation "h"
