@@ -14,11 +14,14 @@
 (deflisten current_workspace :initial
   "1" "~/.config/eww/scripts/get-active-workspace")
 
+(defpoll sound_info :interval "1s" "~/.config/eww/scripts/get-volume")
 (defpoll network_info :interval "5s" "~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "5s" "~/.config/eww/scripts/get-battery")
 (defpoll time :interval "10s" "date '+%H:%M'")  
 (defpoll date :interval "1m" "date '+ %d %B %Y'")
 
+(defvar sound_vol_rev false)
+(defvar sound_rec_rev false)
 (defvar clock_rev false)
 (defvar network_rev false)
 
@@ -46,6 +49,8 @@
        :space-evenly false
        :class "right-bar"
     (stats)
+    (separator_stats)
+    (volume)
     (separator)
     (network)
     (separator)
@@ -113,12 +118,7 @@
         (box :class "workspace-entry ${workspace.id == current_workspace ?
             "workspace-current" : "workspace-inactive"} ${workspace.windows > 0 ?
             "workspace-occupied" : "workspace-empty"}"
-          (label :text "${workspace.name}")
-          )
-        )
-      )
-    )
-  )
+          (label :text "${workspace.name}"))))))
 
 (defwidget network_stats []
   (box :class "network-stats"
@@ -128,22 +128,74 @@
     (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_DOWN / 1000000, 4)}")
     (label :text " ${round(EWW_NET["${network_info.if_name}"].NET_UP / 1000000, 4)}")))
 
-(defwidget network []
+(defwidget network_if []
   (eventbox :onhover "${EWW_CMD} update network_rev=true"
             :onhoverlost "${EWW_CMD} update network_rev=false"
-    (box :class "network"
-         :vexpand false
+    (box :vexpand false
          :hexpand false
-         :spacing 10
+         :spacing 0
          :space-evenly false
-      (label :text "${network_info.vpn == "active" ? "" : ""}"
-             :class "${network_info.status == "online" ?
-               "network-online" : "network-offline"}")
       (label :text "${network_info.interface}")
         (revealer :transition "slideleft"
                   :reveal network_rev
                   :duration "600ms"
           (network_stats)))))
+
+(defwidget network []
+  (box :class "network"
+       :vexpand false
+       :hexpand false
+       :spacing 10
+       :space-evenly false
+    (label :text "${network_info.vpn == "active" ? "" : ""}"
+           :class "${network_info.status == "online" ?
+             "network-online" : "network-offline"}")
+    (network_if)))
+
+(defwidget volume []
+  (box :class "volume"
+       :vexpand false
+       :hexpand false
+       :spacing 10
+       :space-evenly false
+    (volume_rec)
+    (volume_vol)))
+
+(defwidget volume_vol []
+  (eventbox :onhover "${EWW_CMD} update sound_vol_rev=true"
+            :onhoverlost "${EWW_CMD} update sound_vol_rev=false"
+    (box :vexpand false
+         :hexpand false
+         :spacing 0
+         :space-evenly false
+      (label :text {sound_info.vol[0] == 0 ? "" : ""})
+        (revealer :transition "slideleft"
+                  :reveal sound_vol_rev
+                  :duration "600ms"
+          (scale :min 0
+                 :max 101
+                 :orientation "h"
+                 :active true
+                 :value {sound_info.vol[0]}
+                 :onchange "mixer vol {}")))))
+
+(defwidget volume_rec []
+  (eventbox :onhover "${EWW_CMD} update sound_rec_rev=true"
+            :onhoverlost "${EWW_CMD} update sound_rec_rev=false"
+    (box :vexpand false
+         :hexpand false
+         :spacing 0
+         :space-evenly false
+      (label :text {sound_info.rec[0] == 0 ? "" : ""})
+        (revealer :transition "slideleft"
+                  :reveal sound_rec_rev
+                  :duration "600ms"
+          (scale :min 0
+                 :max 101
+                 :orientation "h"
+                 :active true
+                 :value {sound_info.rec[0]}
+                 :onchange "mixer rec {}")))))
 
 (defwidget metric [
   label label-class value tooltip ?visible ?label-visible onchange]
@@ -166,3 +218,8 @@
   (box
     (label :text "|"
            :class "separator")))
+
+(defwidget separator_stats []
+  (box
+    (label :text "|"
+           :class "separator_stats")))

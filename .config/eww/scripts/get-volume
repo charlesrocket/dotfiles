@@ -34,5 +34,6 @@ $output .= "\"mic\":[$mic->[0],$mic->[1]]," if scalar(@$mic) == 2;
 $output .= "\"igain\":[$igain->[0],$igain->[1]]," if scalar(@$igain) == 2;
 $output .= "\"ogain\":[$ogain->[0],$ogain->[1]]," if scalar(@$ogain) == 2;
 $output =~ s/,$//;
+$output .= "}";
 
 print $output;

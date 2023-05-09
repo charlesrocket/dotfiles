@@ -41,13 +41,13 @@
 }
 
 .network {
-  margin-left: 10px;
-  margin-right: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .network-stats {
-  margin-left: 0px;
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 0px;
 }
 
 .network-offline {
@@ -57,7 +57,7 @@
 .clock {
   font-family: IBM Plex Mono;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .stats-batt-low {
@@ -92,6 +92,29 @@
   margin-right: 10px;
 }
 
+.volume {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.volume scale trough highlight {
+  all: unset;
+  background-color: #b0b4bc;
+  color: #000000;
+  border-radius: 0px;
+}
+.volume scale trough {
+  all: unset;
+  border-color: #b0b4bc;
+  background-color: #4e4e4e;
+  border: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  min-height: 6px;
+  min-width: 50px;
+  margin-left: 10px;
+}
+
 tooltip.background {
     background-color: rgba(0, 0 ,0 , 0.7);
     border-radius: 4px;
@@ -106,4 +129,13 @@ tooltip label {
 .separator {
   all: unset;
   color: #4e4e4e;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.separator_stats {
+  all: unset;
+  color: #4e4e4e;
+  margin-left: 3px;
+  margin-right: 5px;
 }
