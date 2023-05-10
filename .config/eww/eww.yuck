@@ -8,17 +8,28 @@
                       :anchor "top center")
   (bar))
 
-(deflisten window_title "sh ~/.config/eww/scripts/get-window-title")
-(deflisten workspaces :initial
-  "[]" "~/.config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial
-  "1" "~/.config/eww/scripts/get-active-workspace")
+(deflisten window_title
+  "~/.config/eww/scripts/get-window-title")
+(deflisten workspaces :initial "[]"
+  "~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1"
+  "~/.config/eww/scripts/get-active-workspace")
 
-(defpoll sound_info :interval "1s" "~/.config/eww/scripts/get-volume")
-(defpoll network_info :interval "5s" "~/.config/eww/scripts/get-network")
-(defpoll battery_info :interval "5s" "~/.config/eww/scripts/get-battery")
-(defpoll time :interval "10s" "date '+%H:%M'")  
-(defpoll date :interval "1m" "date '+ %d %B %Y'")
+(defpoll sound_info :interval "2s"
+  :initial "{\"vol\":[0,0],\"rec\":[0,0]}"
+  "perl ~/.config/eww/scripts/get-volume")
+(defpoll network_info :interval "5s"
+  :initial "{\"interface\":\"\",\"if_name\":\"ue0\",
+\"\":\"inactive\",\"status\":\"offline\"}"
+  "perl ~/.config/eww/scripts/get-network")
+(defpoll battery_info :interval "5s"
+  :initial "{\"source\":\"psu\",\"time\":\"\",
+\"stat\":\"\",\"message\":\"\",\"percentage\":\"0\"}"
+  "perl ~/.config/eww/scripts/get-battery")
+(defpoll time :interval "10s"
+  "date '+%H:%M'")
+(defpoll date :interval "1m"
+  "date '+ %d %B %Y'")
 
 (defvar sound_vol_rev false)
 (defvar sound_rec_rev false)
@@ -87,17 +98,20 @@
             :label-class "stats-cpu"
             :value {EWW_CPU.avg}
             :tooltip "Avg. ${round(EWW_CPU.avg, 3)}"
+            :visible true
             :onchange "")
     (metric :label ""
             :label-class "stats-ram"
             :value {EWW_RAM.used_mem_perc}
             :tooltip "${round(EWW_RAM.used_mem_perc, 0)}% used"
+            :visible true
             :onchange "")
     (metric :label ""
             :label-class "stats-disk"
             :value
               {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
+            :visible true
             :onchange "")
     (metric :label "${battery_info.stat == "ac" ? "" : ""}"
             :label-class "${battery_info.message == "critical" ?
@@ -202,7 +216,7 @@
   (box :orientation "h"
        :class "metric"
        :space-evenly true
-       :visible visible
+       :visible {visible == true ? true : false}
     (box :class label-class label)
     (scale :min 0
            :max 101
