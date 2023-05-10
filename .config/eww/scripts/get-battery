@@ -32,5 +32,5 @@ print
     '","time":"' . $time .
     '","stat":"' . (defined $stat ? $stat : '') .
     '","message":"' . (defined $message ? $message : '') .
-    '","percentage":' . (defined $charge ? $charge : '') .
-    '}';
+    '","percentage":"' . (defined $charge ? $charge : '') .
+    '"}';
