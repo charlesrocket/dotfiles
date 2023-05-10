@@ -134,7 +134,7 @@
           (label :text "${workspace.name}"))))))
 
 (defwidget network_stats []
-  (box :class "network-stats"
+  (box :class "network_stats"
        :spacing 10
        :vexpand false
        :hexpand false
