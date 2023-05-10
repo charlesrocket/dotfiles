@@ -100,7 +100,6 @@
             :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
             :onchange "")
     (metric :label "${battery_info.stat == "ac" ? "" : ""}"
-            :label-visible {battery_info.source == "battery" ? true : false}
             :label-class "${battery_info.message == "critical" ?
               "stats-batt-low" : ""} ${battery_info.message == "charged" ?
               "stats-batt-charged" : ""}"
@@ -182,6 +181,7 @@
 (defwidget volume_rec []
   (eventbox :onhover "${EWW_CMD} update sound_rec_rev=true"
             :onhoverlost "${EWW_CMD} update sound_rec_rev=false"
+            :visible {matches(sound_info, "rec") ? true : false}
     (box :vexpand false
          :hexpand false
          :spacing 0
@@ -198,12 +198,12 @@
                  :onchange "mixer rec {}")))))
 
 (defwidget metric [
-  label label-class value tooltip ?visible ?label-visible onchange]
+  label label-class value tooltip ?visible onchange]
   (box :orientation "h"
        :class "metric"
        :space-evenly true
-    (box :visible label-visible
-         :class label-class label)
+       :visible visible
+    (box :class label-class label)
     (scale :min 0
            :max 101
            :orientation "v"
@@ -211,7 +211,6 @@
            :active {onchange != ""}
            :value value
            :tooltip tooltip
-           :visible visible
            :onchange onchange)))
 
 (defwidget separator []
