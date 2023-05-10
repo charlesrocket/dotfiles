@@ -19,7 +19,7 @@
   :initial "{\"vol\":[0,0],\"rec\":[0,0]}"
   "perl ~/.config/eww/scripts/get-volume")
 (defpoll network_info :interval "5s"
-  :initial "{\"interface\":\"\",\"if_name\":\"ue0\",
+  :initial "{\"interface\":\"\",\"if_name\":\"lo0\",
 \"\":\"inactive\",\"status\":\"offline\"}"
   "perl ~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "5s"
