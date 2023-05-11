@@ -126,6 +126,7 @@
   (box :space-evenly false
        :spacing 5
        :class "workspaces"
+    (label :text "${current_workspace}" :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
         (box :class "workspace-entry ${workspace.id == current_workspace ?
