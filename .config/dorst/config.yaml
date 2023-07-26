@@ -1,4 +1,5 @@
 ---
+source_directory: ~/src
 targets:
   - https://github.com/charlesrocket/adventofcode
   - https://github.com/charlesrocket/ansible-containers
