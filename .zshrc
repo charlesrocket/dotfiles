@@ -1,4 +1,16 @@
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin
+typeset -U path
+path=(/bin
+      /sbin
+      /usr/bin
+      /usr/sbin
+      /usr/local/bin
+      /usr/local/sbin
+      ~/bin
+      ~/.local/bin
+      ~/.cargo/bin
+      ~/.emacs.d/bin
+      $path)
+export PATH
 export XDG_SESSION_TYPE=wayland
 export XDG_PICTURES_DIR=$HOME/pictures
 export QT_QPA_PLATFORM=wayland
