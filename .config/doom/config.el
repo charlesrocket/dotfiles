@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+;;(setq user-full-name "John Doe"
+;;      user-mail-address "john@doe.com")
 
 (setq doom-theme 'doom-one)
 (setq display-line-numbers-type t)
