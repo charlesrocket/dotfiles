@@ -11,8 +11,16 @@ my $ifconfig;
 my $interface;
 my $wg;
 my $tun;
+my $wlan_associated;
 
-if ($ifconfig_output =~ /(wlan0|eth0|ue0|re0|em0):/) {
+if ($ifconfig_output =~ /wlan0:(.*?)status:\sassociated/s) {
+    $wlan_associated = $1;
+    if ($wlan_associated) {
+        $ifconfig = "wlan0";
+    }
+}
+
+if ($ifconfig_output =~ /(eth0|ue0|re0|em0):/) {
     $ifconfig = $1;
 }
 
