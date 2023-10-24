@@ -6,7 +6,7 @@
 [user]
 	name = -k
 	email = slowdive@me.com
-	signingkey = 4A2340C1
+	signingkey = 9B495FD8CFBF4A1B
 [pull]
 	rebase = true
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
