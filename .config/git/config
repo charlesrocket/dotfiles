@@ -16,3 +16,5 @@
 [credential]
 	helper = libsecret
 	helper = netrc
+[diff]
+	submodule = log
