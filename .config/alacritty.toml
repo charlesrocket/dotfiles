@@ -1,0 +1,41 @@
+live_config_reload = false
+
+[colors]
+transparent_background_colors = true
+
+[colors.normal]
+black = "#1d1f21"
+blue = "#1257ea"
+cyan = "#00f2d2"
+green = "#4ce70e"
+magenta = "#c316f6"
+red = "#d62a30"
+white = "#c5c8c6"
+yellow = "#f0f221"
+
+[colors.primary]
+background = "#000000"
+foreground = "#f8f8f8"
+
+[cursor]
+blink_interval = 600
+blink_timeout = 240
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "on"
+shape = "block"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "monospace"
+
+[window]
+dynamic_padding = false
+opacity = 0.7
+
+[window.padding]
+x = 10
+y = 7
