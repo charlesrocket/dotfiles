@@ -34,7 +34,7 @@ commit_parsers = [
     { message = "^refactor", group = "Refactor"},
     { message = "^style", group = "Styling"},
     { message = "^test", group = "Testing"},
-    { message = "^ci", group = "CI/CD"},
+    { message = "^ci|ops", group = "Operations"},
     { message = "^chore\\(release\\): prepare for", skip = true},
     { message = "^chore: version bump", skip = true},
     { message = "^chore", group = "Miscellaneous tasks"},
