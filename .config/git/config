@@ -8,3 +8,5 @@
 	defaultBranch = trunk
 [credential]
 	helper = netrc -f ~/.netrc.gpg -v
+[diff]
+	submodule = log
