@@ -14,6 +14,7 @@ targets = [
   "https://github.com/charlesrocket/openbsd-station",
   "https://github.com/charlesrocket/debian-server",
   "https://github.com/charlesrocket/macos-station",
+  "https://github.com/charlesrocket/xtxf",
   "https://github.com/charlesrocket/htb-files",
   "https://github.com/charlesrocket/misc-files",
 ]
