@@ -1,8 +1,10 @@
-theme = 'catppuccin'
-footer_panel_list = ['processes', 'metadata', 'clipboard']
+theme = 'blood'
 auto_check_update = false
+cd_on_quit = false
+default_open_file_preview = true
 transparent_background = false
-
+file_preview_width = 0
+sidebar_width = 20
 border_top = '━'
 border_bottom = '━'
 border_left = '┃'
@@ -13,5 +15,4 @@ border_bottom_left = '┗'
 border_bottom_right = '┛'
 border_middle_left = '┣'
 border_middle_right = '┫'
-
 metadata = false
