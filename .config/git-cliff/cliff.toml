@@ -36,7 +36,7 @@ commit_parsers = [
     { message = "^test", group = "Testing"},
     { message = "^ci|ops", group = "Operations"},
     { message = "^chore\\(release\\): prepare for", skip = true},
-    { message = "(?:version bump)|(?:bump version)", skip = true},
+    { message = "(?:^chore: version bump)|(?:^chore: bump version)", skip = true},
     { message = "^chore", group = "Miscellaneous tasks"},
     { body = ".*security", group = "Security"},
 ]
