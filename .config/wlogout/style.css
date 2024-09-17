@@ -1,6 +1,6 @@
 * {
     background-image: none;
-    border-radius: 0px;
+    border-radius: 0;
 }
 window {
     background-color: rgba(12, 12, 12, 0.9);
@@ -13,8 +13,9 @@ button {
     background-position: center;
     background-size: 25%;
 }
-
-button:focus, button:active, button:hover {
+button:active,
+button:focus,
+button:hover {
     background-color: #222222;
     outline-style: none;
 }
