@@ -1,0 +1,16 @@
+#!/bin/sh
+# Toggle process debug
+
+if  [ "$1" = 0 ]
+then
+    STATUS="disabled"
+elif [ "$1" = 1 ]
+then
+    STATUS="enabled"
+else
+    echo "Expected '0' or '1'"
+    exit 1
+fi
+
+printf "\033[35;40;1mD E V M O D E\033[36;1m . \033[37m%s\033[0m\n" "${STATUS}"
+doas sysctl security.bsd.unprivileged_proc_debug="$1"
