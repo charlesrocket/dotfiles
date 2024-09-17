@@ -1,11 +1,10 @@
 ---
 
-"on":
-  push:
-  pull_request:
+'on':
+  push: null
+  pull_request: null
 
-name: "Linter"
-
+name: Linter
 permissions: read-all
 
 jobs:
@@ -20,12 +19,12 @@ jobs:
           - dash
           - ksh
 
-    steps:
+  steps:
       - uses: actions/checkout@v4
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         env:
-          SHELLCHECK_OPTS: -s ${{ matrix.shell }}
+          SHELLCHECK_OPTS: '-s ${{ matrix.shell }}'
         with:
           ignore_names: .zshrc
 
@@ -41,8 +40,8 @@ jobs:
         uses: github/super-linter@v5
         env:
           VALIDATE_ALL_CODEBASE: true
-          DEFAULT_BRANCH: "master"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           VALIDATE_BASH: false
           VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: .*README\.md*
