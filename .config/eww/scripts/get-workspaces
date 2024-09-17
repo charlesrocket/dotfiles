@@ -1,10 +1,10 @@
 #!/bin/sh
 
 spaces() {
-    WORKSPACE_WINDOWS=$(hyprctl workspaces -j \
-        | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-    seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
-        'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
+	WORKSPACE_WINDOWS=$(hyprctl workspaces -j |
+		jq 'map({key: .id | tostring, value: .windows}) | from_entries')
+	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
+		'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
          map(if .id == "1" then .name = "\uf015"
          elif .id == "2" then .name = "\uf120"
          elif .id == "3" then .name = "\ue007"
@@ -20,6 +20,6 @@ spaces() {
 
 spaces
 socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
-    - | while read -r line || [ -n "$line" ]; do
-    spaces
+	- | while read -r line || [ -n "$line" ]; do
+	spaces
 done
