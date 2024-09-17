@@ -1,8 +1,8 @@
 ---
 
 'on':
-  push: null
-  pull_request: null
+  push:
+  pull_request:
 
 name: Linter
 permissions: read-all
@@ -19,7 +19,7 @@ jobs:
           - dash
           - ksh
 
-  steps:
+    steps:
       - uses: actions/checkout@v4
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
