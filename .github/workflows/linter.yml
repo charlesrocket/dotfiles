@@ -5,6 +5,7 @@
   pull_request:
 
 name: Linter
+permissions: read-all
 
 jobs:
   shellcheck:
