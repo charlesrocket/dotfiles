@@ -5,7 +5,8 @@
   pull_request:
 
 name: Linter
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   shellcheck:
@@ -28,7 +29,7 @@ jobs:
         with:
           ignore_names: .zshrc
 
-  superlinter:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,12 +37,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Lint dotfiles
+      - name: Lint
         uses: github/super-linter@v5
         env:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          VALIDATE_BASH: false
-          VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: .*README\.md*
+
+  lint-fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lint and fix
+        uses: super-linter/super-linter@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIX_SHELL_SHFMT: true
+          FIX_YAML_PRETTIER: true
+          FIX_CSS_PRETTIER: true
+
+      - name: Push linting fixes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Fix linting issues"
+          commit_user_name: super-linter
+          commit_user_email: super-linter@super-linter.dev
