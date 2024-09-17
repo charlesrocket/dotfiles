@@ -51,7 +51,7 @@ jobs:
           FIX_CSS: true
           FIX_JSON_PRETTIER: true
           FIX_JSON: true
-          FILTER_REGEX_EXCLUDE: .*README\.md*
+          FILTER_REGEX_EXCLUDE: .*README\.md*|.*wlogout\/style\.css*|.*eww\.scss*
 
       - name: Push linting fixes
         uses: stefanzweifel/git-auto-commit-action@v5
