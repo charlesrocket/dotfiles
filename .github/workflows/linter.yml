@@ -48,6 +48,9 @@ jobs:
           FIX_SHELL_SHFMT: true
           FIX_YAML_PRETTIER: true
           FIX_CSS_PRETTIER: true
+          FIX_CSS: true
+          FIX_JSON_PRETTIER: true
+          FIX_JSON: true
           FILTER_REGEX_EXCLUDE: .*README\.md*
 
       - name: Push linting fixes
