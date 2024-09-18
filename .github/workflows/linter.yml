@@ -46,12 +46,17 @@ jobs:
         uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIX_ENV: true
+          FIX_CLANG_FORMAT: true
           FIX_SHELL_SHFMT: true
+          FIX_RUST_CLIPPY: true
           FIX_YAML_PRETTIER: true
           FIX_CSS_PRETTIER: true
           FIX_CSS: true
           FIX_JSON_PRETTIER: true
           FIX_JSON: true
+          FIX_RUBY: true
+          FIX_HTML_PRETTIER: true
           FILTER_REGEX_EXCLUDE: .*README\.md*|.*wlogout\/style\.css*|.*eww\.scss*
 
       - name: Push linting fixes
