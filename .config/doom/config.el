@@ -7,6 +7,7 @@
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
 (setq confirm-kill-emacs nil)
+(setq default-directory (concat (getenv "HOME") "/" "src/dotfiles"))
 (setq projectile-project-search-path '(("~/src" . 1)))
 
 (setq +doom-dashboard-menu-sections (cl-subseq +doom-dashboard-menu-sections 0 3))
