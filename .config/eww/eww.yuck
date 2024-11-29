@@ -15,14 +15,14 @@
 (deflisten current_workspace :initial "1"
   "~/.config/eww/scripts/get-active-workspace")
 
-(defpoll sound_info :interval "2s"
+(defpoll sound_info :interval "11s"
   :initial "{\"vol\":[0,0],\"rec\":[0,0]}"
   "perl ~/.config/eww/scripts/get-volume")
 (defpoll network_info :interval "5s"
   :initial "{\"interface\":\"\",\"if_name\":\"lo0\",
 \"\":\"inactive\",\"status\":\"offline\"}"
   "perl ~/.config/eww/scripts/get-network")
-(defpoll battery_info :interval "5s"
+(defpoll battery_info :interval "11s"
   :initial "{\"source\":\"psu\",\"time\":\"\",
 \"stat\":\"\",\"message\":\"\",\"percentage\":\"0\"}"
   "perl ~/.config/eww/scripts/get-battery")
