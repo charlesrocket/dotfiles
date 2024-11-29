@@ -69,6 +69,7 @@
 
 (defwidget window []
   (box :halign "center"
+       :class "bar-title"
     (label :text {window_title == "" ? "" :
                   window_title == "null" ? "" : window_title }
            :limit-width 65)
@@ -94,13 +95,13 @@
   (box :class "stats"
        :orientation "h"
        :halign "end"
-    (metric :label ""
+    (metric :label ""
             :label-class "stats-cpu"
             :value {EWW_CPU.avg}
             :tooltip "Avg. ${round(EWW_CPU.avg, 3)}"
             :visible true
             :onchange "")
-    (metric :label ""
+    (metric :label "󰚗"
             :label-class "stats-ram"
             :value {EWW_RAM.used_mem_perc}
             :tooltip "${round(EWW_RAM.used_mem_perc, 0)}% used"
@@ -113,7 +114,7 @@
             :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
             :visible true
             :onchange "")
-    (metric :label "${battery_info.stat == "ac" ? "" : ""}"
+    (metric :label "${battery_info.stat == "ac" ? "" : "󰄌"}"
             :label-class "${battery_info.message == "critical" ?
               "stats-batt-low" : ""} ${battery_info.message == "charged" ?
               "stats-batt-charged" : ""}"
@@ -182,7 +183,7 @@
          :hexpand false
          :spacing 0
          :space-evenly false
-      (label :text {sound_info.vol[0] == 0 ? "" : ""})
+      (label :text {sound_info.vol[0] == 0 ? "" : ""})
         (revealer :transition "slideleft"
                   :reveal sound_vol_rev
                   :duration "320ms"
@@ -191,7 +192,7 @@
                  :orientation "h"
                  :active true
                  :value {sound_info.vol[0]}
-                 :onchange "mixer vol {}")))))
+                 :onchange "mixer vol={}%")))))
 
 (defwidget volume_rec []
   (eventbox :onhover "${EWW_CMD} update sound_rec_rev=true"
@@ -210,7 +211,7 @@
                  :orientation "h"
                  :active true
                  :value {sound_info.rec[0]}
-                 :onchange "mixer rec {}")))))
+                 :onchange "mixer rec={}%")))))
 
 (defwidget metric [
   label label-class value tooltip ?visible onchange]
