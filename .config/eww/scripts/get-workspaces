@@ -5,16 +5,16 @@ spaces() {
 		jq 'map({key: .id | tostring, value: .windows}) | from_entries')
 	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
 		'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
-         map(if .id == "1" then .name = "\uf015"
-         elif .id == "2" then .name = "\uf120"
-         elif .id == "3" then .name = "\ue007"
+         map(if .id == "1" then .name = "\ueb44"
+         elif .id == "2" then .name = "\uea85"
+         elif .id == "3" then .name = "\uf269"
          elif .id == "4" then .name = "\uf121"
-         elif .id == "5" then .name = "\uf5ad"
+         elif .id == "5" then .name = "\ueb26"
          elif .id == "6" then .name = "\uf187"
          elif .id == "7" then .name = "\uf0e0"
-         elif .id == "8" then .name = "\uf4b8"
+         elif .id == "8" then .name = "\uf018"
          elif .id == "9" then .name = "\uf0c3"
-         elif .id == "10" then .name = "\uf2cd"
+         elif .id == "10" then .name = "\ue231"
          else . end)'
 }
 
