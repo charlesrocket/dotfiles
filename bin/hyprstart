@@ -3,7 +3,11 @@
 export WLR_NO_HARDWARE_CURSORS=1 # NVIDIA
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XCURSOR_SIZE=24
-export "$(dbus-launch)"
 
 cd ~ || exit
+
+if	test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+	eval "$(dbus-launch --sh-syntax)"
+fi
+
 exec Hyprland
