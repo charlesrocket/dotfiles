@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-my $ifconfig_output = `ifconfig`;
+my $ifconfig_output = `ifconfig -u`;
 my $wg_output = `wg show`;
 my $call = system("nc -z -w 4 8.8.8.8 53 > /dev/null 2>&1");
 
