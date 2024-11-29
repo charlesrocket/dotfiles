@@ -6,11 +6,11 @@ spaces() {
 	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
 		'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
          map(if .id == "1" then .name = "\ueb44"
-         elif .id == "2" then .name = "\uea85"
-         elif .id == "3" then .name = "\uf269"
+         elif .id == "2" then .name = "\uf489"
+         elif .id == "3" then .name = "\uf488"
          elif .id == "4" then .name = "\uf121"
-         elif .id == "5" then .name = "\ueb26"
-         elif .id == "6" then .name = "\uf187"
+         elif .id == "5" then .name = "\uf0f6"
+         elif .id == "6" then .name = "\uf4d4"
          elif .id == "7" then .name = "\uf0e0"
          elif .id == "8" then .name = "\uf018"
          elif .id == "9" then .name = "\uf0c3"
