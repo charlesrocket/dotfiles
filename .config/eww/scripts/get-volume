@@ -1,14 +1,16 @@
 #!/usr/local/bin/perl
-
 use strict;
 use warnings;
 
-my $mixer = `mixer -s`;
+my $mixer = `mixer`;
 my ($vol, $pcm, $rec, $mic, $igain, $ogain) = ([], [], [], [], [], []);
 
-while ($mixer =~ /(\w+)\s+(\d+):(\d+)/g) {
+while ($mixer =~ /(\w+)\s*=\s*([\d\.]+):([\d\.]+)/g) {
     my $type = $1;
     my $value = [$2, $3];
+
+    $value->[0] *= 100;
+    $value->[1] *= 100;
 
     if ($type eq 'vol') {
         $vol = $value;
@@ -26,13 +28,18 @@ while ($mixer =~ /(\w+)\s+(\d+):(\d+)/g) {
 }
 
 my $output = '{';
+my @fields = ('vol', 'pcm', 'rec', 'mic', 'igain', 'ogain');
+my @values = ($vol, $pcm, $rec, $mic, $igain, $ogain);
 
-$output .= "\"vol\":[$vol->[0],$vol->[1]]," if scalar(@$vol) == 2;
-$output .= "\"pcm\":[$pcm->[0],$pcm->[1]]," if scalar(@$pcm) == 2;
-$output .= "\"rec\":[$rec->[0],$rec->[1]]," if scalar(@$rec) == 2;
-$output .= "\"mic\":[$mic->[0],$mic->[1]]," if scalar(@$mic) == 2;
-$output .= "\"igain\":[$igain->[0],$igain->[1]]," if scalar(@$igain) == 2;
-$output .= "\"ogain\":[$ogain->[0],$ogain->[1]]," if scalar(@$ogain) == 2;
+for (my $i = 0; $i < @fields; $i++) {
+    my $field = $fields[$i];
+    my $value = $values[$i];
+
+    if (scalar(@$value) == 2) {
+        $output .= "\"$field\":[$value->[0],$value->[1]],";
+    }
+}
+
 $output =~ s/,$//;
 $output .= "}";
 
