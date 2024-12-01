@@ -1,0 +1,12 @@
+#!/bin/sh
+
+ARG=$1
+
+case "$ARG" in
+  true)
+    doas service bluetooth stop ubt0
+    ;;
+  false)
+    doas service bluetooth start ubt0
+    ;;
+esac

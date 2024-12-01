@@ -15,6 +15,9 @@
 (deflisten current_workspace :initial "1"
   "~/.config/eww/scripts/get-active-workspace")
 
+(defpoll devs_stat :interval "25s"
+  :initial "{\"bluetooth\":\"on\",\"bluetooth_state\":\"\"}"
+  "perl ~/.config/eww/scripts/get-devs")
 (defpoll sound_info :interval "11s"
   :initial "{\"vol\":[0,0],\"rec\":[0,0]}"
   "perl ~/.config/eww/scripts/get-volume")
@@ -63,6 +66,7 @@
     (separator_stats)
     (volume)
     (separator)
+    (bluetooth)
     (network)
     (separator)
     (clock)))
@@ -134,6 +138,16 @@
             "workspace-current" : "workspace-inactive"} ${workspace.windows > 0 ?
             "workspace-occupied" : "workspace-empty"}"
           (label :text "${workspace.name}"))))))
+
+;; refactor with force-poll
+(defwidget bluetooth []
+  (button :class "bluetooth_btn"
+       :spacing 10
+       :vexpand false
+       :hexpand false
+       :visible {devs_stat.bluetooth ? true : false}
+       :onclick "~/.config/eww/scripts/toggle-bt ${devs_stat.bluetooth_enabled}"
+    (label :text "${devs_stat.bluetooth_state}")))
 
 (defwidget network_stats []
   (box :class "network_stats"

@@ -1,0 +1,23 @@
+#!/usr/local/bin/perl
+
+use strict;
+use warnings;
+
+my $ubt = `sysctl dev.ubt.0`;
+my $bt = ($ubt =~ /driver/i) ? "true" : "false";
+my $bt_state = ""; 
+
+# move to a separate script after force-poll refactoring
+my $bt_enabled = "false"; 
+if ($bt eq "true") {
+    my $hcc = `hccontrol -n ubt0hci Read_Local_name`;
+    $bt_state = ($hcc =~ /Local name/i) ? "󰂯" : "󰂲";
+        if ($bt_state eq "󰂯") {
+            $bt_enabled = "true";
+        }
+}
+
+print '{"bluetooth":' . $bt .
+    ',"bluetooth_state":"' . $bt_state .
+    '","bluetooth_enabled":' . $bt_enabled .
+    '}';
