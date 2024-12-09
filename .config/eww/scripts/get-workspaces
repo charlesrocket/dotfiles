@@ -12,7 +12,7 @@ spaces() {
          elif .id == "5" then .name = "\uf0f6"
          elif .id == "6" then .name = "\uf4d4"
          elif .id == "7" then .name = "\uf0e0"
-         elif .id == "8" then .name = "\uf018"
+         elif .id == "8" then .name = "\udb86\udc5e"
          elif .id == "9" then .name = "\uf0c3"
          elif .id == "10" then .name = "\ue231"
          else . end)'
