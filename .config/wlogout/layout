@@ -1,36 +1,30 @@
 {
     "label" : "lock",
     "action" : "swaylock -f -i ~/pictures/hardcoding/zaki-aby-general-shot.jpg -s fill",
-    "text" : "Lock",
     "keybind" : "l"
 }
 {
     "label" : "hibernate",
     "action" : "acpiconf -s 4",
-    "text" : "Hibernate",
     "keybind" : "h"
 }
 {
     "label" : "logout",
     "action" : "kill -9 -1",
-    "text" : "Logout",
     "keybind" : "e"
 }
 {
     "label" : "shutdown",
     "action" : "shutdown -p now",
-    "text" : "Shutdown",
     "keybind" : "s"
 }
 {
     "label" : "suspend",
     "action" : "zzz",
-    "text" : "Suspend",
     "keybind" : "u"
 }
 {
     "label" : "reboot",
     "action" : "shutdown -r now",
-    "text" : "Reboot",
     "keybind" : "r"
 }
