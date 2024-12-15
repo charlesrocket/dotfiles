@@ -92,7 +92,11 @@
           (date)))))
 
 (defwidget date []
-  (box
+  (box :spacing 10
+       :space-evenly false
+    (button :class "power_btn"
+            :onclick "~/.config/eww/scripts/power-button"
+      (label :text ""))
     (label :text date)))
 
 (defwidget stats []
