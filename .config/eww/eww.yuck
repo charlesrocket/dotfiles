@@ -32,7 +32,7 @@
 (defpoll time :interval "10s"
   "date '+%H:%M'")
 (defpoll date :interval "1m"
-  "date '+ %d %B %Y'")
+  "date '+%d %B %Y'")
 
 (defvar sound_vol_rev false)
 (defvar sound_rec_rev false)
