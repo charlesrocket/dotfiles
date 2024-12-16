@@ -6,7 +6,7 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 	eval "$(dbus-launch --sh-syntax)"
 fi
 
-timer=3
+timer=2
 
 while [ $timer -gt 0 ]; do
 	printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
