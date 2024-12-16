@@ -22,10 +22,6 @@ DISABLE_AUTO_UPDATE="false"
 DISABLE_UPDATE_PROMPT="true"
 source $ZSH/oh-my-zsh.sh
 
-if test -z "${XDG_RUNTIME_DIR}"; then
-    export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-    if ! test -d "${XDG_RUNTIME_DIR}"; then
-        mkdir "${XDG_RUNTIME_DIR}"
-        chmod 0700 "${XDG_RUNTIME_DIR}"
-    fi
+if test -z "${HYPRLAND_CMD}"; then
+    hyprstart
 fi
