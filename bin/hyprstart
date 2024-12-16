@@ -3,37 +3,37 @@
 cd ~ || exit
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-    eval "$(dbus-launch --sh-syntax)"
+	eval "$(dbus-launch --sh-syntax)"
 fi
 
 timer=3
 
 while [ $timer -gt 0 ]; do
-    printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
-    sleep 1
-    timer=$((timer - 1))
+	printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
+	sleep 1
+	timer=$((timer - 1))
 done
 
 hpid=$(/bin/pgrep Hyprland)
 
 if test -z "$hpid"; then
-    export XDG_SESSION_TYPE=wayland
-    export XDG_SESSION_DESKTOP=Hyprland
-    export XDG_CURRENT_DESKTOP=Hyprland
-    export QT_QPA_PLATFORM=wayland
-    export QT_QPA_PLATFORMTHEME=qt5ct
-    #export QT_SCALE_FACTOR=1
-    #export QT_AUTO_SCREEN_SCALE_FACTOR=0
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    #export QT_WAYLAND_FORCE_DPI=96 #physical
-    export ECORE_EVAS_ENGINE=wayland_egl
-    #export ELM_ENGINE=wayland_egl
-    export SDL_VIDEODRIVER=wayland
-    export MOZ_ENABLE_WAYLAND=1
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export XCURSOR_SIZE=24
+	export XDG_SESSION_TYPE=wayland
+	export XDG_SESSION_DESKTOP=Hyprland
+	export XDG_CURRENT_DESKTOP=Hyprland
+	export QT_QPA_PLATFORM=wayland
+	export QT_QPA_PLATFORMTHEME=qt5ct
+	#export QT_SCALE_FACTOR=1
+	#export QT_AUTO_SCREEN_SCALE_FACTOR=0
+	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+	#export QT_WAYLAND_FORCE_DPI=96 #physical
+	export ECORE_EVAS_ENGINE=wayland_egl
+	#export ELM_ENGINE=wayland_egl
+	export SDL_VIDEODRIVER=wayland
+	export MOZ_ENABLE_WAYLAND=1
+	export _JAVA_AWT_WM_NONREPARENTING=1
+	export XCURSOR_SIZE=24
 
-    exec Hyprland
+	exec Hyprland
 else
-    printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
+	printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
 fi
