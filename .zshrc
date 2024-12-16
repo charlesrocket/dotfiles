@@ -11,20 +11,7 @@ path=(/bin
       ~/.emacs.d/bin
       $path)
 export PATH
-export XDG_SESSION_TYPE=wayland
-export XDG_SESSION_DESKTOP=Hyprland
-export XDG_CURRENT_DESKTOP=Hyprland
 export XDG_PICTURES_DIR=$HOME/pictures
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt5ct
-#export QT_SCALE_FACTOR=1
-#export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_WAYLAND_FORCE_DPI=96 #physical
-export ECORE_EVAS_ENGINE=wayland_egl
-#export ELM_ENGINE=wayland_egl
-export SDL_VIDEODRIVER=wayland
-export MOZ_ENABLE_WAYLAND=1
 export GPG_TTY=$(tty)
 export ZSH=$HOME/.oh-my-zsh
 export RUST_BACKTRACE=1
