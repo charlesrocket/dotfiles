@@ -5,8 +5,10 @@ ARG=$1
 case "$ARG" in
 true)
 	doas service bluetooth stop ubt0
+	notify-send "Bluetooth deactivated"
 	;;
 false)
 	doas service bluetooth start ubt0
+	notify-send "Bluetooth activated"
 	;;
 esac
