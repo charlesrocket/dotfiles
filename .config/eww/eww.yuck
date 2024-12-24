@@ -1,4 +1,5 @@
 (defwindow bar
+  :namespace "eww-bar"
   :monitor 0
   :exclusive true
   :geometry (geometry :x "0%"
