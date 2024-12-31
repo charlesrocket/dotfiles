@@ -10,5 +10,6 @@ else
 	exit 1
 fi
 
-printf "\033[35;40;1mD E V M O D E\033[36;1m . \033[37m%s\033[0m\n" "${STATUS}"
+printf """\033[35;40;1mD E V\033[91;1m - \033[93;40;1m\
+M O D E\033[36;1m . \033[37m%s\033[0m\n" "${STATUS}"
 doas sysctl security.bsd.unprivileged_proc_debug="$1"
