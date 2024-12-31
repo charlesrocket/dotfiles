@@ -9,25 +9,19 @@ if [ "$1" = 0 ]; then
 		eww open bar
 	fi
 
-	hyprctl keyword animations:enabled true\
-		--quiet
+	hyprctl keyword animations:enabled true --quiet
 
-	hyprctl keyword decoration:blur:enabled true\
-		--quiet
+	hyprctl keyword decoration:blur:enabled true --quiet
 
-	hyprctl keyword decoration:shadow:enabled true\
-		--quiet
+	hyprctl keyword decoration:shadow:enabled true --quiet
 elif [ "$1" = 1 ]; then
 	STATUS="enabled"
 	pkill eww
-	hyprctl keyword animations:enabled false\
-		--quiet
+	hyprctl keyword animations:enabled false --quiet
 
-	hyprctl keyword decoration:blur:enabled false\
-		--quiet
+	hyprctl keyword decoration:blur:enabled false --quiet
 
-	hyprctl keyword decoration:shadow:enabled false\
-		--quiet
+	hyprctl keyword decoration:shadow:enabled false --quiet
 else
 	echo "Expected '0' or '1'"
 	exit 1
