@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;;(setq user-full-name "John Doe"
-;;      user-mail-address "john@doe.com")
+(setq user-full-name "-k"
+      user-mail-address "slowdive@me.com")
 
 (setq doom-theme '
       doom-tomorrow-night
