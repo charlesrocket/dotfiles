@@ -3,7 +3,11 @@
 ;;(setq user-full-name "John Doe"
 ;;      user-mail-address "john@doe.com")
 
-(setq doom-theme 'doom-one)
+(setq doom-theme '
+      doom-tomorrow-night
+      ;doom-one
+)
+
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
 (setq confirm-kill-emacs nil)
