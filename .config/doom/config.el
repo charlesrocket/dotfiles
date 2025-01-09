@@ -5,7 +5,7 @@
 
 (setq doom-theme '
       doom-tomorrow-night
-      ;doom-one
+      ;;doom-one
 )
 
 (setq display-line-numbers-type t)
@@ -18,7 +18,7 @@
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
 
-;;(add-hook 'window-setup-hook #'treemacs 'append)
+;;; (add-hook 'window-setup-hook #'treemacs 'append)
 
 (use-package languagetool
   :ensure t
