@@ -6,7 +6,8 @@
 [user]
 	name = -k
 	email = slowdive@me.com
-	signingkey = 9B495FD8CFBF4A1B
+	#signingkey = 9B495FD8CFBF4A1B
+	signingkey = /home/charlie/.ssh/id_ed25519_sk.pub
 [pull]
 	rebase = true
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
@@ -18,3 +19,7 @@
 	helper = oauth -device
 [diff]
 	submodule = log
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
