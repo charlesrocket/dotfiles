@@ -12,7 +12,7 @@
 (setq org-directory "~/org/")
 (setq confirm-kill-emacs nil)
 (setq projectile-project-search-path '(("~/src" . 1)))
-
+(setq default-directory "~/src/dotfiles" )
 (setq +doom-dashboard-menu-sections (cl-subseq +doom-dashboard-menu-sections 0 3))
 
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
