@@ -33,7 +33,7 @@ if test -z "$hpid"; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 	export XCURSOR_SIZE=24
 
-	exec Hyprland
+	exec ck-launch-session Hyprland
 else
 	printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
 fi
