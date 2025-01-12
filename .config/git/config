@@ -6,8 +6,8 @@
 [user]
 	name = -k
 	email = slowdive@me.com
-	#signingkey = 9B495FD8CFBF4A1B
-	signingkey = /home/charlie/.ssh/id_ed25519_sk.pub
+	signingkey = 9B495FD8CFBF4A1B
+	#signingkey = ~/.ssh/id_ed25519_sk.pub
 [pull]
 	rebase = true
 [url "git+ssh://charlesrocket@git.launchpad.net/"]
@@ -22,4 +22,4 @@
 [commit]
 	gpgsign = true
 [gpg]
-	format = ssh
+	#format = ssh
