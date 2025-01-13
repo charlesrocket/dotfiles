@@ -26,7 +26,7 @@
   :initial "{\"interface\":\"\",\"if_name\":\"lo0\",
 \"\":\"inactive\",\"status\":\"offline\"}"
   "perl ~/.config/eww/scripts/get-network")
-(defpoll battery_info :interval "11s"
+(defpoll battery_info :interval "60s"
   :initial "{\"source\":\"psu\",\"time\":\"\",
 \"stat\":\"\",\"message\":\"\",\"percentage\":\"0\"}"
   "perl ~/.config/eww/scripts/get-battery")
