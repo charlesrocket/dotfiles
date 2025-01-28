@@ -13,6 +13,17 @@ if ($bt eq "true") {
     my $hcc = `hccontrol -n ubt0hci Read_Local_name`;
     $bt_state = ($hcc =~ /Local name/i) ? "󰂯" : "󰂲";
         if ($bt_state eq "󰂯") {
+            my $paired = `hccontrol -n ubt0hci Read_Connection_list`;
+            my @paired_ct = split /\n/, $paired;
+            my $opened = 0;
+            foreach my $line (@paired_ct) {
+                if ($line =~ /\bOPEN\b/) {
+                    $opened = 1;
+                    last;
+                }
+            }
+
+            $bt_state = "󰂴" if (scalar $opened > 0);
             $bt_enabled = "true";
         }
 }
