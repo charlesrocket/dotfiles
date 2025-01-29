@@ -22,7 +22,7 @@
 (defpoll sound_info :interval "11s"
   :initial "{\"vol\":[0,0],\"rec\":[0,0]}"
   "perl ~/.config/eww/scripts/get-volume")
-(defpoll network_info :interval "5s"
+(defpoll network_info :interval "10s"
   :initial "{\"interface\":\"\",\"if_name\":\"lo0\",
 \"\":\"inactive\",\"status\":\"offline\"}"
   "perl ~/.config/eww/scripts/get-network")
