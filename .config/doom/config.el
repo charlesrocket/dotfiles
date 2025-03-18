@@ -10,6 +10,7 @@
       kill-whole-line t
 ;;;   default-directory "~/src/dotfiles"
       doom-theme 'doom-tomorrow-night
+      doom-modeline-enable-word-count t
       +doom-dashboard-menu-sections
       (cl-subseq +doom-dashboard-menu-sections 0 3))
 
