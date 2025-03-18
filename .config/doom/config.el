@@ -6,6 +6,7 @@
       org-directory "~/org/"
       confirm-kill-emacs nil
       projectile-project-search-path '(("~/src" . 1))
+      kill-whole-line t
 ;;;   default-directory "~/src/dotfiles"
       doom-theme 'doom-tomorrow-night
       +doom-dashboard-menu-sections
