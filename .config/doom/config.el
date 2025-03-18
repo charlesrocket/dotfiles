@@ -2,6 +2,7 @@
 
 (setq user-full-name "-k"
       user-mail-address "slowdive@me.com"
+      auto-save-default t
       display-line-numbers-type t
       org-directory "~/org/"
       confirm-kill-emacs nil
