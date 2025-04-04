@@ -9,6 +9,7 @@
       projectile-project-search-path '(("~/src" . 1))
       kill-whole-line t
 ;;;   default-directory "~/src/dotfiles"
+      frame-title-format "%b (-_-) ╭∩╮"
       doom-theme 'doom-tomorrow-night
       doom-modeline-enable-word-count t
       +doom-dashboard-menu-sections
