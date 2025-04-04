@@ -10,7 +10,7 @@ if [ "$1" = 0 ]; then
 	fi
 
 	hyprctl reload --quiet
-	notify-send -u low  "LOW POWER MODE" "OFF"
+	notify-send -u low "LOW POWER MODE" "OFF"
 elif [ "$1" = 1 ]; then
 	STATUS="enabled"
 	pkill eww
@@ -19,7 +19,7 @@ elif [ "$1" = 1 ]; then
 		keyword decoration:blur:enabled false;\
 		keyword decoration:shadow:enabled false;"
 
-	notify-send -u low  "LOW POWER MODE" "ON"
+	notify-send -u low "LOW POWER MODE" "ON"
 else
 	echo "Expected '0' or '1'"
 	exit 1
