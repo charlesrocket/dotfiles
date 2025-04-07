@@ -16,7 +16,7 @@
 (deflisten current_workspace :initial "1"
   "~/.config/eww/scripts/get-active-workspace")
 
-(defpoll devs_stat :interval "25s"
+(defpoll devs_stat :interval "21s"
   :initial "{\"bluetooth\":\"on\",\"bluetooth_state\":\"\"}"
   "perl ~/.config/eww/scripts/get-devs")
 (defpoll sound_info :interval "11s"
@@ -86,11 +86,12 @@
     (box :space-evenly false
          :class "clock"
          :spacing 10
+      (label :text {devs_stat.lang})
       (label :text time)
-        (revealer :transition "slideleft"
-                  :reveal clock_rev
-                  :duration "320ms"
-          (date)))))
+      (revealer :transition "slideleft"
+                :reveal clock_rev
+                :duration "320ms"
+                (date)))))
 
 (defwidget date []
   (box :spacing 10

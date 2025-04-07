@@ -3,9 +3,12 @@
 use strict;
 use warnings;
 
+my $active_lang = `hyprctl devices -j | jq -r '.keyboards[] |
+                  select(.main == true) | .active_keymap' | tr -d '\n'`;
+my $lang = "";
 my $ubt = `sysctl dev.ubt.0`;
 my $bt = ($ubt =~ /driver/i) ? "true" : "false";
-my $bt_state = ""; 
+my $bt_state = "🏴";
 
 # move to a separate script after force-poll refactoring
 my $bt_enabled = "false"; 
@@ -28,7 +31,14 @@ if ($bt eq "true") {
         }
 }
 
+if ($active_lang eq "English (US)") {
+    $lang = "🇺🇸";
+} elsif ($active_lang eq ("Norwegian")) {
+    $lang = "🇳🇴";
+}
+
 print '{"bluetooth":' . $bt .
     ',"bluetooth_state":"' . $bt_state .
     '","bluetooth_enabled":' . $bt_enabled .
-    '}';
+    ',"lang":"' . $lang .
+    '"}';
