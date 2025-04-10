@@ -1,0 +1,2 @@
+timeout 300 'pgrep hyprlock || hyprlock &'
+timeout 1800 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
