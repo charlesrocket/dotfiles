@@ -9,7 +9,7 @@ padding-top = 35%
 result-spacing = 17
 num-results = 7
 
-font = IBM Plex Mono
+font = "Hurmit Nerd Font"
 font-size = 18
 
 background-color = #000A
