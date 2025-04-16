@@ -84,10 +84,11 @@ editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
 skin=dark
+shell_directory_timeout=900
 
 [Layout]
 output_lines=0
-left_panel_size=105
+left_panel_size=104
 top_panel_size=0
 message_visible=true
 keybar_visible=true
@@ -138,6 +139,6 @@ select_flags=6
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
-Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
-Find rejects after patching=find . -name \\*.rej -print
 Modified git files=git ls-files --modified
+Find rejects after patching=find . -name \\*.rej -print
+Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
