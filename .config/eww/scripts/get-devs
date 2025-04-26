@@ -32,9 +32,9 @@ if ($bt eq "true") {
 }
 
 if ($active_lang eq "English (US)") {
-    $lang = "🇺🇸";
+    $lang = "EN";
 } elsif ($active_lang eq ("Norwegian")) {
-    $lang = "🇳🇴";
+    $lang = "NO";
 }
 
 print '{"bluetooth":' . $bt .
