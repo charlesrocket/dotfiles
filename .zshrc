@@ -18,7 +18,7 @@ export RUST_BACKTRACE=1
 eval "$(direnv hook zsh)"
 eval "$(rbenv init - zsh)"
 ZSH_THEME="gozilla"
-DISABLE_AUTO_UPDATE="false"
+DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
 source $ZSH/oh-my-zsh.sh
 
