@@ -1,0 +1,53 @@
+[org/gnome/desktop/interface]
+cursor-theme='Bibata-Original-Classic'
+cursor-size=20
+
+[apps/seahorse/listing]
+keyrings-selected=['openssh:///home/charlie/.ssh']
+
+[apps/seahorse/windows/key-manager]
+width=942
+height=980
+
+[org/gnome/gedit/preferences/editor]
+wrap-last-split-mode='word'
+scheme='solarized-dark'
+
+[org/gnome/gedit/state/window]
+bottom-panel-size=140
+side-panel-active-page='GeditWindowDocumentsPanel'
+side-panel-size=200
+size=(1896, 980)
+state=43908
+
+[org/gtk/settings/file-chooser]
+window-position=(0, 0)
+window-size=(1231, 902)
+date-format='regular'
+location-mode='path-bar'
+show-hidden=true
+show-size-column=true
+show-type-column=true
+sidebar-width=171
+sort-column='name'
+sort-directories-first=false
+sort-order='ascending'
+type-format='category'
+
+[org/gtk/gtk4/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+sidebar-width=140
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+view-type='list'
+
+[org/gnome/gedit/state/file-chooser]
+open-recent=false
+
+[org/gtk/gtk4/settings/color-chooser]
+selected-color=(true, 0.92941176891326904, 0.20000000298023224, 0.23137255012989044, 1.0)
+custom-colors=[(0.19215686619281769, 0.40782788395881653, 0.62743574380874634, 1.0)]
