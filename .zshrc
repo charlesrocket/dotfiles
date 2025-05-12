@@ -22,6 +22,6 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
 source $ZSH/oh-my-zsh.sh
 
-if test -z "${HYPRLAND_CMD}"; then
-    hyprstart
-fi
+#if test -z "${HYPRLAND_CMD}"; then
+    #hyprstart
+#fi
