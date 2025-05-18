@@ -16,7 +16,7 @@
 	defaultBranch = trunk
 [credential]
 	helper = libsecret
-	helper = oauth -device
+	#helper = oauth -device
 [diff]
 	submodule = log
 [commit]
