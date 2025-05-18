@@ -17,22 +17,6 @@ done
 hpid=$(/bin/pgrep Hyprland)
 
 if test -z "$hpid"; then
-	export XDG_SESSION_TYPE=wayland
-	export XDG_SESSION_DESKTOP=Hyprland
-	export XDG_CURRENT_DESKTOP=Hyprland
-	export QT_QPA_PLATFORM=xcb
-	export QT_QPA_PLATFORMTHEME=qt6ct
-	#export QT_SCALE_FACTOR=1
-	#export QT_AUTO_SCREEN_SCALE_FACTOR=0
-	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-	#export QT_WAYLAND_FORCE_DPI=96 #physical
-	export ECORE_EVAS_ENGINE=wayland_egl
-	#export ELM_ENGINE=wayland_egl
-	export SDL_VIDEODRIVER=wayland
-	export MOZ_ENABLE_WAYLAND=1
-	export _JAVA_AWT_WM_NONREPARENTING=1
-	export XCURSOR_SIZE=24
-
 	exec ck-launch-session Hyprland
 else
 	printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
