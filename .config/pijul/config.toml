@@ -1,0 +1,13 @@
+colors = "auto"
+pager = "always"
+unrecord_changes = 1
+
+[author]
+name = "charlesrocket"
+full_name = "-k"
+email = "slowdive@me.com"
+key_path = "$HOME/.ssh/id_ed25519_sk.pub"
+
+[ignore_kinds]
+rust = [ "target", "*.perf" ]
+python = [ "dist", "build", "eggs" ]
