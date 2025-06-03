@@ -16,12 +16,15 @@ if ($acpi =~ /Remaining capacity:\s+(\d+)/) {
     } elsif ($charge <= 30) {
         $message = "critical";
 
-        system("notify-send",
-               "-u",
-               "critical",
-               "-t", "45000",
-               "Battery" . " level",
-               $charge . "%");
+        if ($time ne "unknown") {
+            system("notify-send",
+                   "-u",
+                   "critical",
+                   "-t", "45000",
+                   "Battery" . " level",
+                   $charge . "%"
+            );
+        }
     }
 
     if ($time eq "unknown") {
