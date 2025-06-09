@@ -35,15 +35,15 @@ commit_parsers = [
     { message = "^style", group = "Styling"},
     { message = "^test", group = "Testing"},
     { message = "^ci|ops", group = "Operations"},
-    { message = "^chore\\(release\\): prepare for", skip = true},
     { message = "(?:^chore: version bump)|(?:^chore: bump version)", skip = true},
+    { message = "(?:^build: version bump)|(?:^build: bump version)", skip = true},
+    { message = "^chore\\(release\\): prepare for", skip = true},
     { message = "^chore", group = "Miscellaneous tasks"},
     { body = ".*security", group = "Security"},
 ]
 
 protect_breaking_commits = false
 filter_commits = false
-tag_pattern = "v[0-9]*"
 ignore_tags = ""
 topo_order = false
 sort_commits = "oldest"
