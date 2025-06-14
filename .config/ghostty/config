@@ -1,3 +1,21 @@
+quit-after-last-window-closed = true
 shell-integration-features = no-cursor
+config-default-files = false
+
 cursor-style = block
 cursor-style-blink = true
+
+background = #000000
+background-opacity = 0.7
+
+window-padding-x = 10
+window-padding-y = 5
+
+palette = 0=#1d1f21
+palette = 1=#d62a30
+palette = 2=#4ce70e
+palette = 3=#f0f221
+palette = 4=#1257ea
+palette = 5=#c316f6
+palette = 6=#00f2d2
+palette = 7=#c5c8c6
