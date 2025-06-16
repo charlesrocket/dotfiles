@@ -16,7 +16,7 @@ background = #000000
 background-opacity = 0.7
 
 window-padding-balance = true
-window-padding-x = 10
+window-padding-x = 8
 window-padding-y = 5
 
 palette = 0=#1d1f21
