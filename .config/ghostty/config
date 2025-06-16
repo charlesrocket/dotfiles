@@ -2,6 +2,7 @@ quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 config-default-files = false
 copy-on-select = false
+confirm-close-surface = false
 
 font-family = Hack Nerd Font
 font-synthetic-style = false
