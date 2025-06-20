@@ -5,6 +5,7 @@ copy-on-select = false
 confirm-close-surface = false
 resize-overlay = never
 gtk-single-instance = true
+initial-window = true
 
 font-family = Hack Nerd Font
 font-synthetic-style = false
@@ -15,7 +16,10 @@ cursor-style-blink = true
 
 background = #000000
 background-opacity = 0.7
+background-blur = false
 
+window-decoration = none
+window-save-state = never
 window-padding-balance = true
 window-padding-x = 8
 window-padding-y = 5
