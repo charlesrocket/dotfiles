@@ -183,7 +183,7 @@
        :spacing 10
        :space-evenly false
     (label :text "${network_info.vpn == "active" ? "" : ""}"
-           :class "${network_info.status == "online" ?
+           :class "${network_info.status != "offline" ?
              "network-online" : "network-offline"}")
     (network_if)))
 
