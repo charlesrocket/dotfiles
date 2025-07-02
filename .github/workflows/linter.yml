@@ -60,7 +60,7 @@ jobs:
           FILTER_REGEX_EXCLUDE: .*README\.md*|.*wlogout\/style\.css*|.*eww\.scss*
 
       - name: Push linting fixes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Fix linting issues"
           commit_user_name: super-linter
