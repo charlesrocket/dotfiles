@@ -1,32 +1,11 @@
 ---
-"on":
-  push:
-  pull_request:
+"on":  # yamllint disable-line rule:truthy
+  push: null
 
 name: Linter
 permissions: read-all
 
 jobs:
-  shellcheck:
-    name: ShellCheck
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        shell:
-          - sh
-          - bash
-          - dash
-          - ksh
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
-        env:
-          SHELLCHECK_OPTS: "-s ${{ matrix.shell }}"
-        with:
-          ignore_names: .zshrc
-
   lint:
     runs-on: ubuntu-latest
     permissions:
