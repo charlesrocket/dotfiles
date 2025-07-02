@@ -1,5 +1,5 @@
 ---
-"on":  # yamllint disable-line rule:truthy
+"on": # yamllint disable-line rule:truthy
   push: null
 
 name: Linter
