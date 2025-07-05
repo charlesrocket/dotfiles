@@ -67,18 +67,26 @@
     (separator_stats)
     (volume)
     (separator)
-    (bluetooth)
-    (network)
+    (comms)
     (separator)
     (clock)))
+
+(defwidget comms []
+  (box :class "comms"
+       :vexpand false
+       :hexpand false
+       :spacing 10
+       :space-evenly false
+    (bluetooth)
+    (network)
+    (network_if)))
 
 (defwidget window []
   (box :halign "center"
        :class "bar-title"
     (label :text {window_title == "" ? "" :
                   window_title == "null" ? "" : window_title }
-           :limit-width 65)
-  ))
+           :limit-width 65)))
 
 (defwidget clock []
   (eventbox :onhover "${EWW_CMD} update clock_rev=true"
@@ -147,12 +155,10 @@
 
 ;; refactor with force-poll
 (defwidget bluetooth []
-  (button :class "bluetooth_btn"
-       :spacing 10
-       :vexpand false
-       :hexpand false
-       :visible {devs_stat.bluetooth ? true : false}
-       :onclick "~/.config/eww/scripts/toggle-bt ${devs_stat.bluetooth_enabled}"
+  (button :vexpand false
+          :hexpand false
+          :visible {devs_stat.bluetooth ? true : false}
+          :onclick "~/.config/eww/scripts/toggle-bt ${devs_stat.bluetooth_enabled}"
     (label :text "${devs_stat.bluetooth_state}")))
 
 (defwidget network_stats []
@@ -168,7 +174,6 @@
             :onhoverlost "${EWW_CMD} update network_rev=false"
     (box :vexpand false
          :hexpand false
-         :spacing 0
          :space-evenly false
       (label :text "${network_info.interface}")
         (revealer :transition "slideleft"
@@ -177,17 +182,14 @@
           (network_stats)))))
 
 (defwidget network []
-  (box :class "network"
-       :vexpand false
+  (box :vexpand false
        :hexpand false
-       :spacing 10
        :space-evenly false
-    (label :text "${network_info.vpn == "active" ? "" : ""}"
+    (label :text "${network_info.vpn == "active" ? "" : ""}"
            :class "${network_info.status != "offline" ?
              "network-online" : "network-offline"}"
            :css "${network_info.vpn == "active" ?
-             'label {color: #8a2be2;}' : ''}")
-    (network_if)))
+             'label {color: #8a2be2;}' : ''}")))
 
 (defwidget volume []
   (box :class "volume"
