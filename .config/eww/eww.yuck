@@ -226,7 +226,7 @@
          :hexpand false
          :spacing 0
          :space-evenly false
-      (label :text {sound_info.rec[0] == 0 ? "" : ""})
+      (label :text {sound_info.rec[0] == 0 ? "" : ""})
         (revealer :transition "slideleft"
                   :reveal sound_rec_rev
                   :duration "320ms"
