@@ -64,7 +64,7 @@
        :space-evenly false
        :class "right-bar"
     (stats)
-    (separator_stats)
+    (separator)
     (volume)
     (separator)
     (comms)
@@ -93,7 +93,7 @@
             :onhoverlost "${EWW_CMD} update clock_rev=false"
     (box :space-evenly false
          :class "clock"
-         :spacing 10
+         :spacing 6
       (label :text {devs_stat.lang})
       (label :text time)
       (revealer :transition "slideleft"
@@ -113,6 +113,7 @@
   (box :class "stats"
        :orientation "h"
        :halign "end"
+       :spacing 8
     (metric :label ""
             :label-class "stats-cpu"
             :value {EWW_CPU.avg}
@@ -205,7 +206,6 @@
             :onhoverlost "${EWW_CMD} update sound_vol_rev=false"
     (box :vexpand false
          :hexpand false
-         :spacing 0
          :space-evenly false
       (label :text {sound_info.vol[0] == 0 ? "" : ""})
         (revealer :transition "slideleft"
@@ -242,6 +242,7 @@
   (box :orientation "h"
        :class "metric"
        :space-evenly true
+       :spacing 5
        :visible {visible == true ? true : false}
     (box :class label-class label)
     (scale :min 0
@@ -255,10 +256,5 @@
 
 (defwidget separator []
   (box
-    (label :text "|"
+    (label :text "󱪼"
            :class "separator")))
-
-(defwidget separator_stats []
-  (box
-    (label :text "|"
-           :class "separator_stats")))

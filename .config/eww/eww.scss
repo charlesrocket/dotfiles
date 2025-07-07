@@ -42,7 +42,6 @@
 }
 
 .workspace-current {
-    border-radius: 6px;
     color: #cc0000;
 }
 
@@ -67,6 +66,10 @@
     font-family: BlexMono Nerd Font;
     font-weight: bold;
     margin-left: 5px;
+}
+
+.stats {
+    margin-right: 3px;
 }
 
 .stats-batt-low {
@@ -95,7 +98,7 @@
     background-color: #4e4e4e;
     min-height: 10px;
     min-width: 6px;
-    margin: 3px 10px 3px 5px;
+    margin: 3px 0px;
 }
 
 .volume {
@@ -135,13 +138,6 @@ tooltip label {
 .separator {
     all: unset;
     color: #4e4e4e;
-    margin-left: 3px;
-    margin-right: 3px;
-}
-
-.separator_stats {
-    all: unset;
-    color: #4e4e4e;
-    margin-left: 1px;
-    margin-right: 3px;
+    margin-left: 6px;
+    margin-right: 6px;
 }
