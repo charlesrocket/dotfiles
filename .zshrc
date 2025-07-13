@@ -18,17 +18,14 @@ export RUST_BACKTRACE=1
 eval "$(direnv hook zsh)"
 eval "$(rbenv init - zsh)"
 
+ZSH_CUSTOM=$HOME/.zsh-custom
 DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
 
-#if test -z "${HYPRLAND_CMD}"; then
-    #hyprstart
-#fi
-
 if [[ "$TERM" = "xterm" ]]; then
-    ZSH_THEME="lambda"
+    ZSH_THEME="console"
 else
-    ZSH_THEME="gozilla"
+    ZSH_THEME="chuck"
 fi
 
 source $ZSH/oh-my-zsh.sh
