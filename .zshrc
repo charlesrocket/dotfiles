@@ -1,6 +1,5 @@
 ZSH_CUSTOM=$HOME/.zsh-custom
-DISABLE_AUTO_UPDATE="true"
-DISABLE_UPDATE_PROMPT="true"
+zstyle ':omz:update' mode disabled
 
 if [[ "$TERM" = "xterm" ]]; then
     ZSH_THEME="console"
