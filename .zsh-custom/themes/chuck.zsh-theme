@@ -7,8 +7,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 RPROMPT='$(git_prompt_status)%{$reset_color%}'
 
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[white]%} "
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[white]%} "
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[white]%} 󰧇"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[white]%} 󰦿"
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} "
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} "
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} "
