@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 my $apm = `apm 2>&1`;
-my ($source, $time, $message, $charge, $ac, $label);
+my ($source, $time, $message, $charge, $label);
 
 for my $line (split /\n/, $apm) {
     if ($line =~ /^AC Line status:\s*(on-line)/i) {
