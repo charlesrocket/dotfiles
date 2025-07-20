@@ -37,8 +37,8 @@ if ($active_lang eq "English (US)") {
     $lang = "NO";
 }
 
-print '{"bluetooth":' . $bt .
-    ',"bluetooth_state":"' . $bt_state .
+print '{"bluetooth":"' . $bt .
+    '","bluetooth_state":"' . $bt_state .
     '","bluetooth_enabled":' . $bt_enabled .
     ',"lang":"' . $lang .
     '"}';

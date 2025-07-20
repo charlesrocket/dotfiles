@@ -158,7 +158,7 @@
 (defwidget bluetooth []
   (button :vexpand false
           :hexpand false
-          :visible {devs_stat.bluetooth ? true : false}
+          :visible {devs_stat.bluetooth == "true" ? true : false}
           :onclick "~/.config/eww/scripts/toggle-bt ${devs_stat.bluetooth_enabled}"
     (label :text "${devs_stat.bluetooth_state}")))
 
