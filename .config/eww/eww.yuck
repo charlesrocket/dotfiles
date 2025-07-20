@@ -27,8 +27,8 @@
 \"\":\"inactive\",\"status\":\"offline\"}"
   "perl ~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "60s"
-  :initial "{\"source\":\"psu\",\"time\":\"\",
-\"stat\":\"\",\"message\":\"\",\"percentage\":\"0\"}"
+  :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
+\"message\":\"\",\"percentage\":\"0\"}"
   "perl ~/.config/eww/scripts/get-battery")
 (defpoll time :interval "10s"
   "date '+%H:%M'")
@@ -133,7 +133,7 @@
             :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
             :visible true
             :onchange "")
-    (metric :label "${battery_info.stat == "ac" ? "" : "󰄌"}"
+    (metric :label "${battery_info.label}"
             :label-class "${battery_info.message == "critical" ?
               "stats-batt-low" : ""} ${battery_info.message == "charged" ?
               "stats-batt-charged" : ""}"

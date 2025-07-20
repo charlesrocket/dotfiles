@@ -3,44 +3,54 @@
 use strict;
 use warnings;
 
-my $acpi = `acpiconf -i 0 2> /dev/null`;
-my ($source, $time, $message, $stat, $charge);
+my $apm = `apm 2>&1`;
+my ($source, $time, $message, $charge, $ac, $label);
 
-if ($acpi =~ /Remaining capacity:\s+(\d+)/) {
-    $charge = $1;
-    $source = "battery";
-    $time = ($acpi =~ /Remaining time:\s+(.*)/) ? $1 : "unknown";
-
-    if ($charge == 100) {
-        $message = "charged";
-    } elsif ($charge <= 30) {
-        $message = "critical";
-
-        if ($time ne "unknown") {
-            system("notify-send",
-                   "-u",
-                   "critical",
-                   "-t", "45000",
-                   "Battery" . " level",
-                   $charge . "%"
-            );
+for my $line (split /\n/, $apm) {
+    if ($line =~ /^AC Line status:\s*(on-line)/i) {
+        if ($1 eq "on-line") {
+            $label = "";
+        } else {
+            $label = "󰄌";
         }
     }
-
-    if ($time eq "unknown") {
-        $stat = "ac";
-        $time = "$charge% charged";
+    if ($line =~ /^Battery status:\s*(charging)/i) {
+        if ($1 eq "charging") { $label = ""; }
     }
-
-} else {
-    $source = "psu";
-    $time = "PSU";
+    if ($line =~ /^Number of batteries:\s*(\d+)/i) {
+        if ($1 == 0) {
+            $source = "psu";
+            $time = "PSU";
+        } else {
+            $source = "battery";
+        }
+    }
+    if ($line =~ /^Remaining battery life:\s*(\d+)%/) { $charge = $1; }
+    if ($line =~ /^Remaining battery time:\s*(\S+)/) { $time = $1; }
 }
+
+if ($charge == 100) {
+    $message = "charged";
+} elsif ($charge <= 30) {
+    $message = "critical";
+
+    if ($time ne "unknown") {
+        system("notify-send",
+               "-u",
+               "critical",
+               "-t", "45000",
+               "Battery" . " level",
+               $charge . "%"
+            );
+    }
+}
+
+if ($time eq "unknown") { $time = "$charge% charged"; }
 
 print
     '{"source":"' . $source .
+    '","label":"' . $label .
     '","time":"' . $time .
-    '","stat":"' . (defined $stat ? $stat : '') .
     '","message":"' . (defined $message ? $message : '') .
     '","percentage":"' . (defined $charge ? $charge : '') .
     '"}';
