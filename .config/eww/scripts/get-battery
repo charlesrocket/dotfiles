@@ -3,27 +3,18 @@
 use strict;
 use warnings;
 
-my $apm = `apm 2>&1`;
+my $apm = `apm`;
 my ($source, $time, $message, $charge, $label);
 
 for my $line (split /\n/, $apm) {
     if ($line =~ /^AC Line status:\s*(on-line)/i) {
-        if ($1 eq "on-line") {
-            $label = "";
-        } else {
-            $label = "󰄌";
-        }
+        if ($1 eq "on-line") { $label = ""; }
     }
     if ($line =~ /^Battery status:\s*(charging)/i) {
         if ($1 eq "charging") { $label = ""; }
     }
     if ($line =~ /^Number of batteries:\s*(\d+)/i) {
-        if ($1 == 0) {
-            $source = "psu";
-            $time = "PSU";
-        } else {
-            $source = "battery";
-        }
+        if ($1 != 0) { $source = "battery"; }
     }
     if ($line =~ /^Remaining battery life:\s*(\d+)%/) { $charge = $1; }
     if ($line =~ /^Remaining battery time:\s*(\S+)/) { $time = $1; }
@@ -49,8 +40,8 @@ if ($time eq "unknown") { $time = "$charge% charged"; }
 
 print
     '{"source":"' . $source .
-    '","label":"' . $label .
     '","time":"' . $time .
+    '","label":"' . (defined $label ? $label : '󰄌') .
     '","message":"' . (defined $message ? $message : '') .
     '","percentage":"' . (defined $charge ? $charge : '') .
     '"}';
