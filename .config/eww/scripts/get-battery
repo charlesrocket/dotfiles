@@ -20,7 +20,7 @@ for my $line (split /\n/, $apm) {
     if ($line =~ /^Remaining battery time:\s*(\S+)/) { $time = $1; }
 }
 
-if ($charge == 100) {
+if ($charge >= 80) {
     $message = "charged";
 } elsif ($charge <= 30) {
     $message = "critical";
