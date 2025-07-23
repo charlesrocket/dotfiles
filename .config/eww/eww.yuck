@@ -186,11 +186,14 @@
   (box :vexpand false
        :hexpand false
        :space-evenly false
-    (label :text "${network_info.vpn == "active" ? "" : ""}"
+    (button :vexpand false
+          :hexpand false
+          :onclick "netif-restart"
+      (label :text "${network_info.vpn == "active" ? "" : ""}"
            :class "${network_info.status != "offline" ?
              "network-online" : "network-offline"}"
            :css "${network_info.vpn == "active" ?
-             'label {color: #8a2be2;}' : ''}")))
+             'label {color: #8a2be2;}' : ''}"))))
 
 (defwidget volume []
   (box :class "volume"

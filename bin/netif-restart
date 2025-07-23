@@ -1,0 +1,4 @@
+#!/bin/sh
+
+notify-send -u low "Reloading the network"
+doas service netif restart
