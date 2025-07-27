@@ -47,7 +47,7 @@
     title = Dunst
     class = Dunst
 
-    corner_radius = 0
+    corner_radius = 15
     ignore_dbusclose = false
     force_xwayland = false
     force_xinerama = false
