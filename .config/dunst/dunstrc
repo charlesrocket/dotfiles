@@ -35,9 +35,10 @@
     hide_duplicate_count = false
     show_indicators = yes
     icon_position = left
+    default_icon = dialog-information-symbolic
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /usr/local/share/icons/gnome/16x16/status/:/usr/local/share/icons/gnome/16x16/devices/
+    icon_path = /usr/local/share/icons/gnome/scalable/status/:/usr/local/share/icons/gnome/16x16/devices/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/local/bin/tofi-run --prompt "dunst: "
