@@ -29,6 +29,7 @@ if ($charge >= 80) {
         system("notify-send",
                "-u",
                "critical",
+               "--icon", "battery-caution-symbolic",
                "-t", "45000",
                "Battery" . " level",
                $charge . "%"

@@ -5,10 +5,10 @@ ARG=$1
 case "$ARG" in
 true)
 	doas service bluetooth stop ubt0
-	notify-send "Bluetooth deactivated"
+	notify-send "Bluetooth deactivated" --icon=bluetooth-disabled-symbolic
 	;;
 false)
 	doas service bluetooth start ubt0
-	notify-send "Bluetooth activated"
+	notify-send "Bluetooth activated" --icon=bluetooth-active-symbolic
 	;;
 esac
