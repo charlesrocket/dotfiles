@@ -1,4 +1,4 @@
 #!/bin/sh
 
-notify-send -u low "Reloading the network" --icon=network-error-symbolic
+notify-send -u normal "Reloading the network" --icon=network-error-symbolic
 doas service netif restart
