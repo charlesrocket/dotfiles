@@ -6,7 +6,6 @@
     origin = top-right
     offset = 23x23
     scale = 0
-    notification_limit = 0
     progress_bar = true
     progress_bar_height = 10
     progress_bar_frame_width = 1
