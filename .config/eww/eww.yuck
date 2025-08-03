@@ -94,7 +94,8 @@
     (box :space-evenly false
          :class "clock"
          :spacing 6
-      (label :text {devs_stat.lang})
+      (label :text {devs_stat.lang}
+             :class "lang")
       (label :text time)
       (revealer :transition "slideleft"
                 :reveal clock_rev
