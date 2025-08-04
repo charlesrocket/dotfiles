@@ -61,11 +61,11 @@ if ($charge == 100) {
     }
 }
 
-if ($time eq "unknown") { $time = "$charge% charged"; }
+if ($time eq "unknown") { $time = ""; }
 
 print
     '{"source":"' . $source .
-    '","time":"' . $time .
+    '","time":"' . $time . " ($charge%)" .
     '","label":"' . (defined $label ? $label : '󰄌') .
     '","message":"' . (defined $message ? $message : '') .
     '"}';
