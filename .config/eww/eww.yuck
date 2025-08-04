@@ -28,7 +28,7 @@
   "perl ~/.config/eww/scripts/get-network")
 (defpoll battery_info :interval "60s"
   :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
-\"message\":\"\",\"percentage\":\"0\"}"
+\"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
 (defpoll time :interval "10s"
   "date '+%H:%M'")
@@ -69,7 +69,8 @@
     (separator)
     (comms)
     (separator)
-    (clock)))
+    (clock)
+    (battery)))
 
 (defwidget comms []
   (box :class "comms"
@@ -102,13 +103,22 @@
                 :duration "320ms"
                 (date)))))
 
+(defwidget battery []
+  (box :space-evenly false
+       :class "batt"
+    (label :text "${battery_info.label}"
+           :tooltip {battery_info.time}
+           :visible {battery_info.source == "battery" ? true : false}
+           :class "${battery_info.message} batt")))
+
 (defwidget date []
   (box :spacing 10
        :space-evenly false
     (button :class "power_btn"
             :onclick "~/.config/eww/scripts/power-button"
       (label :text ""))
-    (label :text date)))
+    (label :text date)
+    (label :text "")))
 
 (defwidget stats []
   (box :class "stats"
@@ -133,14 +143,6 @@
               {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :tooltip "${round(EWW_DISK['/'].used_perc, 0)}% used"
             :visible true
-            :onchange "")
-    (metric :label "${battery_info.label}"
-            :label-class "${battery_info.message == "critical" ?
-              "stats-batt-low" : ""} ${battery_info.message == "charged" ?
-              "stats-batt-charged" : ""}"
-            :value {battery_info.percentage}
-            :tooltip {battery_info.time}
-            :visible {battery_info.source == "battery" ? true : false}
             :onchange "")))
 
 (defwidget workspaces []

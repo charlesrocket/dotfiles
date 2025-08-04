@@ -8,10 +8,10 @@ my ($source, $time, $message, $charge, $label);
 
 for my $line (split /\n/, $apm) {
     if ($line =~ /^AC Line status:\s*(on-line)/i) {
-        if ($1 eq "on-line") { $label = ""; }
+        if ($1 eq "on-line") { $message = "batt-online"; }
     }
     if ($line =~ /^Battery status:\s*(charging)/i) {
-        if ($1 eq "charging") { $label = ""; }
+        if ($1 eq "charging") { $message = "batt-charging"; }
     }
     if ($line =~ /^Number of batteries:\s*(\d+)/i) {
         if ($1 != 0) { $source = "battery"; }
@@ -20,10 +20,23 @@ for my $line (split /\n/, $apm) {
     if ($line =~ /^Remaining battery time:\s*(\S+)/) { $time = $1; }
 }
 
-if ($charge >= 80) {
-    $message = "charged";
+if ($charge == 100) {
+    $message = "batt-charged";
+    $label = "󰁹";
+} elsif ($charge >= 80) {
+    $message = "batt-charged";
+    $label = "󰂁";
+} elsif ($charge >= 70) {
+    $label = "󰂀";
+} elsif ($charge >= 60) {
+    $label = "󰁿";
+} elsif ($charge >= 50) {
+    $label = "󰁾";
+} elsif ($charge >= 40) {
+    $label = "󰁽";
 } elsif ($charge <= 30) {
-    $message = "critical";
+    $message = "batt-critical";
+    $label = "󰁼";
 
     if ($time ne "unknown") {
         system("notify-send",
@@ -44,5 +57,4 @@ print
     '","time":"' . $time .
     '","label":"' . (defined $label ? $label : '󰄌') .
     '","message":"' . (defined $message ? $message : '') .
-    '","percentage":"' . (defined $charge ? $charge : '') .
     '"}';

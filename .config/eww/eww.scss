@@ -66,6 +66,27 @@
     font-family: Heavydata Nerd Font;
 }
 
+.batt {
+    font-family: Symbols Nerd Font;
+    margin-right: 2px;
+}
+
+.batt-critical {
+    color: #cc0000;
+}
+
+.batt-charged {
+    color: #00ff7f;
+}
+
+.batt-charging {
+    color: #ffd700;
+}
+
+.batt-online {
+    color: #1e90ff;
+}
+
 .clock {
     font-family: BlexMono Nerd Font;
     font-weight: bold;
@@ -74,16 +95,6 @@
 
 .stats {
     margin-right: 3px;
-}
-
-.stats-batt-low {
-    all: unset;
-    color: #cc0000;
-}
-
-.stats-batt-charged {
-    all: unset;
-    color: green;
 }
 
 .metric scale trough highlight {
