@@ -190,13 +190,13 @@
        :hexpand false
        :space-evenly false
     (button :vexpand false
-          :hexpand false
-          :onclick "netif-restart"
+            :hexpand false
+            :onclick "netif-restart"
       (label :text "${network_info.vpn == "active" ? "" : ""}"
-           :class "${network_info.status != "offline" ?
-             "network-online" : "network-offline"}"
-           :css "${network_info.vpn == "active" ?
-             'label {color: #8a2be2;}' : ''}"))))
+             :class "${network_info.status != "offline" ?
+               "network-online" : "network-offline"}"
+             :css "${network_info.vpn == "active" ?
+               'label {color: #8a2be2;}' : ''}"))))
 
 (defwidget volume []
   (box :class "volume"
