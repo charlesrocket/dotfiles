@@ -198,6 +198,7 @@
             :hexpand false
             :onclick "netif-restart"
       (label :text "${network_info.vpn == "active" ? "" : ""}"
+             :tooltip {weather.ip}
              :class "${network_info.status != "offline" ?
                "network-online" : "network-offline"}"
              :css "${network_info.vpn == "active" ?
