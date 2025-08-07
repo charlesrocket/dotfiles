@@ -30,6 +30,9 @@
   :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
 \"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
+(defpoll weather :interval "10m"
+  :initial "{\"conditions\":\"\",\"ip\":\"n/a\"}"
+  "sh ~/bin/weather-req")
 (defpoll time :interval "10s"
   "date '+%H:%M'")
 (defpoll date :interval "1m"
@@ -95,6 +98,8 @@
     (box :space-evenly false
          :class "clock"
          :spacing 6
+      (label :text {weather.conditions}
+             :class "weather")
       (label :text {devs_stat.lang}
              :class "lang")
       (label :text time)
