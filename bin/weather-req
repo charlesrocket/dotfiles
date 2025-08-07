@@ -10,6 +10,7 @@ latitude=$lat&longitude=$lon&current_weather=true")
 
 is_day=$(echo "$weather" | jq '.current_weather.is_day')
 code=$(echo "$weather" | jq '.current_weather.weathercode')
+temp=$(echo "$weather" | jq '.current_weather.temperature')
 
 case $code in
 0) icon=$([ "$is_day" -eq 1 ] && printf "" || printf "󰖔") ;;
@@ -25,4 +26,4 @@ case $code in
 *) icon="" ;;
 esac
 
-echo "{\"conditions\": \"$icon\", \"ip\": $ip}"
+echo "{\"conditions\": \"$icon\", \"temp\": $temp, \"ip\": $ip}"
