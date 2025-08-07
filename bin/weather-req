@@ -12,7 +12,7 @@ is_day=$(echo "$weather" | jq '.current_weather.is_day')
 code=$(echo "$weather" | jq '.current_weather.weathercode')
 
 case $code in
-0) icon=$([ "$is_day" -eq 1 ] && printf "󰖙" || printf "") ;;
+0) icon=$([ "$is_day" -eq 1 ] && printf "" || printf "") ;;
 1 | 2 | 3) icon=$([ "$is_day" -eq 1 ] && printf "󰖕" || printf "󰼱") ;;
 45 | 48) icon="󰖑" ;;
 51 | 53 | 55 | 56 | 57) icon="󰖗" ;;
