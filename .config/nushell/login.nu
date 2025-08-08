@@ -1,0 +1,8 @@
+$env.XDG_CACHE_HOME = '/home/charlie/.cache'
+$env.XDG_CONFIG_HOME = '/home/charlie/.config'
+$env.XDG_DESKTOP_DIR = '/home/charlie/Desktop'
+$env.XDG_DOCUMENTS_DIR = '/home/charlie/Documents'
+$env.XDG_DOWNLOAD_DIR = '/home/charlie/Downloads'
+$env.XDG_MUSIC_DIR = '/home/charlie/Music'
+$env.XDG_PICTURES_DIR = '/home/charlie/Pictures'
+$env.XDG_VIDEOS_DIR = '/home/charlie/Movies'
