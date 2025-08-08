@@ -23,7 +23,7 @@ case $code in
 85 | 86) icon="󰙿" ;;
 95) icon="󰖓" ;;
 96 | 99) icon="󰖒" ;;
-*) icon="" ;;
+*) icon="󱣶" ;;
 esac
 
 echo "{\"conditions\": \"$icon\", \"temp\": $temp, \"ip\": $ip}"

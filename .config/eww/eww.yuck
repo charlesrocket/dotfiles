@@ -31,7 +31,7 @@
 \"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
 (defpoll weather_info :interval "10m"
-  :initial "{\"conditions\":\"\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
+  :initial "{\"conditions\":\"󱣶\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
   "sh ~/bin/weather-req")
 (defpoll time :interval "10s"
   "date '+%H:%M'")
