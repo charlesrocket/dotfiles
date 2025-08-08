@@ -42,6 +42,7 @@
 (defvar sound_rec_rev false)
 (defvar clock_rev false)
 (defvar network_rev false)
+(defvar weather_rev false)
 
 (defwidget bar []
   (box :orientation "h"
@@ -73,6 +74,7 @@
     (comms)
     (separator)
     (weather)
+    (lang)
     (clock)
     (battery)))
 
@@ -99,20 +101,29 @@
     (box :space-evenly false
          :class "clock"
          :spacing 6
-      (label :text {devs_stat.lang}
-             :class "lang")
       (label :text time)
       (revealer :transition "slideleft"
                 :reveal clock_rev
                 :duration "320ms"
                 (date)))))
 
-(defwidget weather []
+(defwidget lang []
   (box :space-evenly false
-       :class "weather"
-    (label :text {weather_info.conditions}
-           :class "weather"
-           :tooltip "${weather_info.temp}°C")))
+    (label :text {devs_stat.lang}
+           :class "lang")))
+
+(defwidget weather []
+  (eventbox :onhover "${EWW_CMD} update weather_rev=true"
+            :onhoverlost "${EWW_CMD} update weather_rev=false"
+    (box :space-evenly false
+         :class "weather"
+      (revealer :transition "slideleft"
+                :reveal weather_rev
+                :duration "200ms"
+                (label :class "weather-exp"
+                       :text " ${weather_info.temp}C" ))
+      (label :text {weather_info.conditions}
+             :class "weather"))))
 
 (defwidget battery []
   (box :space-evenly false
@@ -128,8 +139,8 @@
     (button :class "power_btn"
             :onclick "~/.config/eww/scripts/power-button"
       (label :text ""))
-    (label :text date)
-    (label :text "")))
+    (label :text date
+           :class "date")))
 
 (defwidget stats []
   (box :class "stats"

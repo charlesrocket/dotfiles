@@ -64,6 +64,7 @@
 
 .lang {
     font-family: ProggyClean Nerd Font;
+    margin-left: 6px;
 }
 
 .batt {
@@ -90,10 +91,20 @@
     margin-left: 2px;
 }
 
+.weather-exp {
+    font-size: 14px;
+    font-family: Symbols Nerd Font;
+    margin-right: 2px;
+}
+
 .clock {
     font-family: FiraCode Nerd Font;
     font-weight: bold;
-    margin-left: 6px;
+    margin-left: 5px;
+}
+
+.date {
+    margin-right: 6px;
 }
 
 .stats {
