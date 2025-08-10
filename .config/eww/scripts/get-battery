@@ -37,11 +37,11 @@ if ($charge == 100) {
     $label = ($online ? "󰢝" : "󰁾");
 } elsif ($charge >= 40) {
     $label = ($online ? "󰂈" : "󰁽");
-} elsif ($charge > 30) {
-     $message = "batt-critical";
-     $label = ($online ? "󰂇" : "󰁼");
+} elsif ($charge >= 30) {
+    $message = "batt-critical" unless $online;
+    $label = ($online ? "󰂇" : "󰁼");
 } elsif ($charge < 30) {
-    $message = "batt-critical";
+    $message = "batt-critical" unless $online;
 
     if ($charge >= 20) {
         $label = ($online ? "󰂆" : "󰁻");
