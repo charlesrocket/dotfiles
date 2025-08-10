@@ -4,7 +4,7 @@ zstyle ':omz:update' mode disabled
 if [[ "$TERM" = "xterm" ]]; then
     ZSH_THEME="console"
 else
-    ZSH_THEME="chuck"
+    eval "$(starship init zsh)"
 fi
 
 eval "$(direnv hook zsh)"
