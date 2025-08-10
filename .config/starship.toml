@@ -37,6 +37,15 @@ symbol = 'X'
 map_symbol = true
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 
+[buf]
+disabled = true
+
+[bun]
+disabled = true
+
+[direnv]
+disabled = true
+
 [pijul_channel]
 disabled = false
 format = '[\($channel\)](bold blue)'
