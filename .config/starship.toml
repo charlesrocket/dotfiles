@@ -40,24 +40,32 @@ format = '[\($branch\)](bold blue)'
 
 [git_commit]
 disabled = true
+only_detached = false
+tag_disabled = false
+tag_symbol = '  '
+style = 'bright-black'
+format = '[$hash$tag]($style) '
 
 [git_state]
 disabled = false
 
 [git_status]
 disabled = false
-format = '$all_status$ahead_behind '
-ahead = '󰧇'
-behind = '󰦿'
-staged = '[](green)'
-modified = '[](yellow)'
-deleted = '[](red)'
-renamed = '[](blue)'
-untracked = '[](cyan)'
+format = '$all_status$ahead_behind'
+ahead = '󰧇 '
+behind = '󰦿 '
+conflicted = '[](bright-red) '
+diverged = '[](purple) '
+staged = '[](green) '
+modified = '[](yellow) '
+deleted = '[](red) '
+renamed = '[](blue) '
+untracked = '[](cyan) '
 stashed = '󰆓 '
+up_to_date = ''
 
 [git_metrics]
-disabled = false
+disabled = true
 
 [aws]
 disabled = true
