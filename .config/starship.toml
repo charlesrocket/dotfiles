@@ -1,25 +1,61 @@
 add_newline = false
+format = '$character$directory$git_branch$pijul_channel '
+right_format = '$all'
 
-format = "$directory$character"
-right_format = """$all"""
+[character]
+success_symbol = '[ ](bold red)'
 
 [line_break]
 disabled = true
 
 [time]
 disabled = true
-time_format = "%T"
-format = "🕙[$time ](bold blue)"
 
-[sudo]
-disabled = false
-style = "bold green"
-symbol = "💪"
-format = "[<SUDO>$symbol]($style)"
+[battery]
+disabled = true
+
+[localip]
+ssh_only = true
+format = '@[$localipv4](bold red) '
+disabled = true
 
 [status]
-disabled = false
-style = "bg:blue"
-symbol = "🔴"
+disabled = true
+symbol = 'X'
 map_symbol = true
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+
+[pijul_channel]
+disabled = false
+format = '[\($channel\)](bold blue)'
+
+[git_branch]
+disabled = false
+format = '[\($branch\)](bold blue)'
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = false
+
+[git_status]
+disabled = false
+format = '$all_status$ahead_behind '
+ahead = '󰧇'
+behind = '󰦿'
+staged = '[](green)'
+modified = '[](yellow)'
+deleted = '[](red)'
+renamed = '[](blue)'
+untracked = '[](cyan)'
+stashed = '󰆓 '
+
+[git_metrics]
+disabled = false
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
