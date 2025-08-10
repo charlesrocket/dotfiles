@@ -16,6 +16,13 @@ disabled = true
 [time]
 disabled = true
 
+[cmd_duration]
+disabled = true
+show_milliseconds = true
+min_time = 0
+style = 'bright-black'
+format = '[$duration]($style) '
+
 [battery]
 disabled = true
 
