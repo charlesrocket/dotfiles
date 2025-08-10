@@ -5,9 +5,6 @@ use math
 set E:LC_ALL = "en_US.UTF-8"
 
 set paths = [
-  ~/bin
-  ~/.cargo/bin
-  ~/.emacs.d/bin
   /usr/local/bin
   /usr/local/sbin
   /usr/bin
@@ -22,4 +19,14 @@ each {|pth|
   }
 } $paths
 
-# eval (starship init elvish)
+var optpaths = [
+  ~/bin
+  ~/.cargo/bin
+  ~/.emacs.d/bin
+]
+
+var optpaths-filtered = [(each {|p|
+      if (path:is-dir $p) { put $p }
+} $optpaths)]
+
+eval (starship init elvish)
