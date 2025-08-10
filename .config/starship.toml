@@ -5,6 +5,11 @@ right_format = '$all'
 [character]
 success_symbol = '[ ](bold red)'
 
+[directory]
+truncate_to_repo = true
+truncation_length = 1
+read_only = ' 󰌾'
+
 [line_break]
 disabled = true
 
