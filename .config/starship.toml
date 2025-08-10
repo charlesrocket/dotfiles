@@ -3,7 +3,8 @@ format = '$character$directory$git_branch$pijul_channel '
 right_format = '$all'
 
 [character]
-success_symbol = '[ ](bold red)'
+success_symbol = '[](bold red) '
+error_symbol = '[](bold red) '
 
 [directory]
 truncate_to_repo = true
