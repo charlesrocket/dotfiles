@@ -100,12 +100,12 @@
             :onhoverlost "${EWW_CMD} update clock_rev=false"
     (box :space-evenly false
          :class "clock"
-         :spacing 6
-      (label :text time)
+         :spacing 0
       (revealer :transition "slideleft"
                 :reveal clock_rev
-                :duration "320ms"
-                (date)))))
+                :duration "200ms"
+        (date))
+      (label :text time))))
 
 (defwidget lang []
   (box :space-evenly false
@@ -136,11 +136,10 @@
 (defwidget date []
   (box :spacing 10
        :space-evenly false
+    (label :text " ${date}")
     (button :class "power_btn"
             :onclick "~/.config/eww/scripts/power-button"
-      (label :text ""))
-    (label :text date
-           :class "date")))
+      (label :text "  "))))
 
 (defwidget stats []
   (box :class "stats"
