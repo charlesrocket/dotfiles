@@ -86,7 +86,7 @@ deleted = '[](red) '
 renamed = '[](blue) '
 untracked = '[](cyan) '
 stashed = '󰆓 '
-up_to_date = ''
+up_to_date = '󰡕 '
 
 [git_metrics]
 disabled = true
