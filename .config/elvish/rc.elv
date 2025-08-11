@@ -13,7 +13,7 @@ set paths = [
   /sbin
 ]
 
-each {|pth|
+each { |pth|
   if (not (path:is-dir &follow-symlink $pth)) {
     echo (styled "WARNING: '"$pth"' in $paths no longer exists!" red)
   }
@@ -25,8 +25,10 @@ var optpaths = [
   ~/.emacs.d/bin
 ]
 
-var optpaths-filtered = [(each {|p|
-      if (path:is-dir $p) { put $p }
+var optpaths-filtered = [(each { |p|
+  if (path:is-dir $p) { put $p }
 } $optpaths)]
 
-eval (starship init elvish)
+if (not-eq "xterm" (get-env TERM)) {
+  eval (starship init elvish)
+}
