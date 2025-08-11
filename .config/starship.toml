@@ -47,6 +47,12 @@ disabled = true
 [direnv]
 disabled = true
 
+[package]
+disabled = false
+format = '[$symbol$version]($style) '
+symbol = '󰏗 '
+version_format = '${raw}'
+
 [pijul_channel]
 disabled = false
 format = '[\($channel\)](bold blue)'
