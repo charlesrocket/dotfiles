@@ -62,9 +62,10 @@ disabled = false
 format = '[\($branch\)](bold blue)'
 
 [git_commit]
-disabled = true
-only_detached = false
-tag_disabled = false
+disabled = false
+commit_hash_length = 7
+only_detached = true
+tag_disabled = true
 tag_symbol = '  '
 style = 'bright-black'
 format = '[$hash$tag]($style) '
