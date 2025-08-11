@@ -49,7 +49,7 @@ disabled = true
 
 [package]
 disabled = false
-format = '[$symbol$version]($style) '
+format = '[pkg](italic) [$symbol$version]($style) '
 symbol = '󰏗 '
 version_format = '${raw}'
 
