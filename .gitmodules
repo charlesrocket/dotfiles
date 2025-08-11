@@ -1,0 +1,3 @@
+[submodule ".zsh-custom/plugins/transient-prompt"]
+	path = .zsh-custom/plugins/transient-prompt
+	url = https://github.com/olets/zsh-transient-prompt/
