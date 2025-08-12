@@ -1,5 +1,5 @@
 add_newline = false
-format = '$character$directory$git_branch$pijul_channel '
+format = '$character$directory$git_branch$pijul_channel$fossil_branch$hg_branch '
 right_format = '$all'
 
 [character]
@@ -17,6 +17,18 @@ disabled = true
 [time]
 disabled = true
 
+[memory_usage]
+disabled = true
+
+[os]
+disabled = true
+
+[netns]
+disabled = true
+
+[shlvl]
+disabled = true
+
 [cmd_duration]
 disabled = true
 show_milliseconds = true
@@ -28,9 +40,22 @@ format = '[$duration]($style) '
 disabled = true
 
 [localip]
+disabled = true
 ssh_only = true
 format = '@[$localipv4](bold red) '
+
+[username]
 disabled = true
+show_always = true
+style_user = 'bold green'
+style_root = 'bold red'
+format = ' [$user]($style) '
+
+[sudo]
+disabled = false
+format = '[$symbol]($style) '
+style = 'bold green'
+symbol = ''
 
 [status]
 disabled = true
@@ -52,6 +77,17 @@ disabled = false
 format = '[pkg](italic) [$symbol$version]($style) '
 symbol = '󰏗 '
 version_format = '${raw}'
+
+[fossil_metrics]
+disabled = true
+
+[fossil_branch]
+disabled = false
+format = '[\($branch\)](bold blue)'
+
+[hg_branch]
+disabled = false
+format = '[\($branch\)](bold blue)'
 
 [pijul_channel]
 disabled = false
@@ -89,6 +125,21 @@ stashed = '󰆓 '
 up_to_date = ''
 
 [git_metrics]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[opa]
+disabled = true
+
+[openstack]
+disabled = true
+
+[azure]
 disabled = true
 
 [aws]
