@@ -136,7 +136,7 @@
 (defwidget date []
   (box :spacing 10
        :space-evenly false
-    (label :text "| ${date}")
+    (label :text " ${date}")
     (button :class "power_btn"
             :onclick "~/.config/eww/scripts/power-button"
       (label :text "  "))))
