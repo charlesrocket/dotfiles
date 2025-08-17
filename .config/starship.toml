@@ -12,7 +12,7 @@ truncation_length = 1
 truncation_symbol = ''
 read_only = ' 󰌾'
 read_only_style = 'red'
-home_symbol = ''
+home_symbol = '󰆧'
 
 [line_break]
 disabled = true
