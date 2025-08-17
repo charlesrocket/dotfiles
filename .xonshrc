@@ -1,1 +1,2 @@
+$XONSH_COLOR_STYLE = 'rrt'
 execx($(starship init xonsh))
