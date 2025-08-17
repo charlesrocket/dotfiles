@@ -1,5 +1,5 @@
 ZSH_CUSTOM=$HOME/.zsh-custom
-zstyle ':omz:update' mode disabled
+zstyle ':omz:update' verbose silent
 
 if [[ "$TERM" = "xterm" ]]; then
     ZSH_THEME="console"
