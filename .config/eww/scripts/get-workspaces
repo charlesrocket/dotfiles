@@ -1,25 +1,28 @@
 #!/bin/sh
 
 spaces() {
-	WORKSPACE_WINDOWS=$(hyprctl workspaces -j |
-		jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
-		'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
-         map(if .id == "1" then .name = "\ueb44"
-         elif .id == "2" then .name = "\uf489"
-         elif .id == "3" then .name = "\uf488"
-         elif .id == "4" then .name = "\uf121"
-         elif .id == "5" then .name = "\uf0f6"
-         elif .id == "6" then .name = "\uf4d4"
-         elif .id == "7" then .name = "\uf0e0"
-         elif .id == "8" then .name = "\udb81\udc3c"
-         elif .id == "9" then .name = "\uf0c3"
-         elif .id == "10" then .name = "\ue231"
-         else . end)'
+    WORKSPACE_WINDOWS=$(hyprctl workspaces -j |
+        jq 'map({key: .id | tostring, value: .windows}) | from_entries')
+        seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc \
+        'map(tostring) | map({id: ., windows: ($windows[.]//0)}) |
+            map(
+                if .id == "1" then .name = "\ueb44"
+                elif .id == "2" then .name = "\uf489"
+                elif .id == "3" then .name = "\uf488"
+                elif .id == "4" then .name = "\uf121"
+                elif .id == "5" then .name = "\uf044"
+                elif .id == "6" then .name = "\udb80\ude55"
+                elif .id == "7" then .name = "\uf42f"
+                elif .id == "8" then .name = "\ue238"
+                elif .id == "9" then .name = "\uf0c3"
+                elif .id == "10" then .name = "\uf1b3"
+                else . end
+            )'
 }
 
 spaces
-socat -u UNIX-CONNECT:/"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
-	- | while read -r line || [ -n "$line" ]; do
-	spaces
+socat -u UNIX-CONNECT:\
+    /"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
+    - | while read -r line || [ -n "$line" ]; do
+    spaces
 done
