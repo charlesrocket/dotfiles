@@ -11,6 +11,7 @@ font-family = Hack Nerd Font
 font-synthetic-style = false
 font-size = 11
 
+cursor-click-to-move = false
 cursor-style = block
 cursor-style-blink = true
 
