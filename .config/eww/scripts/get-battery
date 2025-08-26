@@ -21,13 +21,13 @@ for my $line (split /\n/, $apm) {
 }
 
 if ($charge == 100) {
-    $message = "batt-charged";
+    $message = ($online ? "batt-charged" : "");
     $label = ($online ? "󰂅" : "󰁹");
 } elsif ($charge >= 90) {
-    $message = "batt-charged";
+    $message = ($online ? "batt-charged" : "");
     $label = ($online ? "󰂋" : "󰂂");
 } elsif ($charge >= 80) {
-    $message = "batt-charged";
+    $message = ($online ? "batt-charged" : "");
     $label = ($online ? "󰂊" : "󰂁");
 } elsif ($charge >= 70) {
     $label = ($online ? "󰢞" : "󰂀");
