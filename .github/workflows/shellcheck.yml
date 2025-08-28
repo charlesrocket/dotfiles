@@ -19,6 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         env:
