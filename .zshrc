@@ -1,4 +1,5 @@
 ZSH_CUSTOM=$HOME/.zsh-custom
+zstyle ':omz:update' mode auto
 zstyle ':omz:update' verbose silent
 
 if [[ "$TERM" = "xterm" ]]; then
