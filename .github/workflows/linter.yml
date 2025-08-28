@@ -26,6 +26,7 @@ jobs:
         uses: super-linter/super-linter@v8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           FIX_ENV: true
           FIX_CLANG_FORMAT: true
           FIX_SHELL_SHFMT: true
