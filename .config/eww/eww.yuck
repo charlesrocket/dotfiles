@@ -30,9 +30,12 @@
   :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
 \"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
-(defpoll weather_info :interval "10m"
-  :initial "{\"conditions\":\"󱣶\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
-  "sh ~/bin/weather-req")
+(defpoll dotfiles_info :interval "12h"
+  :initial "{\"total\":0,\"updated\",0,\"template\":0}"
+  "dfs --json sync --dry")
+;(defpoll weather_info :interval "10m"
+;  :initial "{\"conditions\":\"󱣶\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
+;  "sh ~/bin/weather-req")
 (defpoll time :interval "10s"
   "date '+%H:%M'")
 (defpoll date :interval "1m"
@@ -73,7 +76,8 @@
     (separator)
     (comms)
     (separator)
-    (weather)
+   ;(weather)
+    (dotfiles)
     (lang)
     (clock)
     (battery)))
@@ -112,18 +116,23 @@
     (label :text {devs_stat.lang}
            :class "lang")))
 
-(defwidget weather []
-  (eventbox :onhover "${EWW_CMD} update weather_rev=true"
-            :onhoverlost "${EWW_CMD} update weather_rev=false"
-    (box :space-evenly false
-         :class "weather"
-      (revealer :transition "slideleft"
-                :reveal weather_rev
-                :duration "200ms"
-                (label :class "weather-exp"
-                       :text " ${weather_info.temp}C" ))
-      (label :text {weather_info.conditions}
-             :class "weather"))))
+(defwidget dotfiles []
+  (box :space-evenly false
+    (label :text  "${dotfiles_info.template > 0 ? "󰓧" : "󰓦"}"
+           :class "dotfiles")))
+
+;(defwidget weather []
+;  (eventbox :onhover "${EWW_CMD} update weather_rev=true"
+;            :onhoverlost "${EWW_CMD} update weather_rev=false"
+;    (box :space-evenly false
+;         :class "weather"
+;      (revealer :transition "slideleft"
+;                :reveal weather_rev
+;                :duration "200ms"
+;                (label :class "weather-exp"
+;                       :text " ${weather_info.temp}C" ))
+;      (label :text {weather_info.conditions}
+;             :class "weather"))))
 
 (defwidget battery []
   (box :space-evenly false
@@ -214,7 +223,7 @@
             :hexpand false
             :onclick "netif-restart"
       (label :text "${network_info.vpn == "active" ? "" : ""}"
-             :tooltip {weather_info.ip}
+;             :tooltip {weather_info.ip}
              :class "${network_info.status != "offline" ?
                "network-online" : "network-offline"}"
              :css "${network_info.vpn == "active" ?
