@@ -30,8 +30,8 @@
   :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
 \"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
-(defpoll dotfiles_info :interval "12h"
-  :initial "{\"total\":0,\"updated\",0,\"template\":0}"
+(defpoll dotfiles_info :interval "1h"
+  :initial "{\"total\":0,\"updated\":0,\"template\":0}"
   "dfs --json sync --dry")
 ;(defpoll weather_info :interval "10m"
 ;  :initial "{\"conditions\":\"󱣶\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
