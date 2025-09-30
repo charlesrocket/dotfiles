@@ -1,0 +1,5 @@
+.{
+    .source = "$HOME/src/dotfiles",
+    .destination = "$HOME",
+    .ignore_list = .{},
+}
