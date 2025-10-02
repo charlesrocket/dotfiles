@@ -27,8 +27,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
+          VALIDATE_BIOME_LINT: false
+          FIX_BIOME_FORMAT: true
           FIX_ENV: true
-          FIX_CLANG_FORMAT: true
           FIX_SHELL_SHFMT: true
           FIX_RUST_CLIPPY: true
           FIX_YAML_PRETTIER: true
