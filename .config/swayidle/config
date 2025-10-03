@@ -1,2 +1,3 @@
-timeout 300 'pgrep hyprlock || hyprlock &'
-timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+timeout 600 'pgrep hyprlock || hyprlock &'
+timeout 690 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+timeout 3600 'zzz'
