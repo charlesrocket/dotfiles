@@ -10,15 +10,22 @@ for my $line (split /\n/, $apm) {
     if ($line =~ /^AC Line status:\s*(on-line)/i) {
         if ($1 eq "on-line") { $online = 1; }
     }
-    if ($line =~ /^Battery status:\s*(charging)/i) {
+    if ($line =~ /^Battery [Ss]tatus:\s*(charging)/i) {
         if ($1 eq "charging") { $message = "batt-charging"; }
     }
     if ($line =~ /^Number of batteries:\s*(\d+)/i) {
         if ($1 != 0) { $source = "battery"; }
     }
-    if ($line =~ /^Remaining battery life:\s*(\d+)%/) { $charge = $1; }
-    if ($line =~ /^Remaining battery time:\s*(\S+)/) { $time = $1; }
+    if ($line =~ /^Remaining battery life:\s*(\d+)%/ && !defined $charge) {
+        $charge = $1;
+    }
+    if ($line =~ /^Remaining battery time:\s*(\S+)/ && !defined $time) {
+        $time = $1;
+    }
 }
+
+$charge = 0 unless defined $charge;
+$time = "" unless defined $time;
 
 if ($charge == 100) {
     $message = ($online ? "batt-charged" : "");
@@ -38,34 +45,37 @@ if ($charge == 100) {
 } elsif ($charge >= 40) {
     $label = ($online ? "󰂈" : "󰁽");
 } elsif ($charge >= 30) {
-    $message = "batt-critical" unless $online;
     $label = ($online ? "󰂇" : "󰁼");
-} elsif ($charge < 30) {
+} elsif ($charge >= 20) {
     $message = "batt-critical" unless $online;
-
-    if ($charge >= 20) {
-        $label = ($online ? "󰂆" : "󰁻");
-    } else {
-        $label = ($online ? "󰢜" : "󰁺");
-    }
-
-    if ($time ne "unknown") {
+    $label = ($online ? "󰂆" : "󰁻");
+} else {
+    $message = "batt-critical" unless $online;
+    $label = ($online ? "󰢜" : "󰁺");
+    if ($time ne "unknown" && $time ne "") {
         system("notify-send",
                "-u",
                "critical",
                "--icon", "battery-caution-symbolic",
                "-t", "45000",
-               "Battery" . " level",
+               "Battery level",
                $charge . "%"
             );
     }
 }
 
-if ($time eq "unknown") { $time = ""; }
+if ($time eq "unknown") { $time = ""; }
+
+my $time_display = $time;
+if ($time_display ne "") {
+    $time_display .= " ($charge%)";
+} else {
+    $time_display = "$charge%";
+}
 
 print
-    '{"source":"' . $source .
-    '","time":"' . $time . " ($charge%)" .
+    '{"source":"' . (defined $source ? $source : '') .
+    '","time":"' . $time_display .
     '","label":"' . (defined $label ? $label : '󰄌') .
     '","message":"' . (defined $message ? $message : '') .
     '"}';
