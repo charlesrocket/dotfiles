@@ -2,5 +2,6 @@
     .repository = "https://github.com/charlesrocket/dotfiles",
     .source = "$HOME/src/dotfiles",
     .destination = "$HOME",
+    .logging = false,
     .ignore_list = .{},
 }
