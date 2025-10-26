@@ -3,14 +3,14 @@
 count=0
 
 dbus-monitor --session "interface='org.kde.StatusNotifierWatcher'" |
-while IFS= read -r signal; do
-    case "$signal" in
-        *StatusNotifierItemRegistered*)
-            count=$((count + 1))
-            ;;
-        *StatusNotifierItemUnregistered*)
-            count=$((count - 1))
-            ;;
-    esac
-    printf "%s\n" "$count"
-done
+	while IFS= read -r signal; do
+		case "$signal" in
+		*StatusNotifierItemRegistered*)
+			count=$((count + 1))
+			;;
+		*StatusNotifierItemUnregistered*)
+			count=$((count - 1))
+			;;
+		esac
+		printf "%s\n" "$count"
+	done
