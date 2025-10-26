@@ -3,5 +3,6 @@
     .source = "$HOME/src/dotfiles",
     .target = "$HOME",
     .logging = false,
+    .notifications = false,
     .ignore_list = .{},
 }
