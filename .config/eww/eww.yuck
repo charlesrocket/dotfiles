@@ -15,6 +15,8 @@
   "~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1"
   "~/.config/eww/scripts/get-active-workspace")
+(deflisten tray_icons :initial 0
+  "~/.config/eww/scripts/get-tray")
 
 (defpoll devs_stat :interval "21s"
   :initial "{\"bluetooth\":\"on\",\"bluetooth_state\":\"\"}"
@@ -30,9 +32,6 @@
   :initial "{\"label\":\"\",\"source\":\"psu\",\"time\":\"\",
 \"message\":\"\"}"
   "perl ~/.config/eww/scripts/get-battery")
-(defpoll dotfiles_info :interval "1h"
-  :initial "{\"total\":0,\"updated\":0,\"template\":0}"
-  "dfs --json sync --dry")
 ;(defpoll weather_info :interval "10m"
 ;  :initial "{\"conditions\":\"󱣶\",\"ip\":\"n/a\",\"temp\":\"n/a\"}"
 ;  "sh ~/bin/weather-req")
@@ -77,7 +76,7 @@
     (comms)
     (separator)
    ;(weather)
-    (dotfiles)
+    (tray)
     (lang)
     (clock)
     (battery)))
@@ -116,10 +115,13 @@
     (label :text {devs_stat.lang}
            :class "lang")))
 
-(defwidget dotfiles []
-  (box :space-evenly false
-    (label :text  "${dotfiles_info.template > 0 ? "󰓧" : "󰓦"}"
-           :class "dotfiles")))
+(defwidget tray []
+  (systray :orientation  "h"
+           :icon-size 16
+           :spacing 4
+           :space-evenly true
+           :visible "${tray_icons > 0}"
+           :class "tray"))
 
 ;(defwidget weather []
 ;  (eventbox :onhover "${EWW_CMD} update weather_rev=true"

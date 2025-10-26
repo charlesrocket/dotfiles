@@ -65,7 +65,7 @@
 
 .lang {
     font-family: ProggyClean Nerd Font;
-    margin-left: 6px;
+    margin-left: 5px;
     margin-right: 5px;
 }
 
@@ -88,10 +88,33 @@
     color: #ffd700;
 }
 
-.dotfiles {
-    font-size: 16px;
-    font-family: Symbols Nerd Font;
-    margin-left: 4px;
+.tray {
+    margin-left: 5px;
+    margin-right: 2px;
+}
+
+.tray menu {
+    border-radius: 0px;
+    padding: 5px 0px;
+    color:  #b0b4bc;
+    background-color: black;
+    >menuitem {
+        padding: 0px 6px;
+
+        &:disabled label {
+            color: #565b5d;
+        }
+        &:hover {
+            color: white;
+        }
+    }
+    separator {
+        background-color:  #b0b4bc;
+        padding-top: 1px;
+        &:last-child {
+            padding: unset;
+        }
+    }
 }
 
 .weather {
