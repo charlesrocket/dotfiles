@@ -4,5 +4,6 @@
     .target = "$HOME",
     .logging = false,
     .notifications = false,
+    .watcher = .auto,
     .ignore_list = .{},
 }
