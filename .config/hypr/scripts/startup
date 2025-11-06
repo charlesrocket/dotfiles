@@ -1,0 +1,13 @@
+#!/bin/sh
+
+dbus-update-activation-environment --all
+hyprctl setcursor Bibata-Original-Classic 20
+
+(swaybg -i ~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg >/dev/null 2>&1 &)
+(dsbmc-cli -a >/dev/null 2>&1 &)
+(eww open bar >/dev/null 2>&1 &)
+
+sleep 3
+
+(swayidle -w >/dev/null 2>&1 &)
+(dfs daemon >/dev/null 2>&1 &)
