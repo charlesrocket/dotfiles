@@ -1,16 +1,22 @@
 #!/bin/sh
 
-count=0
+count=$(dbus-send --session --print-reply --dest=org.kde.StatusNotifierWatcher \
+	/StatusNotifierWatcher org.freedesktop.DBus.Properties.Get \
+	string:org.kde.StatusNotifierWatcher string:RegisteredStatusNotifierItems 2>/dev/null |
+	grep -c 'string ":.*StatusNotifierItem"')
 
-dbus-monitor --session "interface='org.kde.StatusNotifierWatcher'" |
+printf "%s\n" "$count"
+
+dbus-monitor --session "type='signal',interface='org.kde.StatusNotifierWatcher'" 2>/dev/null |
 	while IFS= read -r signal; do
 		case "$signal" in
 		*StatusNotifierItemRegistered*)
 			count=$((count + 1))
+			printf "%s\n" "$count"
 			;;
 		*StatusNotifierItemUnregistered*)
 			count=$((count - 1))
+			printf "%s\n" "$count"
 			;;
 		esac
-		printf "%s\n" "$count"
 	done
