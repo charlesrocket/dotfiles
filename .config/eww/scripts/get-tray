@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sleep 2
+
 count=$(dbus-send --session --print-reply --dest=org.kde.StatusNotifierWatcher \
 	/StatusNotifierWatcher org.freedesktop.DBus.Properties.Get \
 	string:org.kde.StatusNotifierWatcher string:RegisteredStatusNotifierItems 2>/dev/null |

@@ -15,7 +15,7 @@
   "~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1"
   "~/.config/eww/scripts/get-active-workspace")
-(deflisten tray_icons :initial 0
+(deflisten tray_icons :initial "0"
   "~/.config/eww/scripts/get-tray")
 
 (defpoll devs_stat :interval "21s"
