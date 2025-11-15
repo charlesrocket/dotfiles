@@ -3,18 +3,18 @@
   :monitor 0
   :exclusive true
   :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "100%"
+                      :y "8px"
+                      :width "99.2%"
                       :height "20px"
                       :anchor "top center")
   (bar))
 
 (deflisten window_title
-  "~/.config/eww/scripts/get-window-title")
+  "~/.config/hypr/scripts/get-window-title")
 (deflisten workspaces :initial "[]"
-  "~/.config/eww/scripts/get-workspaces")
+  "~/.config/hypr/scripts/get-workspaces")
 (deflisten current_workspace :initial "1"
-  "~/.config/eww/scripts/get-active-workspace")
+  "~/.config/hypr/scripts/get-active-workspace")
 (deflisten tray_icons :initial "0"
   "~/.config/eww/scripts/get-tray")
 
