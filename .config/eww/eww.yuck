@@ -9,6 +9,11 @@
                       :anchor "top center")
   (bar))
 
+;(deflisten niri-events :initial "{\"window_title\":\"\", \"workspaces\":[],\"current_workspace\":2}"
+;  "~/.config/niri/scripts/get-events")
+;(deflisten tray_icons :initial "0"
+;  "~/.config/eww/scripts/get-tray")
+
 (deflisten window_title
   "~/.config/hypr/scripts/get-window-title")
 (deflisten workspaces :initial "[]"

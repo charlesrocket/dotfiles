@@ -1,0 +1,23 @@
+#!/bin/sh
+
+cd ~ || exit
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+	eval "$(dbus-launch --sh-syntax)"
+fi
+
+timer=2
+
+while [ $timer -gt 0 ]; do
+	printf "\rStarting \033[35;40;1mNiri\033[m in %d" ${timer}
+	sleep 1
+	timer=$((timer - 1))
+done
+
+hpid=$(/bin/pgrep niri)
+
+if test -z "$hpid"; then
+	exec ck-launch-session dbus-launch --sh-syntax --exit-with-session niri
+else
+	printf "\rNiri is already running!\nPID %d\n" "${hpid}"
+fi
