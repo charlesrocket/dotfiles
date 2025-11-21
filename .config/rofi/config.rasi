@@ -11,7 +11,7 @@ configuration {
 }
 
 * {
-    bg: #0c0c0eaa;
+    bg: #131313aa;
     bg-selected: #ff0000aa;
     bg-hover: #2c2c2e;
     fg: #b0b4bc;
@@ -43,8 +43,9 @@ mainbox {
 
 inputbar {
     children: [prompt, entry];
-    background-color: @bg-hover;
     padding: 10px 12px;
+    border: 1px;
+    border-color: @fg-dim;
     spacing: 10px;
 }
 
@@ -61,7 +62,7 @@ textbox {
 
 entry {
     placeholder: "";
-    placeholder-color: @fg-dim;
+    placeholder-color: @fg;
     text-color: @fg;
     cursor-color: #00000000;
 }
