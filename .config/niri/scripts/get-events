@@ -1,35 +1,35 @@
 #!/bin/sh
 
 get_window_title() {
-    window_event="$1"
-    window_title=""
-    
-    if echo "$window_event" | jq -e 'has("WindowsChanged")' >/dev/null 2>&1; then
-        window_title=$(echo "$event" | jq -r '.WindowsChanged.windows[]? | select(.is_focused == true) | .title // ""')
-    elif echo "$event" | jq -e 'has("WindowOpenedOrChanged")' >/dev/null 2>&1; then
-        window_title=$(echo "$event" | jq -r '.WindowOpenedOrChanged.window | select(.is_focused == true) | .title // ""')
-    fi
-    
-    echo "$window_title"
+	window_event="$1"
+	window_title=""
+
+	if echo "$window_event" | jq -e 'has("WindowsChanged")' >/dev/null 2>&1; then
+		window_title=$(echo "$event" | jq -r '.WindowsChanged.windows[]? | select(.is_focused == true) | .title // ""')
+	elif echo "$event" | jq -e 'has("WindowOpenedOrChanged")' >/dev/null 2>&1; then
+		window_title=$(echo "$event" | jq -r '.WindowOpenedOrChanged.window | select(.is_focused == true) | .title // ""')
+	fi
+
+	echo "$window_title"
 }
 
 get_current_workspace() {
-    workspace_event="$1"
-    workspace_current=""
-    
-    if echo "$workspace_event" | jq -e 'has("WorkspacesChanged")' >/dev/null 2>&1; then
-        workspace_current=$(echo "$workspace_event" | jq -r '.WorkspacesChanged.workspaces[]? | select(.is_focused == true) | .id // ""')
-    fi
-    
-    if [ -z "$workspace_current" ] && echo "$workspace_event" | jq -e 'has("WindowsChanged")' >/dev/null 2>&1; then
-        workspace_current=$(echo "$event" | jq -r '.WindowsChanged.windows[]? | select(.is_focused == true) | .workspace_id // ""')
-    fi
-    
-    echo "$workspace_current"
+	workspace_event="$1"
+	workspace_current=""
+
+	if echo "$workspace_event" | jq -e 'has("WorkspacesChanged")' >/dev/null 2>&1; then
+		workspace_current=$(echo "$workspace_event" | jq -r '.WorkspacesChanged.workspaces[]? | select(.is_focused == true) | .id // ""')
+	fi
+
+	if [ -z "$workspace_current" ] && echo "$workspace_event" | jq -e 'has("WindowsChanged")' >/dev/null 2>&1; then
+		workspace_current=$(echo "$event" | jq -r '.WindowsChanged.windows[]? | select(.is_focused == true) | .workspace_id // ""')
+	fi
+
+	echo "$workspace_current"
 }
 
 create_workspace_icons() {
-    cat << 'EOF'
+	cat <<'EOF'
 [
   {"id": "1", "name": "\ueb44", "windows": 0},
   {"id": "2", "name": "\uf489", "windows": 0},
@@ -46,11 +46,11 @@ EOF
 }
 
 update_workspaces() {
-    upd_event="$1"
-    upd_workspaces="$2"
-    
-    if echo "$upd_event" | jq -e 'has("WorkspacesChanged")' >/dev/null 2>&1; then
-        echo "$upd_event" | jq -c '.WorkspacesChanged.workspaces | map({
+	upd_event="$1"
+	upd_workspaces="$2"
+
+	if echo "$upd_event" | jq -e 'has("WorkspacesChanged")' >/dev/null 2>&1; then
+		echo "$upd_event" | jq -c '.WorkspacesChanged.workspaces | map({
             id: (.id | tostring),
             name: (
                 if .id == 1 then "\ueb44"
@@ -67,17 +67,17 @@ update_workspaces() {
             ),
             windows: (if .active_window_id != null and .active_window_id != "" then 1 else 0 end)
         })' 2>/dev/null || echo "$upd_workspaces"
-    else
-        echo "$upd_workspaces"
-    fi
+	else
+		echo "$upd_workspaces"
+	fi
 }
 
 output_json() {
-    out_window_title="$1"
-    out_workspaces="$2"
-    out_current_workspace="$3"
-    
-    echo "{\"window_title\":\"$out_window_title\",\"workspaces\":$out_workspaces,\"current_workspace\":\"$out_current_workspace\"}"
+	out_window_title="$1"
+	out_workspaces="$2"
+	out_current_workspace="$3"
+
+	echo "{\"window_title\":\"$out_window_title\",\"workspaces\":$out_workspaces,\"current_workspace\":\"$out_current_workspace\"}"
 }
 
 window_title=""
@@ -87,27 +87,27 @@ current_workspace="1"
 output_json "$window_title" "$workspaces" "$current_workspace"
 
 niri msg --json event-stream | while read -r event || [ -n "$event" ]; do
-    changed=false
-    
-    new_window_title=$(get_window_title "$event")
-    if [ -n "$new_window_title" ] && [ "$new_window_title" != "$window_title" ]; then
-        window_title="$new_window_title"
-        changed=true
-    fi
-    
-    new_current_workspace=$(get_current_workspace "$event")
-    if [ -n "$new_current_workspace" ] && [ "$new_current_workspace" != "$current_workspace" ]; then
-        current_workspace="$new_current_workspace"
-        changed=true
-    fi
-    
-    new_workspaces=$(update_workspaces "$event" "$workspaces")
-    if [ "$new_workspaces" != "$workspaces" ]; then
-        workspaces="$new_workspaces"
-        changed=true
-    fi
-    
-    if [ "$changed" = true ]; then
-        output_json "$window_title" "$workspaces" "$current_workspace"
-    fi
+	changed=false
+
+	new_window_title=$(get_window_title "$event")
+	if [ -n "$new_window_title" ] && [ "$new_window_title" != "$window_title" ]; then
+		window_title="$new_window_title"
+		changed=true
+	fi
+
+	new_current_workspace=$(get_current_workspace "$event")
+	if [ -n "$new_current_workspace" ] && [ "$new_current_workspace" != "$current_workspace" ]; then
+		current_workspace="$new_current_workspace"
+		changed=true
+	fi
+
+	new_workspaces=$(update_workspaces "$event" "$workspaces")
+	if [ "$new_workspaces" != "$workspaces" ]; then
+		workspaces="$new_workspaces"
+		changed=true
+	fi
+
+	if [ "$changed" = true ]; then
+		output_json "$window_title" "$workspaces" "$current_workspace"
+	fi
 done
