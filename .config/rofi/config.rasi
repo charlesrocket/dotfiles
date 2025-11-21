@@ -1,0 +1,110 @@
+configuration {
+    modi: "drun,run";
+    show-icons: true;
+    display-drun: "";
+    display-run: "";
+    drun-display-format: "{name}";
+    font: "Hurmit Nerd Font 13";
+    sidebar-mode: false;
+    me-select-entry: "MousePrimary";
+    me-accept-entry: "MouseDPrimary";
+}
+
+* {
+    bg: #0c0c0eaa;
+    bg-selected: #ff0000aa;
+    bg-hover: #2c2c2e;
+    fg: #b0b4bc;
+    fg-dim: #787878aa;
+    border-color: #2c2c2caa;
+    border-radius: 8px;
+    background-color: transparent;
+    separatorcolor: transparent;
+    text-color: @fg;
+    spacing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window {
+    background-color: @bg;
+    border: 1px;
+    border-color: @border-color;
+    width: 710px;
+    location: center;
+    anchor: center;
+    padding: 12px;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    spacing: 12px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-hover;
+    padding: 10px 12px;
+    spacing: 10px;
+}
+
+message {
+    enabled: false;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+entry {
+    placeholder: "";
+    placeholder-color: @fg-dim;
+    text-color: @fg;
+    cursor-color: #00000000;
+}
+
+listview {
+    lines: 9;
+    columns: 1;
+    scrollbar: false;
+    spacing: 4px;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+}
+
+element {
+    padding: 10px 12px;
+    spacing: 12px;
+    orientation: horizontal;
+    children: [element-icon, element-text];
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @bg-selected;
+    text-color: @fg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element-icon {
+    size: 32px;
+    background-color: transparent;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
