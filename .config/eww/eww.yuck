@@ -9,11 +9,13 @@
                       :anchor "top center")
   (bar))
 
-;(deflisten niri-events :initial "{\"window_title\":\"\", \"workspaces\":[],\"current_workspace\":2}"
-;  "~/.config/niri/scripts/get-events")
-;(deflisten tray_icons :initial "0"
-;  "~/.config/eww/scripts/get-tray")
-
+;{> if SYSTEM.desktop == niri <}
+(deflisten niri-events :initial "{\"window_title\":\"\",
+\"workspaces\":[],\"current_workspace\":1}"
+  "~/.config/niri/scripts/get-events")
+(deflisten tray_icons :initial "0"
+  "~/.config/eww/scripts/get-tray")
+;{> elif SYSTEM.desktop == hyprland <}
 (deflisten window_title
   "~/.config/hypr/scripts/get-window-title")
 (deflisten workspaces :initial "[]"
@@ -22,6 +24,7 @@
   "~/.config/hypr/scripts/get-active-workspace")
 (deflisten tray_icons :initial "0"
   "~/.config/eww/scripts/get-tray")
+;{> endif <}
 
 (defpoll devs_stat :interval "21s"
   :initial "{\"bluetooth\":\"on\",\"bluetooth_state\":\"\"}"
@@ -99,8 +102,13 @@
 (defwidget window []
   (box :halign "center"
        :class "bar-title"
+    {> if SYSTEM.desktop == hyprland <}
     (label :text {window_title == "" ? "" :
                   window_title == "null" ? "" : window_title }
+    {> elif SYSTEM.desktop == niri <}
+    (label :text {niri-events.window_title == "" ? "" :
+                  niri-events.window_title == "null" ? "" : niri-events.window_title }
+    {> endif <}
            :limit-width 65)))
 
 (defwidget clock []
@@ -186,6 +194,7 @@
   (box :space-evenly false
        :spacing 5
        :class "workspaces"
+    ;{> if SYSTEM.desktop == hyprland <}
     (label :text "${current_workspace}" :visible false)
     (for workspace in workspaces
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
@@ -193,6 +202,15 @@
             "workspace-current" : "workspace-inactive"} ${workspace.windows > 0 ?
             "workspace-occupied" : "workspace-empty"}"
           (label :text "${workspace.name}"))))))
+    ;{> elif SYSTEM.desktop == niri <}
+    (label :text "${niri-events.current_workspace}" :visible false)
+    (for workspace in {niri-events.workspaces}
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (box :class "workspace-entry ${workspace.id == niri-events.current_workspace ?
+            "workspace-current" : "workspace-inactive"} ${workspace.windows > 0 ?
+            "workspace-occupied" : "workspace-empty"}"
+          (label :text "${workspace.name}"))))))
+    ;{> endif <}
 
 ;; refactor with force-poll
 (defwidget bluetooth []
