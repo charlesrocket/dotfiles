@@ -13,8 +13,6 @@
 (deflisten niri-events :initial "{\"window_title\":\"\",
 \"workspaces\":[],\"current_workspace\":1}"
   "~/.config/niri/scripts/get-events")
-(deflisten tray_icons :initial "0"
-  "~/.config/eww/scripts/get-tray")
 ;{> elif SYSTEM.desktop == hyprland <}
 (deflisten window_title
   "~/.config/hypr/scripts/get-window-title")
@@ -22,9 +20,9 @@
   "~/.config/hypr/scripts/get-workspaces")
 (deflisten current_workspace :initial "1"
   "~/.config/hypr/scripts/get-active-workspace")
+;{> endif <}
 (deflisten tray_icons :initial "0"
   "~/.config/eww/scripts/get-tray")
-;{> endif <}
 
 (defpoll devs_stat :interval "21s"
   :initial "{\"bluetooth\":\"on\",\"bluetooth_state\":\"\"}"
@@ -131,9 +129,9 @@
 (defwidget tray []
   (systray :orientation  "h"
            :icon-size 16
+           :visible "${tray_icons > 0}"
            :spacing 4
            :space-evenly true
-           :visible "${tray_icons > 0}"
            :class "tray"))
 
 ;(defwidget weather []

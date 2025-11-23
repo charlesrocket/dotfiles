@@ -90,9 +90,8 @@
     color: #ffd700;
 }
 
-.tray {
-    margin-left: 5px;
-    margin-right: 2px;
+.tray image {
+    margin: 0 2px;
 }
 
 .tray menu {
@@ -102,6 +101,7 @@
     border: solid 1px #b0b4bc;
     background-color: #1e1e1e;
     >menuitem {
+        margin: 1px 0;
         padding: 0px 6px;
 
         &:disabled label {
@@ -114,6 +114,7 @@
     separator {
         background-color:  #b0b4bc;
         padding-top: 1px;
+        margin: 3px 0;
         &:last-child {
             padding: unset;
         }
