@@ -19,4 +19,4 @@ export RUST_BACKTRACE=1
 # {> if SYSTEM.os == macos <}
 export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
 export PATH="/usr/local/opt/arm-gcc-bin@8/bin:$PATH"
-# {> end <}
+# {> endif <}
