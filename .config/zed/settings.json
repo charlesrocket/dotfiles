@@ -1,4 +1,7 @@
 {
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 400.0,
+  "buffer_font_family": "RobotoMono Nerd Font Mono",
   "disable_ai": true,
   "calls": {
     "mute_on_join": true
@@ -42,17 +45,13 @@
   "show_edit_predictions": false,
   "cursor_shape": "block",
   "when_closing_with_no_tabs": "close_window",
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)"
-  },
+  "icon_theme": "Zed (Default)",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "base_keymap": "Atom",
   "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "buffer_font_size": 13.0,
   "theme": "Carbonfox - blurred"
 }
