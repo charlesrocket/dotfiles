@@ -1,4 +1,41 @@
 {
+  "disable_ai": true,
+  "calls": {
+    "mute_on_join": true
+  },
+  "git": {
+    "inline_blame": {
+      "show_commit_summary": true
+    }
+  },
+  "project_panel": {
+    "hide_root": true,
+    "entry_spacing": "comfortable",
+    "hide_gitignore": false,
+    "default_width": 220.0
+  },
+  "bottom_dock_layout": "contained",
+  "tabs": {
+    "file_icons": false,
+    "git_status": true
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_branch_icon": true
+  },
+  "status_bar": {
+    "cursor_position_button": true
+  },
+  "file_finder": {
+    "file_icons": true
+  },
+  "indent_guides": {
+    "background_coloring": "disabled"
+  },
+  "scrollbar": {
+    "show": "auto"
+  },
+  "hover_popover_delay": 1000,
   "edit_predictions": {
     "mode": "subtle"
   },
