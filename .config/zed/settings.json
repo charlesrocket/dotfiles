@@ -1,0 +1,21 @@
+{
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "show_edit_predictions": false,
+  "cursor_shape": "block",
+  "when_closing_with_no_tabs": "close_window",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "base_keymap": "Atom",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "Carbonfox - blurred"
+}
