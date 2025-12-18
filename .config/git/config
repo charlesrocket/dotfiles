@@ -16,7 +16,7 @@
 	defaultBranch = trunk
 [credential]
 	helper = {> if SYSTEM.os == macos <}osxkeychain{> else <}libsecret{> endif <}
-	#helper = oauth -device
+	#helper = oauth -bearer
 [diff]
 	submodule = log
 [commit]
