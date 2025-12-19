@@ -1,4 +1,8 @@
 {
+  "rounded_selection": true,
+  "current_line_highlight": "all",
+  "cursor_blink": false,
+  "on_last_window_closed": "quit_app",
   "buffer_line_height": "standard",
   "buffer_font_weight": 400.0,
   "buffer_font_family": "RobotoMono Nerd Font Mono",
@@ -43,7 +47,7 @@
     "mode": "subtle"
   },
   "show_edit_predictions": false,
-  "cursor_shape": "block",
+  "cursor_shape": "underline",
   "when_closing_with_no_tabs": "close_window",
   "icon_theme": "Zed (Default)",
   "telemetry": {
