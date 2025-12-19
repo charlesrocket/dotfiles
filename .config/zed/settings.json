@@ -1,4 +1,8 @@
 {
+  "agent": {
+    "model_parameters": [],
+    "enable_feedback": false
+  },
   "rounded_selection": true,
   "current_line_highlight": "all",
   "cursor_blink": false,
@@ -16,6 +20,7 @@
     }
   },
   "project_panel": {
+    "git_status": true,
     "hide_root": true,
     "entry_spacing": "comfortable",
     "hide_gitignore": false,
