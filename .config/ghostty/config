@@ -21,7 +21,7 @@ background-blur = false
 
 window-decoration = none
 window-save-state = never
-window-padding-balance = true
+window-padding-balance = false
 window-padding-x = 8
 window-padding-y = 5
 
