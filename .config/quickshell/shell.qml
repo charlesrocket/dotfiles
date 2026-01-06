@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Services.UPower
 import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell.Hyprland
@@ -14,7 +15,8 @@ PanelWindow {
     property color colCyan: "#0db9d7"
     property color colRed: "#cc0000"
     property color colBlue: "#7aa2f7"
-    property color colYellow: "#e0af68"
+    property color colYellow: "#ffd700"
+    property color colGreen: "#9ece6a"
     property string fontFamily: "JetBrainsMono Nerd Font"
     property var screen: Quickshell.screens[0]
     property int cornerRadius: 8
@@ -43,7 +45,7 @@ PanelWindow {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            spacing: 8
+            spacing: 6
 
             // workspaces
             Repeater {
@@ -55,8 +57,8 @@ PanelWindow {
 
                     text: workspaceNames[index]
                     color: isActive ? root.colRed : (ws ? root.colFg : root.colMuted)
-                    leftPadding: 3
-                    rightPadding: 3
+                    leftPadding: 4
+                    rightPadding: 4
                     font {
                         family: "Symbols Nerd Font"
                         pixelSize: root.fontSize
@@ -81,7 +83,7 @@ PanelWindow {
                 color: root.colFg
                 font {
                     family: "FiraCode Nerd Font"
-                    pixelSize: root.fontSize
+                    pixelSize: root.fontSize - 1
                     bold: true
                 }
 
@@ -90,6 +92,89 @@ PanelWindow {
                     running: true
                     repeat: true
                     onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
+                }
+            }
+
+            Text {
+                id: batteryIndicator
+                property var battery: UPower.displayDevice
+                readonly property int batteryPercentage: battery?.ready ? Math.round(battery.percentage * 100) : 0
+                readonly property bool isCharging: battery?.state === 1
+                readonly property bool isDischarging: battery?.state === 2
+                readonly property bool isFullyCharged: battery?.state === 4
+
+                function getBatteryIcon(percentage) {
+                    if (!battery?.ready)
+                        return "󰂑";
+                    if (isCharging || isFullyCharged) {
+                        if (percentage == 100)
+                            return "󰂅";
+                        if (percentage >= 90)
+                            return "󰂋";
+                        if (percentage >= 80)
+                            return "󰂊";
+                        if (percentage >= 70)
+                            return "󰢞";
+                        if (percentage >= 60)
+                            return "󰂉";
+                        if (percentage >= 50)
+                            return "󰢝";
+                        if (percentage >= 40)
+                            return "󰂈";
+                        if (percentage >= 30)
+                            return "󰂇";
+                        if (percentage >= 20)
+                            return "󰂆";
+                        return "󰢜";
+                    } else {
+                        if (percentage == 100)
+                            return "󰁹";
+                        if (percentage >= 90)
+                            return "󰂂";
+                        if (percentage >= 80)
+                            return "󰂁";
+                        if (percentage >= 70)
+                            return "󰂀";
+                        if (percentage >= 60)
+                            return "󰁿";
+                        if (percentage >= 50)
+                            return "󰁾";
+                        if (percentage >= 40)
+                            return "󰁽";
+                        if (percentage >= 30)
+                            return "󰁼";
+                        if (percentage >= 20)
+                            return "󰁻";
+                        return "󰁺";
+                    }
+                }
+
+                text: battery?.ready ? `${getBatteryIcon(batteryPercentage)}` : ""
+                color: {
+                    if (!battery?.ready)
+                        return root.colMuted;
+                    if (isCharging)
+                        return root.colYellow;
+                    if (batteryPercentage >= 80)
+                        return root.colGreen;
+                    if (batteryPercentage <= 30)
+                        return root.colRed;
+                    return root.colFg;
+                }
+
+                visible: UPower.onBattery || battery?.state === 1 || battery?.state === 4
+                font {
+                    family: "Symbols Nerd Font"
+                    pixelSize: root.fontSize + 2
+                    bold: true
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        // TODO
+                        console.log("Battery clicked:", batteryIndicator.battery);
+                    }
                 }
             }
         }
