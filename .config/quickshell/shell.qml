@@ -73,6 +73,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignLeft
                 spacing: 6
 
+                // workspaces
                 Repeater {
                     model: 10
                     Text {
@@ -112,6 +113,7 @@ PanelWindow {
                     Layout.fillWidth: true
                 }
 
+                // window title
                 Text {
                     id: activeWindowTitle
                     Layout.maximumWidth: Math.min(400, parent.parent.width * 0.3)
@@ -229,13 +231,21 @@ PanelWindow {
                     }
                 }
 
+                Rectangle {
+                    Layout.preferredHeight: parent.height - 6
+                    Layout.preferredWidth: 2
+                    Layout.alignment: Qt.AlignVCenter
+                    color: root.colMuted
+                }
+
+                // clock
                 Text {
                     id: clock
                     text: Qt.formatDateTime(new Date(), "HH:mm")
                     color: root.colFg
                     font {
                         family: "FiraCode Nerd Font"
-                        pixelSize: root.fontSize
+                        pixelSize: root.fontSize - 1
                         bold: true
                     }
 
@@ -247,6 +257,7 @@ PanelWindow {
                     }
                 }
 
+                // battery
                 Text {
                     id: batteryIndicator
                     property var battery: UPower.displayDevice
