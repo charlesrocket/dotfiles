@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.UPower
@@ -23,6 +25,17 @@ PanelWindow {
     property string fontFamily: "JetBrainsMono Nerd Font"
     property string emptyTitle: ""
     property int animDuration: 250
+
+    property string ws01: ""
+    property string ws02: ""
+    property string ws03: ""
+    property string ws04: ""
+    property string ws05: ""
+    property string ws06: "󰉕"
+    property string ws07: ""
+    property string ws08: ""
+    property string ws09: ""
+    property string ws10: ""
 
     property var screen: Quickshell.screens[0]
     property int cornerRadius: 8
@@ -62,9 +75,10 @@ PanelWindow {
                 Repeater {
                     model: 10
                     Text {
+                        required property int index
                         property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
                         property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-                        readonly property var workspaceNames: ["", "", "", "", "", "󰉕", "", "", "", ""]
+                        readonly property var workspaceNames: [root.ws01, root.ws02, root.ws03, root.ws04, root.ws05, root.ws06, root.ws07, root.ws08, root.ws09, root.ws10]
 
                         text: workspaceNames[index]
                         color: isActive ? root.colRed : (ws ? root.colFg : root.colMuted)
@@ -78,7 +92,7 @@ PanelWindow {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: Hyprland.dispatch("workspace " + (index + 1))
+                            onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
                         }
                     }
                 }
@@ -174,12 +188,12 @@ PanelWindow {
                     color: root.colFg
                     font {
                         family: "FiraCode Nerd Font"
-                        pixelSize: root.fontSize - 1
+                        pixelSize: root.fontSize
                         bold: true
                     }
 
                     Timer {
-                        interval: 60000
+                        interval: 1000
                         running: true
                         repeat: true
                         onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
