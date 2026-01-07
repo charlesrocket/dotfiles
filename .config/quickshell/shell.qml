@@ -1,10 +1,12 @@
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.UPower
 import Quickshell.Wayland
-import Quickshell.Io
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
+
+import "components"
 
 PanelWindow {
     id: root
@@ -17,7 +19,11 @@ PanelWindow {
     property color colBlue: "#7aa2f7"
     property color colYellow: "#ffd700"
     property color colGreen: "#9ece6a"
+
     property string fontFamily: "JetBrainsMono Nerd Font"
+    property string emptyTitle: ""
+    property int animDuration: 250
+
     property var screen: Quickshell.screens[0]
     property int cornerRadius: 8
     property int fontSize: 14
@@ -45,135 +51,221 @@ PanelWindow {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            spacing: 6
+            spacing: 0
 
-            // workspaces
-            Repeater {
-                model: 10
+            // left section
+            RowLayout {
+                Layout.preferredWidth: parent.width / 3
+                Layout.alignment: Qt.AlignLeft
+                spacing: 6
+
+                Repeater {
+                    model: 10
+                    Text {
+                        property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
+                        property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
+                        readonly property var workspaceNames: ["", "", "", "", "", "󰉕", "", "", "", ""]
+
+                        text: workspaceNames[index]
+                        color: isActive ? root.colRed : (ws ? root.colFg : root.colMuted)
+                        leftPadding: 4
+                        rightPadding: 4
+                        font {
+                            family: "Symbols Nerd Font"
+                            pixelSize: root.fontSize
+                            bold: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: Hyprland.dispatch("workspace " + (index + 1))
+                        }
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+            }
+
+            // center section
+            RowLayout {
+                Layout.preferredWidth: parent.width / 3
+                Layout.alignment: Qt.AlignHCenter
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
                 Text {
-                    property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
-                    property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-                    readonly property var workspaceNames: ["", "", "", "", "", "󰉕", "", "", "", ""]
+                    id: activeWindowTitle
+                    Layout.maximumWidth: Math.min(400, parent.parent.width * 0.3)
+                    Layout.fillWidth: true
 
-                    text: workspaceNames[index]
-                    color: isActive ? root.colRed : (ws ? root.colFg : root.colMuted)
-                    leftPadding: 4
-                    rightPadding: 4
+                    property string fullTitle: {
+                        var win = Hyprland.activeToplevel;
+                        if (!win || !win.title || win.title.trim() === "") {
+                            return root.emptyTitle;
+                        }
+
+                        // check if the workspace has any windows
+                        var focusedWorkspace = Hyprland.focusedWorkspace;
+                        if (focusedWorkspace) {
+                            var currentWorkspace = Hyprland.workspaces.values.find(w => w.id === focusedWorkspace.id);
+                            if (currentWorkspace && currentWorkspace.toplevels && currentWorkspace.toplevels.values) {
+                                var windowCount = currentWorkspace.toplevels.values.length;
+                                if (windowCount === 0) {
+                                    return root.emptyTitle;
+                                }
+                            }
+                        }
+
+                        return win.title.trim();
+                    }
+
+                    text: fullTitle === root.emptyTitle ? fullTitle : (fullTitle.length > 60 ? fullTitle.substring(0, 57) + "..." : fullTitle)
+
+                    color: root.colFg
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    font {
+                        family: "Hack Nerd Font"
+                        pixelSize: root.fontSize
+                        bold: true
+                    }
+
+                    HoverFrame {
+                        id: hoverBg
+                        anchors.fill: parent
+                        frameColor: root.colMuted
+                        animDuration: animDuration
+                    }
+
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+
+                        onEntered: hoverBg.opacity = 1
+                        onExited: hoverBg.opacity = 0
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+            }
+
+            // right section
+            RowLayout {
+                Layout.preferredWidth: parent.width / 3
+                Layout.alignment: Qt.AlignRight
+                spacing: 6
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Text {
+                    id: clock
+                    text: Qt.formatDateTime(new Date(), "HH:mm")
+                    color: root.colFg
+                    font {
+                        family: "FiraCode Nerd Font"
+                        pixelSize: root.fontSize - 1
+                        bold: true
+                    }
+
+                    Timer {
+                        interval: 60000
+                        running: true
+                        repeat: true
+                        onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
+                    }
+                }
+
+                Text {
+                    id: batteryIndicator
+                    property var battery: UPower.displayDevice
+                    readonly property int batteryPercentage: battery?.ready ? Math.round(battery.percentage * 100) : 0
+                    readonly property bool isCharging: battery?.state === 1
+                    readonly property bool isDischarging: battery?.state === 2
+                    readonly property bool isFullyCharged: battery?.state === 4
+
+                    function getBatteryIcon(percentage) {
+                        if (!battery?.ready)
+                            return "󰂑";
+                        if (isCharging || isFullyCharged) {
+                            if (percentage == 100)
+                                return "󰂅";
+                            if (percentage >= 90)
+                                return "󰂋";
+                            if (percentage >= 80)
+                                return "󰂊";
+                            if (percentage >= 70)
+                                return "󰢞";
+                            if (percentage >= 60)
+                                return "󰂉";
+                            if (percentage >= 50)
+                                return "󰢝";
+                            if (percentage >= 40)
+                                return "󰂈";
+                            if (percentage >= 30)
+                                return "󰂇";
+                            if (percentage >= 20)
+                                return "󰂆";
+                            return "󰢜";
+                        } else {
+                            if (percentage == 100)
+                                return "󰁹";
+                            if (percentage >= 90)
+                                return "󰂂";
+                            if (percentage >= 80)
+                                return "󰂁";
+                            if (percentage >= 70)
+                                return "󰂀";
+                            if (percentage >= 60)
+                                return "󰁿";
+                            if (percentage >= 50)
+                                return "󰁾";
+                            if (percentage >= 40)
+                                return "󰁽";
+                            if (percentage >= 30)
+                                return "󰁼";
+                            if (percentage >= 20)
+                                return "󰁻";
+                            return "󰁺";
+                        }
+                    }
+
+                    visible: UPower.onBattery || battery?.state === 1 || battery?.state === 4
+                    text: battery?.ready ? `${getBatteryIcon(batteryPercentage)}` : ""
+                    color: {
+                        if (!battery?.ready)
+                            return root.colMuted;
+                        if (isCharging)
+                            return root.colYellow;
+                        if (batteryPercentage >= 80)
+                            return root.colGreen;
+                        if (batteryPercentage <= 30)
+                            return root.colRed;
+                        return root.colFg;
+                    }
+
                     font {
                         family: "Symbols Nerd Font"
-                        pixelSize: root.fontSize
+                        pixelSize: root.fontSize + 2
                         bold: true
                     }
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: Hyprland.dispatch("workspace " + (index + 1))
-                    }
-                }
-            }
-
-            Item {
-                Layout.fillWidth: true
-            }
-
-            // clock
-            Text {
-                id: clock
-                text: Qt.formatDateTime(new Date(), "HH:mm")
-                color: root.colFg
-                font {
-                    family: "FiraCode Nerd Font"
-                    pixelSize: root.fontSize - 1
-                    bold: true
-                }
-
-                Timer {
-                    interval: 60000
-                    running: true
-                    repeat: true
-                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
-                }
-            }
-
-            Text {
-                id: batteryIndicator
-                property var battery: UPower.displayDevice
-                readonly property int batteryPercentage: battery?.ready ? Math.round(battery.percentage * 100) : 0
-                readonly property bool isCharging: battery?.state === 1
-                readonly property bool isDischarging: battery?.state === 2
-                readonly property bool isFullyCharged: battery?.state === 4
-
-                function getBatteryIcon(percentage) {
-                    if (!battery?.ready)
-                        return "󰂑";
-                    if (isCharging || isFullyCharged) {
-                        if (percentage == 100)
-                            return "󰂅";
-                        if (percentage >= 90)
-                            return "󰂋";
-                        if (percentage >= 80)
-                            return "󰂊";
-                        if (percentage >= 70)
-                            return "󰢞";
-                        if (percentage >= 60)
-                            return "󰂉";
-                        if (percentage >= 50)
-                            return "󰢝";
-                        if (percentage >= 40)
-                            return "󰂈";
-                        if (percentage >= 30)
-                            return "󰂇";
-                        if (percentage >= 20)
-                            return "󰂆";
-                        return "󰢜";
-                    } else {
-                        if (percentage == 100)
-                            return "󰁹";
-                        if (percentage >= 90)
-                            return "󰂂";
-                        if (percentage >= 80)
-                            return "󰂁";
-                        if (percentage >= 70)
-                            return "󰂀";
-                        if (percentage >= 60)
-                            return "󰁿";
-                        if (percentage >= 50)
-                            return "󰁾";
-                        if (percentage >= 40)
-                            return "󰁽";
-                        if (percentage >= 30)
-                            return "󰁼";
-                        if (percentage >= 20)
-                            return "󰁻";
-                        return "󰁺";
-                    }
-                }
-
-                text: battery?.ready ? `${getBatteryIcon(batteryPercentage)}` : ""
-                color: {
-                    if (!battery?.ready)
-                        return root.colMuted;
-                    if (isCharging)
-                        return root.colYellow;
-                    if (batteryPercentage >= 80)
-                        return root.colGreen;
-                    if (batteryPercentage <= 30)
-                        return root.colRed;
-                    return root.colFg;
-                }
-
-                visible: UPower.onBattery || battery?.state === 1 || battery?.state === 4
-                font {
-                    family: "Symbols Nerd Font"
-                    pixelSize: root.fontSize + 2
-                    bold: true
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        // TODO
-                        console.log("Battery clicked:", batteryIndicator.battery);
+                        onClicked: {
+                            // TODO
+                            console.log("Battery clicked:", batteryIndicator.battery);
+                        }
                     }
                 }
             }
