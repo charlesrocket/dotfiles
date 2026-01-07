@@ -1,6 +1,7 @@
 import QtQuick
 
 Rectangle {
+    id: root
     color: "transparent"
     border.width: 1
     radius: 6
@@ -14,7 +15,7 @@ Rectangle {
 
     Behavior on opacity {
         NumberAnimation {
-            duration: animDuration
+            duration: root.animDuration
             easing.type: Easing.InOutQuad
         }
     }
