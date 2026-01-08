@@ -27,7 +27,7 @@ PanelWindow {
     property string emptyTitle: ""
     property int animDuration: 250
 
-    property string ws01: ""
+    property string ws01: ""
     property string ws02: ""
     property string ws03: ""
     property string ws04: ""
@@ -63,14 +63,14 @@ PanelWindow {
 
         RowLayout {
             anchors.fill: parent
-            anchors.leftMargin: 10
-            anchors.rightMargin: 10
+            anchors.leftMargin: 13
+            anchors.rightMargin: 12
             spacing: 0
 
             // left section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                Layout.alignment: Qt.AlignLeft
+                //Layout.alignment: Qt.AlignLeft
                 spacing: 6
 
                 // workspaces
@@ -107,7 +107,7 @@ PanelWindow {
             // center section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                Layout.alignment: Qt.AlignHCenter
+                //Layout.alignment: Qt.AlignHCenter
 
                 Item {
                     Layout.fillWidth: true
@@ -154,7 +154,7 @@ PanelWindow {
                     }
 
                     HoverFrame {
-                        id: hoverBg
+                        id: hoverActiveWindow
                         anchors.fill: parent
                         frameColor: root.colMuted
                         animDuration: animDuration
@@ -165,8 +165,8 @@ PanelWindow {
                         anchors.fill: parent
                         hoverEnabled: true
 
-                        onEntered: hoverBg.opacity = 1
-                        onExited: hoverBg.opacity = 0
+                        onEntered: hoverActiveWindow.opacity = 1
+                        onExited: hoverActiveWindow.opacity = 0
                     }
                 }
 
@@ -178,7 +178,7 @@ PanelWindow {
             // right section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                Layout.alignment: Qt.AlignRight
+                //Layout.alignment: Qt.AlignRight
                 spacing: 6
 
                 Item {
