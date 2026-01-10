@@ -92,6 +92,13 @@ PanelWindow {
                             bold: true
                         }
 
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: root.animDuration
+                                easing.type: Easing.OutCubic
+                            }
+                        }
+
                         MouseArea {
                             anchors.fill: parent
                             onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
