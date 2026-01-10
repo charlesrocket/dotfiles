@@ -24,10 +24,6 @@ PanelWindow {
     property color colYellow: "#ffd700"
     property color colGreen: "#9ece6a"
 
-    property string fontFamily: "JetBrainsMono Nerd Font"
-    property string emptyTitle: ""
-    property int animDuration: 250
-
     property string ws01: ""
     property string ws02: ""
     property string ws03: ""
@@ -39,11 +35,14 @@ PanelWindow {
     property string ws09: ""
     property string ws10: ""
 
+    property string fontFamily: "JetBrainsMono Nerd Font"
+
+    property int fontSize: 14
     property var screen: Quickshell.screens[0]
     property int cornerRadius: 8
-    property int fontSize: 14
     property int barHeight: 28
     property int extraPadding: 16
+    property int animDuration: 250
 
     implicitWidth: screen.width - extraPadding
     implicitHeight: barHeight + extraPadding / 2
@@ -120,61 +119,13 @@ PanelWindow {
                     Layout.fillWidth: true
                 }
 
-                // window title
-                Text {
-                    id: activeWindowTitle
-                    Layout.maximumWidth: Math.min(600, parent.parent.width * 0.3)
-                    Layout.fillWidth: true
-
-                    property string fullTitle: {
-                        var win = Hyprland.activeToplevel;
-                        if (!win || !win.title || win.title.trim() === "") {
-                            return root.emptyTitle;
-                        }
-
-                        // check if the workspace has any windows
-                        var focusedWorkspace = Hyprland.focusedWorkspace;
-                        if (focusedWorkspace) {
-                            var currentWorkspace = Hyprland.workspaces.values.find(w => w.id === focusedWorkspace.id);
-                            if (currentWorkspace && currentWorkspace.toplevels && currentWorkspace.toplevels.values) {
-                                var windowCount = currentWorkspace.toplevels.values.length;
-                                if (windowCount === 0) {
-                                    return root.emptyTitle;
-                                }
-                            }
-                        }
-
-                        return win.title.trim();
-                    }
-
-                    text: fullTitle === root.emptyTitle ? fullTitle : (fullTitle.length > 70 ? fullTitle.substring(0, 67) + "..." : fullTitle)
-
-                    color: root.colFg
-                    elide: Text.ElideRight
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    font {
-                        family: "Hack Nerd Font"
-                        pixelSize: root.fontSize
-                        bold: true
-                    }
-
-                    HoverFrame {
-                        id: hoverActiveWindow
-                        anchors.fill: parent
-                        frameColor: root.colMuted
-                        animDuration: animDuration
-                    }
-
-                    MouseArea {
-                        id: mouseArea
-                        anchors.fill: parent
-                        hoverEnabled: true
-
-                        onEntered: hoverActiveWindow.opacity = 1
-                        onExited: hoverActiveWindow.opacity = 0
-                    }
+                // active window title
+                WindowTitle {
+                    emptyTitle: ""
+                    colBg: root.colBg
+                    colFg: root.colFg
+                    colMuted: root.colMuted
+                    fontFamily: "Hack Nerd Font"
                 }
 
                 Item {
