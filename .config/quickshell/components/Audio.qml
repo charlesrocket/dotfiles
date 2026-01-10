@@ -52,7 +52,6 @@ Item {
 
                 if (trimmedName === "rec")
                     return devCtl;
-
             }
 
             for (var i = 0; i < device.controls.length; i++) {
@@ -61,7 +60,6 @@ Item {
 
                 if (trimmedName === "mic")
                     return devCtl;
-
             }
 
             return null;
@@ -87,20 +85,70 @@ Item {
         }
     }
 
-    Text {
-        id: iconText
+    Item {
+        id: iconContainer
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        text: root.getVolumeIcon(root.volume, root.muted)
-        color: root.muted ? root.colMuted : root.colNormal
-        font.family: "Symbols Nerd Font"
-        font.pixelSize: root.iconSize
-        font.bold: true
+        width: iconText.width
+        height: iconText.height
+
+        Text {
+            id: iconText
+            anchors.centerIn: parent
+            text: root.getVolumeIcon(root.volume, root.muted)
+            color: root.muted ? root.colMuted : root.colNormal
+            font.family: "Symbols Nerd Font"
+            font.pixelSize: root.iconSize
+            font.bold: true
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 150
+                    easing.type: Easing.OutCubic
+                }
+            }
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
+            onTextChanged: {
+                scaleAnimation.restart();
+            }
+
+            SequentialAnimation {
+                id: scaleAnimation
+                NumberAnimation {
+                    target: iconText
+                    property: "scale"
+                    to: 0.8
+                    duration: 75
+                    easing.type: Easing.InQuad
+                }
+                NumberAnimation {
+                    target: iconText
+                    property: "scale"
+                    to: 1.0
+                    duration: 75
+                    easing.type: Easing.OutQuad
+                }
+            }
+        }
     }
 
     Item {
         id: volumeSliderContainer
-        anchors.left: iconText.right
+        anchors.left: iconContainer.right
         anchors.leftMargin: 8
         anchors.verticalCenter: parent.verticalCenter
         width: root.barLen
