@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.UPower
+import Quickshell.Services.OSS
 import Quickshell.Bluetooth
 import Quickshell.Wayland
 import Quickshell.Hyprland
@@ -65,7 +66,6 @@ PanelWindow {
             anchors.fill: parent
             anchors.leftMargin: 13
             anchors.rightMargin: 12
-            spacing: 0
 
             // left section
             RowLayout {
@@ -116,7 +116,7 @@ PanelWindow {
                 // window title
                 Text {
                     id: activeWindowTitle
-                    Layout.maximumWidth: Math.min(400, parent.parent.width * 0.3)
+                    Layout.maximumWidth: Math.min(600, parent.parent.width * 0.3)
                     Layout.fillWidth: true
 
                     property string fullTitle: {
@@ -140,7 +140,7 @@ PanelWindow {
                         return win.title.trim();
                     }
 
-                    text: fullTitle === root.emptyTitle ? fullTitle : (fullTitle.length > 60 ? fullTitle.substring(0, 57) + "..." : fullTitle)
+                    text: fullTitle === root.emptyTitle ? fullTitle : (fullTitle.length > 70 ? fullTitle.substring(0, 67) + "..." : fullTitle)
 
                     color: root.colFg
                     elide: Text.ElideRight
@@ -184,6 +184,26 @@ PanelWindow {
                 Item {
                     Layout.fillWidth: true
                 }
+
+                BarSeparator {}
+
+                // audio
+                RowLayout {
+                    spacing: 8
+
+                    // mic
+                    Audio {
+                        mic: true
+                        slideDuration: root.animDuration
+                    }
+
+                    // speaker
+                    Audio {
+                        slideDuration: root.animDuration
+                    }
+                }
+
+                BarSeparator {}
 
                 // bluetooth
                 Text {
@@ -231,12 +251,7 @@ PanelWindow {
                     }
                 }
 
-                Rectangle {
-                    Layout.preferredHeight: parent.height - 6
-                    Layout.preferredWidth: 2
-                    Layout.alignment: Qt.AlignVCenter
-                    color: root.colMuted
-                }
+                BarSeparator {}
 
                 // clock
                 Text {
