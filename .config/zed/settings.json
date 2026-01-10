@@ -1,7 +1,20 @@
 {
+  "auto_update": false,
+  "collaboration_panel": {
+    "button": false,
+  },
+  "languages": {
+    "Zig": {
+      "enable_language_server": false,
+      "tasks": {
+        "enabled": true,
+      },
+    },
+  },
   "agent": {
+    "button": false,
     "model_parameters": [],
-    "enable_feedback": false
+    "enable_feedback": false,
   },
   "rounded_selection": true,
   "current_line_highlight": "all",
@@ -12,55 +25,52 @@
   "buffer_font_family": "RobotoMono Nerd Font Mono",
   "disable_ai": true,
   "calls": {
-    "mute_on_join": true
+    "mute_on_join": true,
   },
   "git": {
     "inline_blame": {
-      "show_commit_summary": true
-    }
+      "show_commit_summary": true,
+    },
   },
   "project_panel": {
     "git_status": true,
     "hide_root": true,
     "entry_spacing": "comfortable",
     "hide_gitignore": false,
-    "default_width": 220.0
   },
   "bottom_dock_layout": "contained",
   "tabs": {
     "file_icons": false,
-    "git_status": true
+    "git_status": true,
   },
   "title_bar": {
+    "show_sign_in": false,
     "show_menus": false,
-    "show_branch_icon": true
+    "show_branch_icon": true,
   },
   "status_bar": {
-    "cursor_position_button": true
-  },
-  "file_finder": {
-    "file_icons": true
+    "cursor_position_button": true,
   },
   "indent_guides": {
-    "background_coloring": "disabled"
+    "background_coloring": "disabled",
   },
   "scrollbar": {
-    "show": "auto"
+    "show": "auto",
   },
   "hover_popover_delay": 1000,
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "show_edit_predictions": false,
-  "cursor_shape": "underline",
+  "cursor_shape": "bar",
   "when_closing_with_no_tabs": "close_window",
   "icon_theme": "Zed (Default)",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "base_keymap": "Atom",
   "ui_font_size": 16,
   "buffer_font_size": 13.0,
-  "theme": "Carbonfox - blurred"
+  "theme": "One Dark - Darkened",
 }
