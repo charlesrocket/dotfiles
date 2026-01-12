@@ -13,7 +13,7 @@ done
 hpid=$(/bin/pgrep Hyprland)
 
 if test -z "$hpid"; then
-	exec ck-launch-session dbus-launch --sh-syntax --exit-with-session Hyprland
+	exec ck-launch-session dbus-launch --sh-syntax --exit-with-session start-hyprland
 else
 	printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
 fi
