@@ -71,36 +71,10 @@ PanelWindow {
                 spacing: 6
 
                 // workspaces
-                Repeater {
-                    model: 10
-                    Text {
-                        required property int index
-                        property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
-                        property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-                        readonly property var workspaceNames: [root.ws01, root.ws02, root.ws03, root.ws04, root.ws05, root.ws06, root.ws07, root.ws08, root.ws09, root.ws10]
-
-                        text: workspaceNames[index]
-                        color: isActive ? root.colRed : (ws ? root.colFg : root.colMuted)
-                        leftPadding: 4
-                        rightPadding: 4
-                        font {
-                            family: "Symbols Nerd Font"
-                            pixelSize: root.fontSize
-                            bold: true
-                        }
-
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: root.animDuration
-                                easing.type: Easing.OutCubic
-                            }
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: Hyprland.dispatch("workspace " + (parent.index + 1))
-                        }
-                    }
+                HyprWorkspaces {
+                    names: [root.ws01, root.ws02, root.ws03, root.ws04, root.ws05, root.ws06, root.ws07, root.ws08, root.ws09, root.ws10]
+                    fontSize: root.fontSize
+                    fontFamily: "Symbols Nerd Font"
                 }
 
                 Item {
