@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
-import Quickshell.Services.UPower
 import Quickshell.Services.OSS
 import Quickshell.Bluetooth
 import Quickshell.Wayland
@@ -220,87 +219,12 @@ PanelWindow {
                 }
 
                 // battery
-                Text {
-                    id: batteryIndicator
-                    property var battery: UPower.displayDevice
-                    readonly property int batteryPercentage: battery?.ready ? Math.round(battery.percentage * 100) : 0
-                    readonly property bool isCharging: battery?.state === 1
-                    readonly property bool isDischarging: battery?.state === 2
-                    readonly property bool isFullyCharged: battery?.state === 4
-
-                    function getBatteryIcon(percentage) {
-                        if (!battery?.ready)
-                            return "󰂑";
-                        if (isCharging || isFullyCharged) {
-                            if (percentage == 100)
-                                return "󰂅";
-                            if (percentage >= 90)
-                                return "󰂋";
-                            if (percentage >= 80)
-                                return "󰂊";
-                            if (percentage >= 70)
-                                return "󰢞";
-                            if (percentage >= 60)
-                                return "󰂉";
-                            if (percentage >= 50)
-                                return "󰢝";
-                            if (percentage >= 40)
-                                return "󰂈";
-                            if (percentage >= 30)
-                                return "󰂇";
-                            if (percentage >= 20)
-                                return "󰂆";
-                            return "󰢜";
-                        } else {
-                            if (percentage == 100)
-                                return "󰁹";
-                            if (percentage >= 90)
-                                return "󰂂";
-                            if (percentage >= 80)
-                                return "󰂁";
-                            if (percentage >= 70)
-                                return "󰂀";
-                            if (percentage >= 60)
-                                return "󰁿";
-                            if (percentage >= 50)
-                                return "󰁾";
-                            if (percentage >= 40)
-                                return "󰁽";
-                            if (percentage >= 30)
-                                return "󰁼";
-                            if (percentage >= 20)
-                                return "󰁻";
-                            return "󰁺";
-                        }
-                    }
-
-                    visible: UPower.onBattery || battery?.state === 1 || battery?.state === 4
-                    text: battery?.ready ? `${getBatteryIcon(batteryPercentage)}` : ""
-                    color: {
-                        if (!battery?.ready)
-                            return root.colMuted;
-                        if (isCharging)
-                            return root.colYellow;
-                        if (batteryPercentage >= 80)
-                            return root.colGreen;
-                        if (batteryPercentage <= 30)
-                            return root.colRed;
-                        return root.colFg;
-                    }
-
-                    font {
-                        family: "Symbols Nerd Font"
-                        pixelSize: root.fontSize + 2
-                        bold: true
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            // TODO
-                            console.log("Battery clicked:", batteryIndicator.battery);
-                        }
-                    }
+                Battery {
+                    fontSize: root.fontSize + 2
+                    colMain: root.colFg
+                    colGood: root.colGreen
+                    colBad: root.colRed
+                    colCharging: root.colYellow
                 }
             }
         }
