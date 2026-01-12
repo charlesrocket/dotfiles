@@ -211,23 +211,12 @@ PanelWindow {
 
                 BarSeparator {}
 
-                // clock
-                Text {
-                    id: clock
-                    text: Qt.formatDateTime(new Date(), "HH:mm")
+                // time
+                Clock {
+                    slideDuration: root.animDuration
+                    fontFamily: "FiraCode Nerd Font"
+                    fontSize: root.fontSize
                     color: root.colFg
-                    font {
-                        family: "FiraCode Nerd Font"
-                        pixelSize: root.fontSize - 1
-                        bold: true
-                    }
-
-                    Timer {
-                        interval: 1000
-                        running: true
-                        repeat: true
-                        onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
-                    }
                 }
 
                 // battery
