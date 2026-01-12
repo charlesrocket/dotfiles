@@ -31,11 +31,11 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_CSS_PRETTIER: true
           FIX_CSS: true
-          FIX_JSON_PRETTIER: true
+          FIX_JSON_PRETTIER: false
           FIX_JSON: true
           FIX_RUBY: true
           FIX_HTML_PRETTIER: true
-          FILTER_REGEX_EXCLUDE: .*README\.md*|.*wlogout\/style\.css*|.*eww\.scss*
+          FILTER_REGEX_EXCLUDE: (README\.md$|wlogout/style\.css$|eww\.scss$|settings\.json$)
 
       - name: Push linting fixes
         uses: stefanzweifel/git-auto-commit-action@v7
