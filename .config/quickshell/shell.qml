@@ -202,7 +202,8 @@ PanelWindow {
                     slideDuration: root.animDuration
                     fontFamily: "FiraCode Nerd Font"
                     fontSize: root.fontSize
-                    color: root.colFg
+                    colMain: root.colFg
+                    colBtn: root.colRed
                 }
 
                 // battery

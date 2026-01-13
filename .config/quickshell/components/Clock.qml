@@ -1,3 +1,5 @@
+import Quickshell.Io
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -6,7 +8,8 @@ Item {
     Layout.alignment: Qt.AlignVCenter
 
     property int slideDuration: 250
-    property var color: "#b0b4bc"
+    property color colMain: "#b0b4bc"
+    property color colBtn: "#cc0000"
     property string fontFamily: "FiraCode Nerd Font"
     property int fontSize: 14
 
@@ -20,13 +23,19 @@ Item {
         }
     }
 
-    Item {
+    Process {
+        id: wlogoutProc
+        command: ["wlogout"]
+        Component.onCompleted: running = false
+    }
+
+    RowLayout {
         id: dateContainer
         anchors.right: clockContainer.left
-        anchors.rightMargin: 8
+        anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
         anchors.verticalCenter: parent.verticalCenter
-        width: dateText.width
-        height: dateText.height
+        spacing: 10
+
         opacity: hoverDetector.containsMouse ? 1 : 0
         scale: hoverDetector.containsMouse ? 1 : 0
         transformOrigin: Item.Right
@@ -46,15 +55,39 @@ Item {
             }
         }
 
+        Behavior on anchors.rightMargin {
+            NumberAnimation {
+                duration: root.slideDuration
+                easing.type: Easing.OutCubic
+            }
+        }
+
         Text {
             id: dateText
-            anchors.centerIn: parent
             text: ""
-            color: root.color
+            color: root.colMain
             font {
                 family: root.fontFamily
                 pixelSize: root.fontSize - 1
                 bold: true
+            }
+        }
+
+        Text {
+            id: powerBtn
+            text: ""
+            color: root.colBtn
+            font {
+                family: "Symbols Nerd Font"
+                pixelSize: root.fontSize
+                bold: true
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    wlogoutProc.running = true;
+                }
             }
         }
     }
@@ -70,7 +103,7 @@ Item {
             id: clockText
             anchors.centerIn: parent
             text: Qt.formatDateTime(new Date(), "HH:mm")
-            color: root.color
+            color: root.colMain
             font {
                 family: root.fontFamily
                 pixelSize: root.fontSize - 1
@@ -90,7 +123,6 @@ Item {
 
     Connections {
         target: hoverDetector
-
         function onContainsMouseChanged() {
             if (hoverDetector.containsMouse) {
                 dateText.text = Qt.formatDateTime(new Date(), "ddd dd MMMM yyyy");
