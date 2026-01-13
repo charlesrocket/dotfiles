@@ -21,6 +21,7 @@ PanelWindow {
     property color colBlue: "#7aa2f7"
     property color colYellow: "#ffd700"
     property color colGreen: "#9ece6a"
+    property color colPurple: "#bf00ff"
 
     property string ws01: ""
     property string ws02: ""
@@ -47,6 +48,10 @@ PanelWindow {
 
     anchors.top: true
     color: "transparent"
+
+    AudioDevices {
+        id: audioDeviceSelector
+    }
 
     Rectangle {
         id: bar
@@ -120,6 +125,41 @@ PanelWindow {
                 // audio
                 RowLayout {
                     spacing: 8
+
+                    Text {
+                        id: audioDeviceButton
+                        text: "󱡭"
+                        color: root.colFg
+                        font {
+                            family: "Symbols Nerd Font"
+                            pixelSize: root.fontSize
+                            bold: true
+                        }
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 150
+                                easing.type: Easing.OutCubic
+                            }
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onEntered: {
+                                audioDeviceButton.color = root.colPurple;
+                            }
+
+                            onExited: {
+                                audioDeviceButton.color = root.colFg;
+                            }
+
+                            onClicked: {
+                                audioDeviceSelector.toggle();
+                            }
+                        }
+                    }
 
                     // mic
                     Audio {
