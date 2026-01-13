@@ -41,7 +41,7 @@ Item {
         return OSS.defaultDevice;
     }
 
-    readonly property var control: {
+    property var control: {
         if (!device || !device.controls)
             return null;
 

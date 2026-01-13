@@ -4,14 +4,14 @@ import QtQuick
 import QtQuick.Layouts
 
 FloatingWindow {
-    id: deviceSelector
+    id: root
 
     property color colBg: "#aa000000"
-    property color colFg: "#b0b4bc"
-    property color colMuted: "#4e4e4e"
-    property color colCyan: "#0db9d7"
-    property color colRed: "#cc0000"
-    property color colGreen: "#9ece6a"
+    property color colMain: "#b0b4bc"
+    property color colDecor: "#4e4e4e"
+    property color colActive: "#cc0000"
+    property color colCheck: "#9ece6a"
+    property color colWinBorder: "#4e4e4e"
     property int cornerRadius: 8
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 14
@@ -28,10 +28,10 @@ FloatingWindow {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: deviceSelector.colBg
-        radius: deviceSelector.cornerRadius
-        border.width: 1
-        border.color: deviceSelector.colMuted
+        color: root.colBg
+        radius: root.cornerRadius
+        //border.width: 1
+        border.color: root.colWinBorder
 
         ColumnLayout {
             anchors.fill: parent
@@ -40,17 +40,18 @@ FloatingWindow {
 
             Text {
                 text: "Audio Devices"
-                color: deviceSelector.colFg
-                font.family: deviceSelector.fontFamily
-                font.pixelSize: deviceSelector.fontSize + 2
+                color: root.colMain
+                font.family: root.fontFamily
+                font.pixelSize: root.fontSize + 2
                 font.bold: true
                 Layout.alignment: Qt.AlignHCenter
             }
 
             Rectangle {
                 Layout.fillWidth: true
+                Layout.bottomMargin: 8
                 implicitHeight: 1
-                color: deviceSelector.colMuted
+                color: root.colDecor
             }
 
             Item {
@@ -72,7 +73,7 @@ FloatingWindow {
                         radius: 6
                         color: mouseArea.containsMouse ? "#11ffffff" : "transparent"
                         border.width: modelData.isDefault ? 2 : 0
-                        border.color: deviceSelector.colRed
+                        border.color: root.colActive
 
                         Behavior on color {
                             ColorAnimation {
@@ -97,9 +98,9 @@ FloatingWindow {
 
                                 horizontalAlignment: Text.AlignHCenter
                                 Layout.preferredWidth: 24
-                                color: deviceSelector.colFg
+                                color: root.colMain
                                 font.family: "Symbols Nerd Font"
-                                font.pixelSize: deviceSelector.fontSize + 4
+                                font.pixelSize: root.fontSize + 4
                                 font.bold: true
                             }
 
@@ -109,9 +110,9 @@ FloatingWindow {
 
                                 Text {
                                     text: modelData.description || modelData.name
-                                    color: deviceSelector.colFg
-                                    font.family: deviceSelector.fontFamily
-                                    font.pixelSize: deviceSelector.fontSize
+                                    color: root.colMain
+                                    font.family: root.fontFamily
+                                    font.pixelSize: root.fontSize
                                     elide: Text.ElideRight
                                     Layout.fillWidth: true
                                     font.bold: true
@@ -119,17 +120,17 @@ FloatingWindow {
 
                                 Text {
                                     text: modelData.name
-                                    color: deviceSelector.colFg
-                                    font.family: deviceSelector.fontFamily
-                                    font.pixelSize: deviceSelector.fontSize - 2
+                                    color: root.colMain
+                                    font.family: root.fontFamily
+                                    font.pixelSize: root.fontSize - 2
                                     visible: modelData.description && modelData.description !== modelData.name
                                 }
                             }
 
                             Text {
                                 text: "󰸞"
-                                color: deviceSelector.colGreen
-                                font.pixelSize: deviceSelector.fontSize + 2
+                                color: root.colCheck
+                                font.pixelSize: root.fontSize + 2
                                 font.bold: true
                                 visible: modelData.isDefault
                                 rightPadding: 16
@@ -143,7 +144,7 @@ FloatingWindow {
 
                             onClicked: {
                                 OSS.setDefaultDevice(modelData.deviceId);
-                                deviceSelector.visible = false;
+                                root.visible = false;
                             }
                         }
                     }

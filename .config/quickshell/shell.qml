@@ -34,7 +34,7 @@ PanelWindow {
     property string ws09: ""
     property string ws10: ""
 
-    property string fontFamily: "JetBrainsMono Nerd Font"
+    property string fontFamily: "Hack Nerd Font"
 
     property int fontSize: 14
     property var screen: Quickshell.screens[0]
@@ -51,8 +51,17 @@ PanelWindow {
 
     AudioDevices {
         id: audioDeviceSelector
+        colBg: root.colBg
+        colMain: root.colFg
+        colDecor: root.colMuted
+        colActive: root.colRed
+        colCheck: root.colGreen
+        colWinBorder: root.colMuted
+        fontFamily: root.fontFamily
+        fontSize: root.fontSize
     }
 
+    // bar
     Rectangle {
         id: bar
         anchors.bottom: parent.bottom
@@ -126,9 +135,10 @@ PanelWindow {
                 RowLayout {
                     spacing: 8
 
+                    // audio devices
                     Text {
                         id: audioDeviceButton
-                        text: "󱡭"
+                        text: "󰋋"
                         color: root.colFg
                         font {
                             family: "Symbols Nerd Font"
@@ -163,13 +173,17 @@ PanelWindow {
 
                     // mic
                     Audio {
+                        id: mic
                         mic: true
                         slideDuration: root.animDuration
+                        visible: mic.control
                     }
 
                     // speaker
                     Audio {
+                        id: speaker
                         slideDuration: root.animDuration
+                        visible: speaker.control
                     }
                 }
 
