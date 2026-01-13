@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.OSS
+import Quickshell.Networking
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import QtQuick
@@ -197,6 +198,14 @@ PanelWindow {
                 }
 
                 BarSeparator {}
+
+                // language
+                HyprLang {
+                    colMain: root.colFg
+                    colBorder: root.colMuted
+                    colBackground: "transparent"
+                    fontFamily: root.fontFamily
+                }
 
                 // time
                 Clock {
