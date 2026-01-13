@@ -90,17 +90,17 @@ FloatingWindow {
                             Text {
                                 text: {
                                     if (modelData.mode === 0x01)
-                                        return "󰕾"; // playback
+                                        return "󰓃"; // playback
                                     if (modelData.mode === 0x02)
-                                        return "󰍬"; // record
-                                    return "󱡭"; // playback/record
+                                        return "󰍰"; // record
+                                    return "󰤽"; // playback/record
                                 }
 
                                 horizontalAlignment: Text.AlignHCenter
                                 Layout.preferredWidth: 24
                                 color: root.colMain
                                 font.family: "Symbols Nerd Font"
-                                font.pixelSize: root.fontSize + 4
+                                font.pixelSize: root.fontSize + 8
                                 font.bold: true
                             }
 
