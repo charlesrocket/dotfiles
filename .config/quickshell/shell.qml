@@ -177,46 +177,14 @@ PanelWindow {
                         id: mic
                         mic: true
                         slideDuration: root.animDuration
-                        visible: opacity > 0
-                        opacity: mic.control ? 1 : 0
-                        Layout.preferredWidth: mic.control ? implicitWidth : 0
-
-                        Behavior on opacity {
-                            NumberAnimation {
-                                duration: root.animDuration
-                                easing.type: Easing.InOutCubic
-                            }
-                        }
-
-                        Behavior on Layout.preferredWidth {
-                            NumberAnimation {
-                                duration: root.animDuration
-                                easing.type: Easing.InOutCubic
-                            }
-                        }
+                        visible: mic.control
                     }
 
                     // speaker
                     Audio {
                         id: speaker
                         slideDuration: root.animDuration
-                        visible: opacity > 0
-                        opacity: speaker.control ? 1 : 0
-                        Layout.preferredWidth: speaker.control ? implicitWidth : 0
-
-                        Behavior on opacity {
-                            NumberAnimation {
-                                duration: root.animDuration
-                                easing.type: Easing.InOutCubic
-                            }
-                        }
-
-                        Behavior on Layout.preferredWidth {
-                            NumberAnimation {
-                                duration: root.animDuration
-                                easing.type: Easing.InOutCubic
-                            }
-                        }
+                        visible: speaker.control
                     }
                 }
 
