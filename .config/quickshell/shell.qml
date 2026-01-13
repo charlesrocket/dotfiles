@@ -241,6 +241,8 @@ PanelWindow {
                 // battery
                 Battery {
                     fontSize: root.fontSize + 2
+                    fontFamily: root.fontFamily
+                    slideDuration: root.animDuration
                     colMain: root.colFg
                     colGood: root.colGreen
                     colBad: root.colRed
