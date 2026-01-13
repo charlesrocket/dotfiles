@@ -16,6 +16,7 @@ PanelWindow {
     property color colBg: "#aa000000"
     property color colFg: "#b0b4bc"
     property color colMuted: "#aa4e4e4e"
+    property color colDark: Qt.darker(colMuted, 1.5)
     property color colCyan: "#0db9d7"
     property color colRed: "#cc0000"
     property color colBlue: "#7aa2f7"
@@ -68,10 +69,10 @@ PanelWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         border.width: 1
-        border.color: colMuted
-        height: barHeight
+        border.color: root.colMuted
+        height: root.barHeight
         color: root.colBg
-        radius: cornerRadius
+        radius: root.cornerRadius
 
         RowLayout {
             anchors.fill: parent
@@ -247,6 +248,7 @@ PanelWindow {
                     colGood: root.colGreen
                     colBad: root.colRed
                     colCharging: root.colYellow
+                    colBg: root.colDark
                 }
             }
         }

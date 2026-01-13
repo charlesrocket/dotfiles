@@ -10,6 +10,7 @@ Item {
     property color colCharging: "#ffd700"
     property color colGood: "#9ece6a"
     property color colBad: "#cc0000"
+    property color colBg: "#aa4e4e4e"
     property int slideDuration: 250
     property int fontSize: 14
     property var fontFamily: "Hack Nerd Font"
@@ -76,11 +77,11 @@ Item {
 
     function batteryInfo(batt) {
         if (isDischarging)
-            return " 󱐋 " + batteryPercentage + "% " + secondsToHhMm(batt.timeToEmpty);
+            return "󱐋 " + batteryPercentage + "% " + secondsToHhMm(batt.timeToEmpty);
         if (isCharging)
-            return " 󱐋 " + batteryPercentage + "% " + secondsToHhMm(batt.timeToFull);
+            return "󱐋 " + batteryPercentage + "% " + secondsToHhMm(batt.timeToFull);
         if (isFullyCharged || isEmpty)
-            return " 󱐋 " + batteryPercentage + "% " + Math.round(batt.energyCapacity) + " Wh";
+            return "󱐋 " + batteryPercentage + "% " + Math.round(batt.energyCapacity) + " Wh";
     }
 
     implicitWidth: (hoverDetector.containsMouse ? infoContainer.width + 8 : 0) + battText.width
@@ -93,13 +94,15 @@ Item {
         }
     }
 
-    RowLayout {
+    Rectangle {
         id: infoContainer
         anchors.right: battContainer.left
         anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 10
-
+        width: infoText.contentWidth + 10
+        height: infoText.contentHeight
+        color: root.colBg
+        radius: 6
         opacity: hoverDetector.containsMouse ? 1 : 0
         scale: hoverDetector.containsMouse ? 1 : 0
         transformOrigin: Item.Right
@@ -128,11 +131,12 @@ Item {
 
         Text {
             id: infoText
+            anchors.centerIn: parent
             text: ""
             color: root.colMain
             font {
                 family: root.fontFamily
-                pixelSize: root.fontSize - 3
+                pixelSize: root.fontSize - 2
                 bold: true
             }
         }
