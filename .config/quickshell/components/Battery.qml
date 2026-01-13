@@ -84,6 +84,13 @@ Text {
         bold: true
     }
 
+    Behavior on color {
+        ColorAnimation {
+            duration: 2000
+            easing.type: Easing.InOutExpo
+        }
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
