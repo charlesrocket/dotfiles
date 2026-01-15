@@ -83,7 +83,6 @@ PanelWindow {
             // left section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                //Layout.alignment: Qt.AlignLeft
                 spacing: 6
 
                 // workspaces
@@ -101,7 +100,6 @@ PanelWindow {
             // center section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                //Layout.alignment: Qt.AlignHCenter
 
                 Item {
                     Layout.fillWidth: true
@@ -124,7 +122,6 @@ PanelWindow {
             // right section
             RowLayout {
                 Layout.preferredWidth: parent.width / 3
-                //Layout.alignment: Qt.AlignRight
                 spacing: 6
 
                 Item {
@@ -135,7 +132,7 @@ PanelWindow {
                 RowLayout {
                     spacing: 8
 
-                    // audio devices
+                    // devices
                     Text {
                         id: audioDeviceButton
                         text: "󰋋"
@@ -193,13 +190,13 @@ PanelWindow {
                 RowLayout {
                     spacing: 6
 
-                    // bluetooth
+                    // bt
                     Bluetooth {
                         colMain: root.colFg
                         fontSize: root.fontSize
                     }
 
-                    // TODO
+                    // uplink
                     Text {
                         text: ""
                         color: root.colFg
@@ -207,7 +204,7 @@ PanelWindow {
                         font.pixelSize: 14
                     }
 
-                    // TODO
+                    // interface
                     Text {
                         text: ""
                         color: root.colFg
