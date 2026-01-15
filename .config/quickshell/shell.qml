@@ -131,11 +131,6 @@ PanelWindow {
                     Layout.fillWidth: true
                 }
 
-                // stats
-                Stats {}
-
-                BarSeparator {}
-
                 // audio
                 RowLayout {
                     spacing: 8
@@ -202,8 +197,12 @@ PanelWindow {
 
                 BarSeparator {}
 
+                // weather
                 Weather {
                     Layout.rightMargin: 2
+                    fontFamily: "FiraCode Nerd Font"
+                    fontSize: root.fontSize + 1
+                    colMain: root.colFg
                 }
 
                 // language
@@ -211,7 +210,7 @@ PanelWindow {
                     colMain: root.colFg
                     colBorder: Qt.darker(root.colRed, 1.5)
                     colBackground: "transparent"
-                    fontFamily: root.fontFamily
+                    fontFamily: "ProFont Nerd Font"
                 }
 
                 // time
