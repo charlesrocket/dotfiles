@@ -12,7 +12,7 @@ Rectangle {
     property color colBorder: null
     property color colBackground: null
 
-    width: layoutText.width + 4
+    width: layoutText.width + 8
     height: layoutText.height
     color: colBackground
     border.color: colBorder
@@ -35,7 +35,7 @@ Rectangle {
             return firstWord.length <= 3 ? firstWord : firstWord.substring(0, 2).toUpperCase();
         }
 
-        font.pixelSize: 12
+        font.pixelSize: 13
         font.bold: true
         font.family: root.fontFamily
         color: root.colMain

@@ -210,7 +210,7 @@ PanelWindow {
                     colMain: root.colFg
                     colBorder: Qt.darker(root.colRed, 1.5)
                     colBackground: "transparent"
-                    fontFamily: "ProFont Nerd Font"
+                    fontFamily: "RobotoMono Nerd Font"
                 }
 
                 // time
