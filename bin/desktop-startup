@@ -4,6 +4,7 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 	eval "$(dbus-launch --sh-syntax)"
 fi
 
+doas service bluetooth stop ubt0 # TMP
 dbus-update-activation-environment --all
 
 (swaybg -i ~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg >/dev/null 2>&1 &)
