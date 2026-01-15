@@ -232,7 +232,7 @@ PanelWindow {
                     colMain: root.colFg
                     colBorder: Qt.darker(root.colRed, 1.5)
                     colBackground: "transparent"
-                    fontFamily: "RobotoMono Nerd Font"
+                    fontFamily: "SpaceMono Nerd Font"
                 }
 
                 // time

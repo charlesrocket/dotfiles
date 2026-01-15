@@ -35,7 +35,7 @@ Rectangle {
             return firstWord.length <= 3 ? firstWord : firstWord.substring(0, 2).toUpperCase();
         }
 
-        font.pixelSize: 13
+        font.pixelSize: 12
         font.bold: true
         font.family: root.fontFamily
         color: root.colMain
