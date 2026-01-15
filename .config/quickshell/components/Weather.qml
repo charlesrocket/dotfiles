@@ -119,7 +119,7 @@ Item {
             color: root.colMain
             font {
                 family: root.fontFamily
-                pixelSize: root.fontSize - 2
+                pixelSize: root.fontSize - 1
                 bold: true
             }
         }

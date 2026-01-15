@@ -223,7 +223,7 @@ PanelWindow {
                 Weather {
                     Layout.rightMargin: 2
                     fontFamily: "FiraCode Nerd Font"
-                    fontSize: root.fontSize + 1
+                    fontSize: root.fontSize
                     colMain: root.colFg
                     colBg: "transparent"
                 }
