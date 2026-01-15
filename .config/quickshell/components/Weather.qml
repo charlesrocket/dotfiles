@@ -82,8 +82,8 @@ Item {
         id: infoContainer
         anchors.right: weatherContainer.left
         anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
-        width: weatherText.contentWidth + 14
-        height: weatherText.contentHeight
+        width: infoText.contentWidth + 4
+        height: infoText.contentHeight
         color: root.colBg
         border.color: root.colBorder
         radius: 6
@@ -120,7 +120,7 @@ Item {
             color: root.colMain
             font {
                 family: root.fontFamily
-                pixelSize: root.fontSize - 1
+                pixelSize: root.fontSize - 2
                 bold: true
             }
         }
@@ -144,13 +144,6 @@ Item {
                 family: "Symbols Nerd Font"
                 pixelSize: root.fontSize
                 bold: true
-            }
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: 2000
-                    easing.type: Easing.InOutExpo
-                }
             }
         }
     }
