@@ -1,3 +1,4 @@
+import Quickshell
 import Quickshell.Io
 
 import QtQuick
@@ -21,6 +22,11 @@ Item {
             duration: root.slideDuration
             easing.type: Easing.OutCubic
         }
+    }
+
+    SystemClock {
+        id: clock
+        precision: SystemClock.Minutes
     }
 
     Process {
@@ -103,21 +109,12 @@ Item {
         Text {
             id: clockText
             anchors.centerIn: parent
-            text: Qt.formatDateTime(new Date(), "HH:mm")
+            text: Qt.formatDateTime(clock.date, "HH:mm")
             color: root.colMain
             font {
                 family: root.fontFamily
                 pixelSize: root.fontSize - 1
                 bold: true
-            }
-
-            Timer {
-                interval: 15000
-                running: true
-                repeat: true
-                onTriggered: {
-                    clockText.text = Qt.formatDateTime(new Date(), "HH:mm");
-                }
             }
         }
     }
@@ -126,7 +123,7 @@ Item {
         target: hoverDetector
         function onContainsMouseChanged() {
             if (hoverDetector.containsMouse) {
-                dateText.text = Qt.formatDateTime(new Date(), "ddd dd MMMM yyyy");
+                dateText.text = Qt.formatDateTime(clock.date, "ddd dd MMMM yyyy");
             }
         }
     }
