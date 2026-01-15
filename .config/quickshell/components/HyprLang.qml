@@ -12,11 +12,11 @@ Rectangle {
     property color colBorder: null
     property color colBackground: null
 
-    width: layoutText.width + 6
-    height: layoutText.height + 2
+    width: layoutText.width + 4
+    height: layoutText.height
     color: colBackground
     border.color: colBorder
-    radius: 2
+    radius: 4
 
     Text {
         id: layoutText
