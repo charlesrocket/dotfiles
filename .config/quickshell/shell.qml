@@ -131,6 +131,9 @@ PanelWindow {
                     Layout.fillWidth: true
                 }
 
+                // stats
+                Stats {}
+
                 BarSeparator {}
 
                 // audio
@@ -199,10 +202,14 @@ PanelWindow {
 
                 BarSeparator {}
 
+                Weather {
+                    Layout.rightMargin: 2
+                }
+
                 // language
                 HyprLang {
                     colMain: root.colFg
-                    colBorder: root.colMuted
+                    colBorder: Qt.darker(root.colRed, 1.5)
                     colBackground: "transparent"
                     fontFamily: root.fontFamily
                 }
@@ -211,9 +218,12 @@ PanelWindow {
                 Clock {
                     slideDuration: root.animDuration
                     fontFamily: "FiraCode Nerd Font"
-                    fontSize: root.fontSize
+                    fontSize: root.fontSize + 1
                     colMain: root.colFg
                     colBtn: root.colRed
+                    Layout.topMargin: 2
+                    Layout.leftMargin: -1
+                    Layout.rightMargin: 2
                 }
 
                 // battery

@@ -77,9 +77,10 @@ Item {
             id: powerBtn
             text: ""
             color: root.colBtn
+            Layout.bottomMargin: 2
             font {
                 family: "Symbols Nerd Font"
-                pixelSize: root.fontSize
+                pixelSize: root.fontSize + 1
                 bold: true
             }
 

@@ -98,7 +98,6 @@ Item {
         id: infoContainer
         anchors.right: battContainer.left
         anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
-        anchors.verticalCenter: parent.verticalCenter
         width: infoText.contentWidth + 10
         height: infoText.contentHeight
         color: root.colBg

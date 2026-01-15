@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 Rectangle {
-    Layout.preferredHeight: parent.height - 6
+    Layout.preferredHeight: 8
     Layout.preferredWidth: 2
     Layout.alignment: Qt.AlignVCenter
     Layout.leftMargin: 4
