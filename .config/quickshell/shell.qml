@@ -189,10 +189,32 @@ PanelWindow {
 
                 BarSeparator {}
 
-                // bluetooth
-                Bluetooth {
-                    colMain: root.colFg
-                    fontSize: root.fontSize
+                // comms
+                RowLayout {
+                    spacing: 6
+
+                    // bluetooth
+                    Bluetooth {
+                        colMain: root.colFg
+                        fontSize: root.fontSize
+                    }
+
+                    // TODO
+                    Text {
+                        text: ""
+                        color: root.colFg
+                        font.family: "Symbols Nerd Font"
+                        font.pixelSize: 14
+                    }
+
+                    // TODO
+                    Text {
+                        text: ""
+                        color: root.colFg
+
+                        font.family: "Symbols Nerd Font"
+                        font.pixelSize: 14
+                    }
                 }
 
                 BarSeparator {}
