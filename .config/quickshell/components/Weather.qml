@@ -85,7 +85,6 @@ Item {
         width: infoText.contentWidth + 4
         height: infoText.contentHeight
         color: root.colBg
-        border.color: root.colBorder
         radius: 6
         opacity: hoverDetector.containsMouse ? 1 : 0
         scale: hoverDetector.containsMouse ? 1 : 0

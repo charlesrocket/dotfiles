@@ -225,6 +225,7 @@ PanelWindow {
                     fontFamily: "FiraCode Nerd Font"
                     fontSize: root.fontSize + 1
                     colMain: root.colFg
+                    colBg: "transparent"
                 }
 
                 // language
