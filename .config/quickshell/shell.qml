@@ -51,18 +51,6 @@ PanelWindow {
     anchors.top: true
     color: "transparent"
 
-    AudioDevices {
-        id: audioDeviceSelector
-        colBg: root.colBg
-        colMain: root.colFg
-        colDecor: root.colMuted
-        colActive: root.colRed
-        colCheck: root.colGreen
-        colWinBorder: root.colMuted
-        fontFamily: root.fontFamily
-        fontSize: root.fontSize
-    }
-
     // bar
     Rectangle {
         id: bar
@@ -133,39 +121,16 @@ PanelWindow {
                     spacing: 8
 
                     // devices
-                    Text {
-                        id: audioDeviceButton
-                        text: "󰋋"
-                        color: root.colFg
-                        font {
-                            family: "Symbols Nerd Font"
-                            pixelSize: root.fontSize
-                            bold: true
-                        }
-
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: 150
-                                easing.type: Easing.OutCubic
-                            }
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-
-                            onEntered: {
-                                audioDeviceButton.color = root.colPurple;
-                            }
-
-                            onExited: {
-                                audioDeviceButton.color = root.colFg;
-                            }
-
-                            onClicked: {
-                                audioDeviceSelector.toggle();
-                            }
-                        }
+                    AudioDevices {
+                        id: audioDeviceSelector
+                        colBg: root.colBg
+                        colMain: root.colFg
+                        colDecor: root.colMuted
+                        colActive: root.colRed
+                        colCheck: root.colGreen
+                        colWinBorder: root.colMuted
+                        fontFamily: root.fontFamily
+                        fontSize: root.fontSize
                     }
 
                     // mic
