@@ -9,19 +9,35 @@ RowLayout {
 
     property string fontFamily: "Hack Nerd Font"
     property int fontSize: 14
-    property color colMain: "#b0b4bc"
     property color colCpu: "#7aa2f7"
     property color colMem: "#9ece6a"
     property color colDisk: "#bf00ff"
     property color colWarning: "#ffd700"
     property color colCritical: "#cc0000"
     property string mountPoint: "/"
-    property int barWidth: 6
+    property int barWidth: 8
     property int barHeight: 16
+    property int cpuCores: 1
 
     property real cpuLoad: 0.0
+    property real cpuPercent: 0.0
     property int memPercent: 0
     property int diskPercent: 0
+
+    Process {
+        id: coreDetect
+        command: ["sysctl", "-n", "hw.ncpu"]
+        running: true
+
+        stdout: SplitParser {
+            onRead: data => {
+                const cores = parseInt(data.trim());
+                if (!isNaN(cores) && cores > 0) {
+                    root.cpuCores = cores;
+                }
+            }
+        }
+    }
 
     Process {
         id: cpuProc
@@ -30,10 +46,11 @@ RowLayout {
 
         stdout: SplitParser {
             onRead: data => {
-                // TODO switch to parseFloat()
-                const load = parseInt(data.trim());
+                const load = parseFloat(data.trim());
+
                 if (!isNaN(load)) {
                     root.cpuLoad = load;
+                    root.cpuPercent = Math.min((load / root.cpuCores) * 100, 100);
                 }
             }
         }
@@ -70,7 +87,7 @@ RowLayout {
     }
 
     Timer {
-        interval: 10000
+        interval: 5000
         running: true
         repeat: true
         onTriggered: {
@@ -110,12 +127,12 @@ RowLayout {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 anchors.margins: 1
-                height: Math.min(root.cpuLoad * (parent.height - 2), parent.height - 2)
+                height: (root.cpuPercent / 100.0) * (parent.height - 2)
                 radius: 1
                 color: {
-                    if (root.cpuLoad > 3.0)
+                    if (root.cpuPercent > 90)
                         return root.colCritical;
-                    if (root.cpuLoad > 2.0)
+                    if (root.cpuPercent > 75)
                         return root.colWarning;
                     return root.colCpu;
                 }

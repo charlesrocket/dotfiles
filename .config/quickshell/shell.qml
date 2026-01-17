@@ -144,6 +144,15 @@ PanelWindow {
                     Layout.fillWidth: true
                 }
 
+                // system stats
+                Stats {
+                    colCpu: root.colFg
+                    colMem: root.colFg
+                    colDisk: root.colFg
+                }
+
+                BarSeparator {}
+
                 // audio
                 RowLayout {
                     spacing: 8

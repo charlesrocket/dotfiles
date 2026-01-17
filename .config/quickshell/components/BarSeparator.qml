@@ -7,5 +7,6 @@ Rectangle {
     Layout.alignment: Qt.AlignVCenter
     Layout.leftMargin: 4
     Layout.rightMargin: 4
+    radius: 6
     color: "#aa4e4e4e"
 }
