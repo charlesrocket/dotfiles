@@ -2,10 +2,11 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
-import Quickshell.Services.OSS
 import Quickshell.Networking
 import Quickshell.Wayland
 import Quickshell.Hyprland
+import Quickshell.Services.OSS
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -41,7 +42,7 @@ PanelWindow {
     property int fontSize: 14
     property var screen: Quickshell.screens[0]
     property int cornerRadius: 8
-    property int barHeight: 28
+    property int barHeight: 30
     property int extraPadding: 16
     property int animDuration: 250
 
@@ -50,6 +51,33 @@ PanelWindow {
 
     anchors.top: true
     color: "transparent"
+
+    GlobalShortcut {
+        name: "volume-up"
+        onPressed: {
+            refreshOSS.start();
+        }
+    }
+
+    GlobalShortcut {
+        name: "volume-down"
+        onPressed: {
+            refreshOSS.start();
+        }
+    }
+
+    GlobalShortcut {
+        name: "volume-mute"
+        onPressed: {
+            refreshOSS.start();
+        }
+    }
+
+    Timer {
+        id: refreshOSS
+        interval: 100
+        onTriggered: OSS.refresh()
+    }
 
     // bar
     Rectangle {

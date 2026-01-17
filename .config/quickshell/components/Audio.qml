@@ -1,4 +1,5 @@
 import Quickshell.Services.OSS
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -252,6 +253,7 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true
+
         onPressed: function (mouse) {
             mouse.accepted = false;
         }
@@ -269,5 +271,12 @@ Item {
                 root.control.muted = !root.control.muted;
             }
         }
+    }
+
+    Timer {
+        interval: 200
+        repeat: true
+        running: hoverDetector.containsMouse
+        onTriggered: OSS.refresh()
     }
 }
