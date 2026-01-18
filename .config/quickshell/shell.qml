@@ -155,7 +155,7 @@ PanelWindow {
 
                 // audio
                 RowLayout {
-                    spacing: 8
+                    spacing: 6
 
                     // devices
                     AudioDevices {
