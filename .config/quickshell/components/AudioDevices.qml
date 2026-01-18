@@ -21,10 +21,27 @@ Item {
     implicitWidth: buttonText.implicitWidth
     implicitHeight: buttonText.implicitHeight
 
+    function getActiveDeviceIcon() {
+        for (var i = 0; i < OSS.devices.length; i++) {
+            var device = OSS.devices[i];
+            if (device.isDefault) {
+                if (device.mode === 1)
+                    return "󰓃";
+                if (device.mode === 2)
+                    return "󰍰";
+                if (device.mode === 3)
+                    return "󰋋";
+            }
+        }
+
+        return "󰤽";
+    }
+
     Text {
         id: buttonText
-        text: "󰋋"
+        text: root.getActiveDeviceIcon()
         color: root.colButton
+
         font {
             family: "Symbols Nerd Font"
             pixelSize: root.fontSize
@@ -56,10 +73,16 @@ Item {
         }
     }
 
+    Connections {
+        target: OSS
+        function onDevicesChanged() {
+            buttonText.text = root.getActiveDeviceIcon();
+        }
+    }
+
     // Floating Window
     FloatingWindow {
         id: floatingWindow
-
         visible: false
         implicitWidth: 300
         implicitHeight: 360
@@ -132,10 +155,11 @@ Item {
 
                                 Text {
                                     text: {
-                                        if (modelData.mode === 0x01)
+                                        if (modelData.mode === 1)
                                             return "󰓃";
-                                        if (modelData.mode === 0x02)
+                                        if (modelData.mode === 2)
                                             return "󰍰";
+
                                         return "󰤽";
                                     }
 
