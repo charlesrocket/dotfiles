@@ -276,7 +276,8 @@ Item {
     Timer {
         interval: 200
         repeat: true
-        running: hoverDetector.containsMouse
         onTriggered: OSS.refresh()
+
+        running: OSS.devices ? hoverDetector.containsMouse : false
     }
 }

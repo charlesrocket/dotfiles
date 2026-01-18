@@ -30,7 +30,7 @@ Item {
                 if (device.mode === 2)
                     return "󰍰";
                 if (device.mode === 3)
-                    return "󰋋";
+                    return "󰴸";
             }
         }
 
@@ -39,7 +39,7 @@ Item {
 
     Text {
         id: buttonText
-        text: root.getActiveDeviceIcon()
+        text: OSS.headphonesConnected ? "󰋋" : root.getActiveDeviceIcon()
         color: root.colButton
 
         font {
@@ -70,6 +70,13 @@ Item {
             onClicked: {
                 floatingWindow.toggle();
             }
+        }
+    }
+
+    Connections {
+        target: OSS
+        function onHeadphonesChanged(state) {
+            buttonText.text = state ? "󰋋" : root.getActiveDeviceIcon();
         }
     }
 
