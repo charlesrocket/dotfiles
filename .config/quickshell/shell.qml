@@ -146,6 +146,7 @@ PanelWindow {
 
                 // system stats
                 Stats {
+                    colBar: root.colDark
                     colCpu: root.colFg
                     colMem: root.colFg
                     colDisk: root.colFg

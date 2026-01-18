@@ -14,6 +14,7 @@ RowLayout {
     property color colDisk: "#bf00ff"
     property color colWarning: "#ffd700"
     property color colCritical: "#cc0000"
+    property color colBar: null
     property string mountPoint: "/"
     property int barWidth: 8
     property int barHeight: 16
@@ -117,7 +118,7 @@ RowLayout {
         Rectangle {
             Layout.preferredWidth: root.barWidth
             Layout.preferredHeight: root.barHeight
-            color: "transparent"
+            color: root.colBar
             border.width: 1
             border.color: Qt.darker(root.colCpu, 1.5)
             radius: 2
@@ -160,7 +161,7 @@ RowLayout {
         Rectangle {
             Layout.preferredWidth: root.barWidth
             Layout.preferredHeight: root.barHeight
-            color: "transparent"
+            color: root.colBar
             border.width: 1
             border.color: Qt.darker(root.colMem, 1.5)
             radius: 2
@@ -203,7 +204,7 @@ RowLayout {
         Rectangle {
             Layout.preferredWidth: root.barWidth
             Layout.preferredHeight: root.barHeight
-            color: "transparent"
+            color: root.colBar
             border.width: 1
             border.color: Qt.darker(root.colDisk, 1.5)
             radius: 2
