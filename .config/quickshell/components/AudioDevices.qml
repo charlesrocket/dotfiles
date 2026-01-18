@@ -23,14 +23,15 @@ Item {
 
     function getActiveDeviceIcon() {
         for (var i = 0; i < OSS.devices.length; i++) {
-            var device = OSS.devices[i];
+            const device = OSS.devices[i];
+
             if (device.isDefault) {
-                if (device.mode === 1)
+                const mode = device.mode;
+
+                if (mode === 1 || mode === 3)
                     return "󰓃";
-                if (device.mode === 2)
+                if (mode === 2)
                     return "󰍰";
-                if (device.mode === 3)
-                    return "󰴸";
             }
         }
 
@@ -50,7 +51,7 @@ Item {
 
         Behavior on color {
             ColorAnimation {
-                duration: 150
+                duration: 250
                 easing.type: Easing.OutCubic
             }
         }
@@ -150,7 +151,7 @@ Item {
 
                             Behavior on color {
                                 ColorAnimation {
-                                    duration: 150
+                                    duration: 250
                                     easing.type: Easing.OutCubic
                                 }
                             }
@@ -163,9 +164,9 @@ Item {
                                 Text {
                                     text: {
                                         if (modelData.mode === 1)
-                                            return "󰓃";
+                                            return "";
                                         if (modelData.mode === 2)
-                                            return "󰍰";
+                                            return "󰻃";
 
                                         return "󰤽";
                                     }
