@@ -15,9 +15,9 @@ Item {
     property int slideDuration: 250
     property int fontSize: 14
     property string fontFamily: "FiraCode Nerd Font"
-    property string icon: "󰖖"
+    property string icon: "󱣶"
     property real temperature: 0
-    property string ip: ""
+    property string ip: "n/a"
 
     Process {
         id: weatherProcess
@@ -42,8 +42,12 @@ Item {
                             root.icon = weatherData.conditions;
                         }
 
-                        if (weatherData.temp !== undefined) {
+                        if (weatherData.temp) {
                             root.temperature = weatherData.temp;
+                        }
+
+                        if (weatherData.ip) {
+                            root.ip = weatherData.ip;
                         }
                     }
                 } catch (error) {
