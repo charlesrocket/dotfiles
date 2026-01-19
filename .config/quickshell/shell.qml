@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
-import Quickshell.Networking
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Services.OSS
@@ -189,32 +188,15 @@ PanelWindow {
 
                 BarSeparator {}
 
+                // bt
+                Bluetooth {
+                    colMain: root.colFg
+                    fontSize: root.fontSize
+                }
+
                 // comms
-                RowLayout {
-                    spacing: 6
-
-                    // bt
-                    Bluetooth {
-                        colMain: root.colFg
-                        fontSize: root.fontSize
-                    }
-
-                    // uplink
-                    Text {
-                        text: ""
-                        color: root.colFg
-                        font.family: "Symbols Nerd Font"
-                        font.pixelSize: 14
-                    }
-
-                    // interface
-                    Text {
-                        text: ""
-                        color: root.colFg
-
-                        font.family: "Symbols Nerd Font"
-                        font.pixelSize: 14
-                    }
+                Network {
+                    colFg: root.colFg
                 }
 
                 BarSeparator {}
