@@ -17,7 +17,7 @@ RowLayout {
     property color colBar: null
     property string mountPoint: "/"
     property int barWidth: 8
-    property int barHeight: 16
+    property int barHeight: 14
     property int cpuCores: 1
 
     property real cpuLoad: 0.0
