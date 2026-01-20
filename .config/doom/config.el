@@ -11,6 +11,7 @@
         delete-by-moving-to-trash t
 ;;;     default-directory "~/src/dotfiles"
         frame-title-format "%b (-_-) ╭∩╮"
+        gcmh-idle-delay 5
         doom-theme 'doom-tomorrow-night
         doom-modeline-enable-word-count t
         doom-modeline-icon t
