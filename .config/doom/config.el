@@ -27,6 +27,7 @@
 ;;; (add-hook 'window-setup-hook #'treemacs 'append)
 
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 
 (after! projectile
     (setq projectile-enable-caching t)
