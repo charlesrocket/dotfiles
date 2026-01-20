@@ -8,6 +8,7 @@
         confirm-kill-emacs nil
         projectile-project-search-path '(("~/src" . 1))
         kill-whole-line t
+        delete-by-moving-to-trash t
 ;;;     default-directory "~/src/dotfiles"
         frame-title-format "%b (-_-) ╭∩╮"
         doom-theme 'doom-tomorrow-night
