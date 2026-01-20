@@ -11,6 +11,7 @@
         delete-by-moving-to-trash t
 ;;      default-directory "~/src/dotfiles"
         frame-title-format "%b (-_-) ╭∩╮"
+        select-enable-clipboard t
         evil-want-fine-undo t
         gcmh-idle-delay 5
         doom-theme 'doom-tomorrow-night
