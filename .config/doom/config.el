@@ -28,6 +28,13 @@
 
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
 
+(after! projectile
+    (setq projectile-enable-caching t)
+    (setq projectile-indexing-method 'hybrid))
+
+(projectile-add-known-project "~/src/dotfiles")
+(projectile-add-known-project "~/src/misc-files")
+
 (use-package languagetool
     :ensure t
     :defer t
