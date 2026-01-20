@@ -1,5 +1,4 @@
 import Quickshell
-
 import QtQuick
 
 import "components"
@@ -10,5 +9,5 @@ ShellRoot {
         Quickshell.watchFiles = false;
     }
 
-    TopPanel {}
+    TopBar {}
 }

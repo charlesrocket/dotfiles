@@ -171,7 +171,6 @@ PanelWindow {
 
                     // devices
                     AudioDevices {
-                        id: audioDeviceSelector
                         colBg: root.colBg
                         colMain: root.colFg
                         colDecor: root.colMuted
