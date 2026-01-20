@@ -9,8 +9,9 @@
         projectile-project-search-path '(("~/src" . 1))
         kill-whole-line t
         delete-by-moving-to-trash t
-;;;     default-directory "~/src/dotfiles"
+;;      default-directory "~/src/dotfiles"
         frame-title-format "%b (-_-) ╭∩╮"
+        evil-want-fine-undo t
         gcmh-idle-delay 5
         doom-theme 'doom-tomorrow-night
         doom-modeline-enable-word-count t
@@ -24,7 +25,7 @@
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
 
-;;; (add-hook 'window-setup-hook #'treemacs 'append)
+;; (add-hook 'window-setup-hook #'treemacs 'append)
 
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
