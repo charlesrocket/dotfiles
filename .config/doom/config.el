@@ -12,6 +12,10 @@
         frame-title-format "%b (-_-) ╭∩╮"
         doom-theme 'doom-tomorrow-night
         doom-modeline-enable-word-count t
+        doom-modeline-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-lsp-icon t
+        doom-modeline-major-mode-color-icon t
         +doom-dashboard-menu-sections
         (cl-subseq +doom-dashboard-menu-sections 0 3))
 
