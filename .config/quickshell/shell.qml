@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Io
-import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Services.OSS
 
@@ -100,7 +99,7 @@ PanelWindow {
         }
 
         Component.onCompleted: {
-            bar.opacity = 1
+            bar.opacity = 1;
         }
 
         RowLayout {
@@ -140,6 +139,7 @@ PanelWindow {
                     colFg: root.colFg
                     colMuted: root.colMuted
                     fontFamily: "Hack Nerd Font"
+                    fontSize: root.fontSize
                 }
 
                 Item {
@@ -158,6 +158,7 @@ PanelWindow {
 
                 // system stats
                 Stats {
+                    fontSize: root.fontSize
                     colBar: root.colDark
                     colCpu: root.colFg
                     colMem: root.colFg
@@ -210,6 +211,7 @@ PanelWindow {
                 // comms
                 Network {
                     colFg: root.colFg
+                    fontSize: root.fontSize
                 }
 
                 BarSeparator {}
