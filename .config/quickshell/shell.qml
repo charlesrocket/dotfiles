@@ -90,6 +90,19 @@ PanelWindow {
         color: root.colBg
         radius: root.cornerRadius
 
+        opacity: 0
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: root.animDuration * 10
+                easing.type: Easing.OutExpo
+            }
+        }
+
+        Component.onCompleted: {
+            bar.opacity = 1
+        }
+
         RowLayout {
             anchors.fill: parent
             anchors.leftMargin: 13
