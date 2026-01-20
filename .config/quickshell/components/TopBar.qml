@@ -187,6 +187,7 @@ PanelWindow {
                         mic: true
                         slideDuration: root.animDuration
                         visible: mic.control
+                        colMuted: root.colRed
                     }
 
                     // speaker
@@ -194,6 +195,7 @@ PanelWindow {
                         id: speaker
                         slideDuration: root.animDuration
                         visible: speaker.control
+                        colMuted: root.colRed
                     }
                 }
 
