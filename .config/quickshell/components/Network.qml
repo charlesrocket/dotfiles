@@ -1,14 +1,16 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import Quickshell.Networking
 
-RowLayout {
+Item {
     id: root
-    spacing: 6
 
     property int fontSize: 14
     property color colFg: "#ffffff"
+    property color colOffline: "#cc0000"
+    property bool isOnline: false
 
     readonly property var devicesList: Networking.devices.values
     readonly property string uplinkIcon: hasActiveVpn ? "" : ""
@@ -61,17 +63,68 @@ RowLayout {
         return primaryDevice.type === DeviceType.Wifi;
     }
 
-    Text {
-        text: root.uplinkIcon
-        color: root.colFg
-        font.family: "Symbols Nerd Font"
-        font.pixelSize: root.fontSize
+    readonly property string ifIcon: {
+        if (isPrimaryWifi)
+            return "󰤨";
+        else
+            return "󰈀";
     }
 
-    Text {
-        text: isPrimaryWifi ? "" : "󰈀"
-        color: root.colFg
-        font.family: "Symbols Nerd Font"
-        font.pixelSize: root.fontSize
+    implicitWidth: layout.implicitWidth
+    implicitHeight: layout.implicitHeight
+
+    Behavior on implicitWidth {
+        NumberAnimation {
+            duration: 250
+            easing.type: Easing.OutCubic
+        }
+    }
+
+    Process {
+        id: onlineCheck
+        command: ["host", "-W", "5", "8.8.8.8"]
+        running: true
+
+        onExited: (exitCode, exitStatus) => {
+            var randomValue = Math.floor(Math.random() * (1000 - 5000) + 5000);
+            tmr.interval = 1000 + randomValue;
+            root.isOnline = (exitCode === 0);
+            tmr.start();
+        }
+    }
+
+    Timer {
+        id: tmr
+        interval: 2000
+        onTriggered: {
+            onlineCheck.running = true;
+        }
+    }
+
+    RowLayout {
+        id: layout
+        anchors.fill: parent
+        spacing: 6
+
+        Text {
+            text: root.uplinkIcon
+            color: root.isOnline ? root.colFg : root.colOffline
+            font.family: "Symbols Nerd Font"
+            font.pixelSize: root.fontSize
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
+
+        Text {
+            text: root.ifIcon
+            color: root.colFg
+            font.family: "Symbols Nerd Font"
+            font.pixelSize: root.fontSize
+        }
     }
 }
