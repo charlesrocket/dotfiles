@@ -89,17 +89,21 @@ PanelWindow {
         color: root.colBg
         radius: root.cornerRadius
 
-        opacity: 0
+        // start animation
+        transform: Translate {
+            id: slideTransform
+            y: -(root.implicitHeight)
 
-        Behavior on opacity {
-            NumberAnimation {
-                duration: root.animDuration * 10
-                easing.type: Easing.OutExpo
+            Behavior on y {
+                NumberAnimation {
+                    duration: root.animDuration * 5
+                    easing.type: Easing.OutQuint
+                }
             }
         }
 
         Component.onCompleted: {
-            bar.opacity = 1;
+            slideTransform.y = 0;
         }
 
         RowLayout {
