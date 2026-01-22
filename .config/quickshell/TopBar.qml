@@ -97,6 +97,7 @@ PanelWindow {
             Behavior on y {
                 NumberAnimation {
                     duration: root.animDuration * 5
+                    // OutBounce is alright too
                     easing.type: Easing.OutQuint
                 }
             }
