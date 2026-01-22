@@ -69,7 +69,13 @@ Item {
             }
 
             onClicked: {
-                floatingWindow.toggle();
+                if (!floatingWindowLoader.item) {
+                    floatingWindowLoader.active = true;
+                }
+
+                if (floatingWindowLoader.item) {
+                    floatingWindowLoader.item.toggle();
+                }
             }
         }
     }
@@ -88,148 +94,153 @@ Item {
         }
     }
 
-    // Floating Window
-    FloatingWindow {
-        id: floatingWindow
-        visible: false
-        implicitWidth: 300
-        implicitHeight: 360
-        color: "transparent"
+    // devices window (lazy)
+    Loader {
+        id: floatingWindowLoader
+        active: false
 
-        mask: Region {
-            item: background
-        }
+        sourceComponent: FloatingWindow {
+            id: floatingWindow
+            visible: false
+            implicitWidth: 300
+            implicitHeight: 360
+            color: "transparent"
 
-        Rectangle {
-            id: background
-            anchors.fill: parent
-            color: root.colBg
-            radius: root.cornerRadius
-            border.color: root.colWinBorder
+            mask: Region {
+                item: background
+            }
 
-            ColumnLayout {
+            Rectangle {
+                id: background
                 anchors.fill: parent
-                anchors.margins: 12
-                spacing: 8
+                color: root.colBg
+                radius: root.cornerRadius
+                border.color: root.colWinBorder
 
-                Text {
-                    text: "Audio Devices"
-                    color: root.colMain
-                    font.family: root.fontFamily
-                    font.pixelSize: root.fontSize + 2
-                    font.bold: true
-                    Layout.alignment: Qt.AlignHCenter
-                }
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    spacing: 8
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.bottomMargin: 8
-                    implicitHeight: 1
-                    color: root.colDecor
-                }
+                    Text {
+                        text: "Audio Devices"
+                        color: root.colMain
+                        font.family: root.fontFamily
+                        font.pixelSize: root.fontSize + 2
+                        font.bold: true
+                        Layout.alignment: Qt.AlignHCenter
+                    }
 
-                Item {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    clip: true
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.bottomMargin: 8
+                        implicitHeight: 1
+                        color: root.colDecor
+                    }
 
-                    ListView {
-                        id: deviceList
-                        anchors.fill: parent
-                        model: OSS.devices
-                        spacing: 4
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        clip: true
 
-                        delegate: Rectangle {
-                            required property var modelData
+                        ListView {
+                            id: deviceList
+                            anchors.fill: parent
+                            model: OSS.devices
+                            spacing: 4
 
-                            implicitWidth: deviceList.width
-                            implicitHeight: 52
-                            radius: 6
-                            color: mouseArea.containsMouse ? "#11ffffff" : "transparent"
-                            border.width: modelData.isDefault ? 2 : 0
-                            border.color: root.colActive
+                            delegate: Rectangle {
+                                required property var modelData
 
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 250
-                                    easing.type: Easing.OutCubic
-                                }
-                            }
+                                implicitWidth: deviceList.width
+                                implicitHeight: 52
+                                radius: 6
+                                color: mouseArea.containsMouse ? "#11ffffff" : "transparent"
+                                border.width: modelData.isDefault ? 2 : 0
+                                border.color: root.colActive
 
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.margins: 8
-                                spacing: 10
-
-                                Text {
-                                    text: {
-                                        if (modelData.mode === 1)
-                                            return "";
-                                        if (modelData.mode === 2)
-                                            return "󰻃";
-
-                                        return "󰤽";
+                                Behavior on color {
+                                    ColorAnimation {
+                                        duration: 250
+                                        easing.type: Easing.OutCubic
                                     }
-
-                                    horizontalAlignment: Text.AlignHCenter
-                                    Layout.preferredWidth: 24
-                                    color: root.colMain
-                                    font.family: "Symbols Nerd Font"
-                                    font.pixelSize: root.fontSize + 8
-                                    font.bold: true
                                 }
 
-                                ColumnLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 2
+                                RowLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 8
+                                    spacing: 10
 
                                     Text {
-                                        text: modelData.description || modelData.name
+                                        text: {
+                                            if (modelData.mode === 1)
+                                                return "";
+                                            if (modelData.mode === 2)
+                                                return "󰻃";
+
+                                            return "󰤽";
+                                        }
+
+                                        horizontalAlignment: Text.AlignHCenter
+                                        Layout.preferredWidth: 24
                                         color: root.colMain
-                                        font.family: root.fontFamily
-                                        font.pixelSize: root.fontSize
-                                        elide: Text.ElideRight
-                                        Layout.fillWidth: true
+                                        font.family: "Symbols Nerd Font"
+                                        font.pixelSize: root.fontSize + 8
                                         font.bold: true
                                     }
 
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+                                        spacing: 2
+
+                                        Text {
+                                            text: modelData.description || modelData.name
+                                            color: root.colMain
+                                            font.family: root.fontFamily
+                                            font.pixelSize: root.fontSize
+                                            elide: Text.ElideRight
+                                            Layout.fillWidth: true
+                                            font.bold: true
+                                        }
+
+                                        Text {
+                                            text: modelData.name
+                                            color: root.colMain
+                                            font.family: root.fontFamily
+                                            font.pixelSize: root.fontSize - 2
+                                            visible: modelData.description && modelData.description !== modelData.name
+                                        }
+                                    }
+
                                     Text {
-                                        text: modelData.name
-                                        color: root.colMain
-                                        font.family: root.fontFamily
-                                        font.pixelSize: root.fontSize - 2
-                                        visible: modelData.description && modelData.description !== modelData.name
+                                        text: "󰸞"
+                                        color: root.colCheck
+                                        font.pixelSize: root.fontSize + 2
+                                        font.bold: true
+                                        visible: modelData.isDefault
+                                        rightPadding: 16
                                     }
                                 }
 
-                                Text {
-                                    text: "󰸞"
-                                    color: root.colCheck
-                                    font.pixelSize: root.fontSize + 2
-                                    font.bold: true
-                                    visible: modelData.isDefault
-                                    rightPadding: 16
-                                }
-                            }
+                                MouseArea {
+                                    id: mouseArea
+                                    anchors.fill: parent
+                                    hoverEnabled: true
 
-                            MouseArea {
-                                id: mouseArea
-                                anchors.fill: parent
-                                hoverEnabled: true
-
-                                onClicked: {
-                                    OSS.setDefaultDevice(modelData.deviceId);
-                                    floatingWindow.visible = false;
+                                    onClicked: {
+                                        OSS.setDefaultDevice(modelData.deviceId);
+                                        floatingWindow.visible = false;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
 
-        function toggle() {
-            visible = !visible;
+            function toggle() {
+                visible = !visible;
+            }
         }
     }
 }
