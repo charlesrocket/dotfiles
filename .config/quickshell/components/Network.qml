@@ -65,7 +65,7 @@ Item {
 
     readonly property string ifIcon: {
         if (isPrimaryWifi)
-            return "󰤨";
+            return "󰖩";
         else
             return "󰈀";
     }
