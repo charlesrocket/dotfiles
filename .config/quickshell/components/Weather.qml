@@ -86,6 +86,7 @@ Item {
         id: infoContainer
         anchors.right: weatherContainer.left
         anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
+        anchors.verticalCenter: parent.verticalCenter
         width: infoText.contentWidth + 4
         height: infoText.contentHeight
         color: root.colBg
@@ -123,7 +124,7 @@ Item {
             color: root.colMain
             font {
                 family: root.fontFamily
-                pixelSize: root.fontSize - 1
+                pixelSize: root.fontSize
                 bold: true
             }
         }
