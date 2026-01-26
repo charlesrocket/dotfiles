@@ -2,13 +2,13 @@
 
 iface="$1"
 
-if ! ifconfig "$iface" > /dev/null 2>&1; then
-    echo "Error: Interface $iface does not exist!"
-    exit 1
+if ! ifconfig "$iface" >/dev/null 2>&1; then
+	echo "Error: Interface $iface does not exist!"
+	exit 1
 fi
 
 get_stats() {
-    netstat -bI "$iface" 2>/dev/null | awk -v iface="$iface" '
+	netstat -bI "$iface" 2>/dev/null | awk -v iface="$iface" '
         $1 == iface && NF >= 11 {
             print $8, $11
             exit
@@ -18,16 +18,16 @@ get_stats() {
 
 stats1=$(get_stats)
 if [ -z "$stats1" ]; then
-    echo "Error: Could not read stats for $iface"
-    exit 1
+	echo "Error: Could not read stats for $iface"
+	exit 1
 fi
 
 sleep 1
 
 stats2=$(get_stats)
 if [ -z "$stats2" ]; then
-    echo "Error: Could not read stats for $iface"
-    exit 1
+	echo "Error: Could not read stats for $iface"
+	exit 1
 fi
 
 echo "$stats1" "$stats2" | awk '{
