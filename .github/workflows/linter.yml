@@ -16,7 +16,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Lint
         uses: super-linter/super-linter@v8
