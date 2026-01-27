@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
 import Quickshell.Networking
@@ -10,8 +9,10 @@ Item {
 
     property int fontSize: 14
     property color colFg: "#ffffff"
-    property color colTBg: "#212121"
+    property color colYellow: "#ffd700"
+    property color colCyan: "#0db9d7"
     property color colOffline: "#cc0000"
+    property color colOnline: root.isOnline ? root.colFg : root.colOffline
     property bool isOnline: false
 
     readonly property var devicesList: Networking.devices.values
@@ -72,10 +73,14 @@ Item {
             return "󰈀";
     }
 
-    property string trafficSpeed: "Loading..."
+    implicitWidth: section.implicitWidth
+    implicitHeight: section.implicitHeight
 
-    implicitWidth: layout.implicitWidth
-    implicitHeight: layout.implicitHeight
+    Process {
+        id: netifRestart
+        command: ["netif-restart"]
+        Component.onCompleted: running = false
+    }
 
     Behavior on implicitWidth {
         NumberAnimation {
@@ -91,7 +96,7 @@ Item {
 
         onExited: (exitCode, exitStatus) => {
             var randomValue = Math.floor(Math.random() * (1000 - 5000) + 5000);
-            tmr.interval = 1000 + randomValue;
+            tmr.interval = 3000 + randomValue;
             root.isOnline = (exitCode === 0);
             tmr.start();
         }
@@ -105,63 +110,13 @@ Item {
         }
     }
 
-    Process {
-        id: trafficSpeedCheck
-        command: []
-        running: false
-
-        property string capturedOutput: ""
-
-        stdout: SplitParser {
-            onRead: data => {
-                trafficSpeedCheck.capturedOutput += data;
-            }
-        }
-
-        stderr: SplitParser {
-            onRead: data => {
-                console.log("Traffic speed error:", data);
-            }
-        }
-
-        onExited: (exitCode, exitStatus) => {
-            if (trafficSpeedCheck.capturedOutput.length > 0)
-                root.trafficSpeed = trafficSpeedCheck.capturedOutput.trim();
-
-            trafficSpeedCheck.capturedOutput = "";
-
-            if (mouseArea.containsMouse && primaryDevice && primaryDevice.name)
-                trafficSpeedTimer.start();
-
-        }
-
-        function runCommand() {
-            if (primaryDevice && primaryDevice.name) {
-                capturedOutput = "";
-                command = ["sh", "-c", "traffic-speed " + primaryDevice.name];
-                running = true;
-            }
-        }
-    }
-
-    Timer {
-        id: trafficSpeedTimer
-        interval: 1000
-        repeat: false
-
-        onTriggered: {
-            if (mouseArea.containsMouse && primaryDevice && primaryDevice.name) {
-                trafficSpeedCheck.runCommand();
-            }
-        }
-    }
-
     RowLayout {
-        id: layout
+        id: section
         anchors.fill: parent
         spacing: 6
 
         Text {
+            id: ifIcon
             text: root.uplinkIcon
             color: root.isOnline ? root.colFg : root.colOffline
             font.family: "Symbols Nerd Font"
@@ -173,6 +128,23 @@ Item {
                     easing.type: Easing.OutCubic
                 }
             }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onEntered: {
+                    ifIcon.color = root.colCyan;
+                }
+
+                onExited: {
+                    ifIcon.color = root.colOnline;
+                }
+
+                onClicked: {
+                    netifRestart.running = true;
+                }
+            }
         }
 
         Text {
@@ -180,38 +152,6 @@ Item {
             color: root.colFg
             font.family: "Symbols Nerd Font"
             font.pixelSize: root.fontSize
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                hoverEnabled: true
-
-                onEntered: {
-                    trafficSpeedCheck.runCommand();
-                }
-
-                onExited: {
-                    trafficSpeedTimer.stop();
-                }
-            }
-
-            ToolTip {
-                visible: mouseArea.containsMouse
-                delay: 1000
-
-                contentItem: Text {
-                    text: root.trafficSpeed
-                    color: "#ffffff"
-                    font.pixelSize: 12
-                }
-
-                background: Rectangle {
-                    color: root.colTBg
-                    border.color: "#404040"
-                    border.width: 1
-                    radius: 4
-                }
-            }
         }
     }
 }
