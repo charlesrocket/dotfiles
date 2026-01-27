@@ -11,8 +11,10 @@ Item {
     property int slideDuration: 250
     property color colMain: "#b0b4bc"
     property color colBtn: "#cc0000"
+    property color colGreen: "#9ece6a"
     property string fontFamily: "FiraCode Nerd Font"
     property int fontSize: 14
+    property bool ecoMode: false
 
     implicitWidth: (hoverDetector.containsMouse ? dateContainer.width + 8 : 0) + clockText.width
     implicitHeight: clockText.height
@@ -32,6 +34,12 @@ Item {
     Process {
         id: wlogoutProc
         command: ["wlogout"]
+        Component.onCompleted: running = false
+    }
+
+    Process {
+        id: lowpowerProc
+        command: ["lowpowermode", root.ecoMode ? 1 : 0]
         Component.onCompleted: running = false
     }
 
@@ -80,10 +88,39 @@ Item {
         }
 
         Text {
+            id: ecoBtn
+            text: root.ecoMode ? "󰌪" : "󱋙"
+            color: root.ecoMode ? root.colGreen : root.colMain
+            Layout.bottomMargin: 2
+
+            font {
+                family: "Symbols Nerd Font"
+                pixelSize: root.fontSize + 1
+                bold: true
+            }
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    root.ecoMode = !root.ecoMode;
+                    lowpowerProc.running = true;
+                }
+            }
+        }
+
+        Text {
             id: powerBtn
             text: ""
             color: root.colBtn
             Layout.bottomMargin: 2
+
             font {
                 family: "Symbols Nerd Font"
                 pixelSize: root.fontSize + 1

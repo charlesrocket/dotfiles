@@ -44,11 +44,22 @@ PanelWindow {
     property int extraPadding: 16
     property int animDuration: 250
 
+    property bool ecoMode: false
+
     implicitWidth: screen.width - extraPadding
     implicitHeight: barHeight + extraPadding / 2
 
     anchors.top: true
     color: "transparent"
+
+    IpcHandler {
+        target: "bar"
+
+        function setEcoMode(eco: bool): void {
+            root.ecoMode = eco;
+        }
+
+    }
 
     GlobalShortcut {
         name: "volume-up"
@@ -162,15 +173,22 @@ PanelWindow {
                 }
 
                 // system stats
-                Stats {
-                    fontSize: root.fontSize
-                    colBar: root.colDark
-                    colCpu: root.colFg
-                    colMem: root.colFg
-                    colDisk: root.colFg
+                Loader {
+                    active: !root.ecoMode
+                    asynchronous: true
+
+                    sourceComponent: Stats {
+                        fontSize: root.fontSize
+                        colBar: root.colDark
+                        colCpu: root.colFg
+                        colMem: root.colFg
+                        colDisk: root.colFg
+                    }
                 }
 
-                BarSeparator {}
+                BarSeparator {
+                    visible: !root.ecoMode
+                }
 
                 // audio
                 RowLayout {
@@ -216,6 +234,7 @@ PanelWindow {
 
                 // comms
                 Network {
+                    ecoMode: root.ecoMode
                     colFg: root.colFg
                     fontSize: root.fontSize
                 }

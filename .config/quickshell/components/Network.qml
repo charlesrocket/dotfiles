@@ -12,8 +12,12 @@ Item {
     property color colYellow: "#ffd700"
     property color colCyan: "#0db9d7"
     property color colOffline: "#cc0000"
-    property color colOnline: root.isOnline ? root.colFg : root.colOffline
+    property color colMuted: "#aa4e4e4e"
+
     property bool isOnline: false
+    property bool ecoMode: false
+
+    property color colOnline: root.ecoMode ? root.colMuted : root.isOnline ? root.colFg : root.colOffline
 
     readonly property var devicesList: Networking.devices.values
     readonly property string uplinkIcon: hasActiveVpn ? "" : ""
@@ -91,8 +95,8 @@ Item {
 
     Process {
         id: onlineCheck
-        command: ["host", "-W", "5", "8.8.8.8"]
-        running: true
+        command: ["host", "-W", "1", "8.8.8.8"]
+        running: !root.ecoMode
 
         onExited: (exitCode, exitStatus) => {
             var randomValue = Math.floor(Math.random() * (1000 - 5000) + 5000);
@@ -104,7 +108,7 @@ Item {
 
     Timer {
         id: tmr
-        interval: 2000
+        running: !root.ecoMode
         onTriggered: {
             onlineCheck.running = true;
         }
@@ -116,9 +120,12 @@ Item {
         spacing: 6
 
         Text {
-            id: ifIcon
+            id: onlineIcon
             text: root.uplinkIcon
-            color: root.isOnline ? root.colFg : root.colOffline
+
+            property bool isHovered: false
+
+            color: isHovered ? root.colCyan : root.colOnline
             font.family: "Symbols Nerd Font"
             font.pixelSize: root.fontSize
 
@@ -134,11 +141,11 @@ Item {
                 hoverEnabled: true
 
                 onEntered: {
-                    ifIcon.color = root.colCyan;
+                    onlineIcon.isHovered = true;
                 }
 
                 onExited: {
-                    ifIcon.color = root.colOnline;
+                    onlineIcon.isHovered = false;
                 }
 
                 onClicked: {
