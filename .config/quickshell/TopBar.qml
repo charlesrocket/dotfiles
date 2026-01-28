@@ -58,7 +58,6 @@ PanelWindow {
         function setEcoMode(eco: bool): void {
             root.ecoMode = eco;
         }
-
     }
 
     GlobalShortcut {
@@ -248,6 +247,7 @@ PanelWindow {
                     fontSize: root.fontSize
                     colMain: root.colFg
                     colBg: "transparent"
+                    colBorder: root.colCyan
                 }
 
                 // language

@@ -64,6 +64,7 @@ Item {
         interval: 1200
         running: true
         repeat: true
+
         onTriggered: {
             var randomValue = Math.floor(Math.random() * (680000 - 100000) + 100000);
             tmr.interval = 1000000 + randomValue;
@@ -87,10 +88,12 @@ Item {
         anchors.right: weatherContainer.left
         anchors.rightMargin: hoverDetector.containsMouse ? 8 : 0
         anchors.verticalCenter: parent.verticalCenter
-        width: infoText.contentWidth + 4
-        height: infoText.contentHeight
+        width: infoText.contentWidth + 10
+        height: infoText.contentHeight + 2
         color: root.colBg
         radius: 6
+        border.width: 1
+        border.color: root.colBorder
         opacity: hoverDetector.containsMouse ? 1 : 0
         scale: hoverDetector.containsMouse ? 1 : 0
         transformOrigin: Item.Right
@@ -120,11 +123,13 @@ Item {
         Text {
             id: infoText
             anchors.centerIn: parent
+            anchors.verticalCenter: parent.verticalCenter
             text: root.temperature + "󰔄"
             color: root.colMain
+
             font {
                 family: root.fontFamily
-                pixelSize: root.fontSize
+                pixelSize: root.fontSize - 1
                 bold: true
             }
         }
@@ -157,6 +162,7 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true
+
         onPressed: function (mouse) {
             mouse.accepted = false;
         }
