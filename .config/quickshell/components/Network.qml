@@ -99,9 +99,10 @@ Item {
         running: !root.ecoMode
 
         onExited: (exitCode, exitStatus) => {
-            var randomValue = Math.floor(Math.random() * (1000 - 5000) + 5000);
+            var randomValue = Math.floor(Math.random() * (5000 - 1000) + 1000);
             tmr.interval = 3000 + randomValue;
             root.isOnline = (exitCode === 0);
+            console.log(randomValue);
             tmr.start();
         }
     }

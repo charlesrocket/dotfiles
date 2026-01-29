@@ -60,17 +60,23 @@ Item {
     }
 
     Timer {
-        id: tmr
+        id: pTimer
         interval: 1200
         running: true
         repeat: true
 
         onTriggered: {
             var randomValue = Math.floor(Math.random() * (680000 - 100000) + 100000);
-            tmr.interval = 1000000 + randomValue;
+            pTimer.interval = 1000000 + randomValue;
             weatherProcess.running = false;
-            weatherProcess.running = true;
+            restartTimer.start();
         }
+    }
+
+    Timer {
+        id: restartTimer
+        interval: 100
+        onTriggered: weatherProcess.running = true
     }
 
     implicitWidth: (hoverDetector.containsMouse ? infoContainer.width + 8 : 0) + weatherText.width
