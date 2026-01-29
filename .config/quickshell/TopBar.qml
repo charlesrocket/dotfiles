@@ -244,13 +244,20 @@ PanelWindow {
                 BarSeparator {}
 
                 // weather
-                Weather {
+                Loader {
+                    id: wthr
+                    active: !root.ecoMode
+                    visible: wthr.active
+                    asynchronous: true
                     Layout.rightMargin: 2
-                    fontFamily: "FiraCode Nerd Font"
-                    fontSize: root.fontSize
-                    colMain: root.colFg
-                    colBg: "transparent"
-                    colBorder: root.colCyan
+
+                    sourceComponent: Weather {
+                        fontFamily: "FiraCode Nerd Font"
+                        fontSize: root.fontSize
+                        colMain: root.colFg
+                        colBg: "transparent"
+                        colBorder: root.colCyan
+                    }
                 }
 
                 // language
