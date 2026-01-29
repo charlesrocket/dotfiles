@@ -128,6 +128,7 @@ Item {
             color: isHovered ? root.colCyan : root.colOnline
             font.family: "Symbols Nerd Font"
             font.pixelSize: root.fontSize
+            visible: !root.ecoMode
 
             Behavior on color {
                 ColorAnimation {
