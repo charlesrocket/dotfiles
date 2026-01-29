@@ -9,42 +9,43 @@ import Quickshell.Services.UPower
 import QtQuick
 import QtQuick.Layouts
 
-import qs.components
+import "../" // Settings.qml
+import "components"
 
 PanelWindow {
     id: root
 
-    property color colBg: "#aa000000"
-    property color colFg: "#b0b4bc"
-    property color colMuted: "#aa4e4e4e"
-    property color colDark: Qt.darker(colMuted, 1.5)
-    property color colCyan: "#0db9d7"
-    property color colRed: "#cc0000"
-    property color colBlue: "#7aa2f7"
-    property color colYellow: "#ffd700"
-    property color colGreen: "#9ece6a"
-    property color colPurple: "#bf00ff"
+    property color colBg: Settings.colors.bg ?? "#aa000000"
+    property color colFg: Settings.colors.fg ?? "#b0b4bc"
+    property color colMuted: Settings.colors.muted ?? "#aa4e4e4e"
+    property color colDark: Settings.colors.dark ?? Qt.darker(colMuted, 1.5)
+    property color colCyan: Settings.colors.cyan ?? "#0db9d7"
+    property color colRed: Settings.colors.red ?? "#cc0000"
+    property color colBlue: Settings.colors.blue ?? "#7aa2f7"
+    property color colYellow: Settings.colors.yellow ?? "#ffd700"
+    property color colGreen: Settings.colors.green ?? "#9ece6a"
+    property color colPurple: Settings.colors.purple ?? "#bf00ff"
 
-    property string ws01: ""
-    property string ws02: ""
-    property string ws03: ""
-    property string ws04: ""
-    property string ws05: ""
-    property string ws06: "󰉕"
-    property string ws07: ""
-    property string ws08: ""
-    property string ws09: ""
-    property string ws10: ""
+    property string ws01: Settings.workspaces.one ?? ""
+    property string ws02: Settings.workspaces.two ?? ""
+    property string ws03: Settings.workspaces.three ?? ""
+    property string ws04: Settings.workspaces.four ?? ""
+    property string ws05: Settings.workspaces.five ?? ""
+    property string ws06: Settings.workspaces.six ?? "󰉕"
+    property string ws07: Settings.workspaces.seven ?? ""
+    property string ws08: Settings.workspaces.eight ?? ""
+    property string ws09: Settings.workspaces.tine ?? ""
+    property string ws10: Settings.workspaces.ten ?? ""
 
-    property string fontFamily: "Hack Nerd Font"
+    property string fontFamily: Settings.font ?? "Hack Nerd Font"
+    property int fontSize: Settings.fontSize ?? 14
 
-    property int fontSize: 14
+    property int cornerRadius: Settings.radius ?? 8
+    property int barHeight: Settings.barHeight ?? 30
+    property int extraPadding: Settings.barExtraPadding ?? 16
+    property int animDuration: Settings.duration ?? 250
+
     property var screen: Quickshell.screens[0]
-    property int cornerRadius: 8
-    property int barHeight: 30
-    property int extraPadding: 16
-    property int animDuration: 250
-
     property bool ecoMode: false
 
     implicitWidth: screen.width - extraPadding
