@@ -25,8 +25,6 @@ Item {
     visible: battery
 
     function getBatteryIcon(percentage) {
-        if (!battery?.ready)
-            return "󱉞";
         if (isCharging || isFullyCharged) {
             if (percentage == 100)
                 return "󰂅";

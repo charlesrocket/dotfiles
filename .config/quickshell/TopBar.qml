@@ -4,11 +4,12 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
 import Quickshell.Services.OSS
+import Quickshell.Services.UPower
 
 import QtQuick
 import QtQuick.Layouts
 
-import "components"
+import qs.components
 
 PanelWindow {
     id: root
@@ -99,7 +100,7 @@ PanelWindow {
         color: root.colBg
         radius: root.cornerRadius
 
-        // start animation
+        // startup animation
         transform: Translate {
             id: slideTransform
             y: -(root.implicitHeight)
@@ -173,7 +174,9 @@ PanelWindow {
 
                 // system stats
                 Loader {
+                    id: stats
                     active: !root.ecoMode
+                    visible: stats.active
                     asynchronous: true
 
                     sourceComponent: Stats {
@@ -271,15 +274,22 @@ PanelWindow {
                 }
 
                 // battery
-                Battery {
-                    fontSize: root.fontSize + 2
-                    fontFamily: root.fontFamily
-                    slideDuration: root.animDuration
-                    colMain: root.colFg
-                    colGood: root.colGreen
-                    colBad: root.colRed
-                    colCharging: root.colYellow
-                    colBg: root.colDark
+                Loader {
+                    id: batt
+                    active: UPower.displayDevice.ready
+                    visible: batt.active
+                    asynchronous: true
+
+                    sourceComponent: Battery {
+                        fontSize: root.fontSize + 2
+                        fontFamily: root.fontFamily
+                        slideDuration: root.animDuration
+                        colMain: root.colFg
+                        colGood: root.colGreen
+                        colBad: root.colRed
+                        colCharging: root.colYellow
+                        colBg: root.colDark
+                    }
                 }
             }
         }
