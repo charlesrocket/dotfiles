@@ -4,3 +4,6 @@
 [submodule "misc"]
 	path = misc
 	url = https://github.com/charlesrocket/misc-files
+[submodule ".config/quickshell/topbar"]
+	path = .config/quickshell/topbar
+	url = https://github.com/charlesrocket/topbar
