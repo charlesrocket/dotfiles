@@ -4,7 +4,6 @@ import QtQuick
 import qs.topbar
 
 ShellRoot {
-
     Component.onCompleted: {
         Quickshell.watchFiles = false;
     }
