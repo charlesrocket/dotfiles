@@ -31,12 +31,11 @@ Singleton {
     }
 
     readonly property string font: "Hack Nerd Font"
-
     readonly property int fontSize: 14
+
     readonly property int radius: 8
     readonly property int duration: 250
 
     readonly property int barHeight: 30
     readonly property int barExtraPadding: 16
-
 }
