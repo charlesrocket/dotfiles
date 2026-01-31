@@ -6,6 +6,7 @@ import Quickshell
 Singleton {
     readonly property var colors: QtObject {
         readonly property color bg: "#aa000000"
+        readonly property color bgE: "#151515"
         readonly property color fg: "#b0b4bc"
         readonly property color muted: "#aa4e4e4e"
         readonly property color dark: Qt.darker(muted, 1.5)
