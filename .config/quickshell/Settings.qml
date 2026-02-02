@@ -38,5 +38,8 @@ Singleton {
     readonly property int duration: 250
 
     readonly property int barHeight: 30
-    readonly property int barExtraPadding: 16
+    readonly property int barExtraPadding: 8
+
+    readonly property bool systemTray: true
+    readonly property bool systemStats: true
 }
