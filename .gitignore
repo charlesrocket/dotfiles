@@ -3,3 +3,5 @@ super-linter.log
 github_conf
 
 /bin/git-credential-*
+
+.qmlls.ini
