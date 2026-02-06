@@ -42,4 +42,6 @@ Singleton {
 
     readonly property bool systemTray: true
     readonly property bool systemStats: true
+
+    readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
 }

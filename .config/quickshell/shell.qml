@@ -11,4 +11,5 @@ ShellRoot {
     }
 
     TopBar {}
+    Wallpaper {}
 }
