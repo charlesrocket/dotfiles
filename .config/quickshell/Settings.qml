@@ -8,14 +8,13 @@ Singleton {
         readonly property color bg: "#aa000000"
         readonly property color bgE: "#151515"
         readonly property color fg: "#b0b4bc"
-        readonly property color muted: "#aa4e4e4e"
-        readonly property color dark: Qt.darker(muted, 1.5)
-        readonly property color cyan: "#0db9d7"
+        readonly property color passive: "#4e4e4e"
+        readonly property color dark: Qt.darker(passive, 1.5)
+        readonly property color action: "#0db9d7"
+        readonly property color accent: red
         readonly property color red: "#cc0000"
-        readonly property color blue: "#7aa2f7"
         readonly property color yellow: "#ffd700"
         readonly property color green: "#9ece6a"
-        readonly property color purple: "#bf00ff"
     }
 
     readonly property var workspaces: QtObject {
@@ -44,4 +43,16 @@ Singleton {
     readonly property bool systemStats: true
 
     readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+
+    readonly property var logout: QtObject {
+        readonly property color background: "#aa202020"
+        readonly property var commands: QtObject {
+            readonly property string lock: "hyprlock &"
+            readonly property string logout: "hyprctl dispatch exit | pkill mango"
+            readonly property string suspend: "zzz"
+            readonly property string hibernate: "acpiconf -s 4"
+            readonly property string shutdown: "shutdown -p now"
+            readonly property string reboot: "shutdown -r now"
+        }
+    }
 }
