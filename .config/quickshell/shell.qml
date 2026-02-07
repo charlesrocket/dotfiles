@@ -10,12 +10,12 @@ ShellRoot {
     Wallpaper {}
 
     Connections {
-		target: Quickshell
+        target: Quickshell
 
-		function onLastWindowClosed() {
-			Qt.quit();
-		}
-	}
+        function onLastWindowClosed() {
+            Qt.quit();
+        }
+    }
 
     Component.onCompleted: {
         Quickshell.watchFiles = false;
