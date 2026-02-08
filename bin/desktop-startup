@@ -10,9 +10,6 @@ dbus-update-activation-environment --all
 (dsbmc-cli -a >/dev/null 2>&1 &)
 (quickshell -d >/dev/null 2>&1 &)
 
-sleep 3
-
-(swayidle -w >/dev/null 2>&1 &)
 #(dfs daemon >/dev/null 2>&1 &)
 
 wait
