@@ -8,12 +8,14 @@ Singleton {
         readonly property color bg: "#aa000000"
         readonly property color bgE: "#151515"
         readonly property color fg: "#b0b4bc"
+        readonly property color border: "#aa4e4e4e"
         readonly property color passive: "#4e4e4e"
         readonly property color dark: Qt.darker(passive, 1.5)
         readonly property color action: "#0db9d7"
         readonly property color accent: red
         readonly property color red: "#cc0000"
         readonly property color yellow: "#ffd700"
+        readonly property color purple: "#bf00ff"
         readonly property color green: "#9ece6a"
     }
 
