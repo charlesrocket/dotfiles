@@ -47,6 +47,12 @@ Singleton {
     readonly property string emptyWindowTitle: ""
     readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
 
+    readonly property var lockscreen: QtObject {
+        readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-general-shot.jpg"
+        readonly property bool username: true
+        readonly property bool icon: true
+    }
+
     readonly property var logout: QtObject {
         readonly property color background: "#aa202020"
         readonly property var commands: QtObject {
