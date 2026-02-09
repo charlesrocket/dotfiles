@@ -47,8 +47,19 @@ Singleton {
     readonly property string emptyWindowTitle: ""
     readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
 
+    readonly property var widgets: QtObject {
+        readonly property bool audio: true
+        readonly property bool title: true
+        readonly property bool language: true
+        readonly property bool weather: true
+        readonly property bool clock: true
+        readonly property bool stats: true
+        readonly property bool tray: true
+    }
+
     readonly property var lockscreen: QtObject {
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-general-shot.jpg"
+        readonly property bool shadows: true
         readonly property bool username: true
         readonly property bool icon: true
     }
