@@ -34,7 +34,7 @@ Singleton {
 
     readonly property var bar: QtObject {
         readonly property int height: 30
-        readonly property int extraPadding: 8
+        readonly property int padding: 8
 
         readonly property var title: QtObject {
             readonly property int width: 400
