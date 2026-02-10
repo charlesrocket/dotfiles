@@ -6,7 +6,7 @@ import Quickshell
 Singleton {
     readonly property var colors: QtObject {
         readonly property color bg: "#aa000000"
-        readonly property color bgE: "#151515"
+        readonly property color bge: "#151515"
         readonly property color fg: "#b0b4bc"
         readonly property color border: "#aa4e4e4e"
         readonly property color passive: "#4e4e4e"
@@ -32,22 +32,33 @@ Singleton {
         readonly property string ten: ""
     }
 
-    readonly property string font: "Hack Nerd Font"
-    readonly property int fontSize: 14
+    readonly property var bar: QtObject {
+        readonly property int height: 30
+        readonly property int extraPadding: 8
 
-    readonly property int radius: 8
-    readonly property int duration: 250
+        readonly property var title: QtObject {
+            readonly property int width: 400
+            readonly property string empty: ""
+        }
+    }
 
-    readonly property int barHeight: 30
-    readonly property int barExtraPadding: 8
+    readonly property var desktop: QtObject {
+        readonly property bool osd: true
+    }
 
-    readonly property bool systemTray: true
-    readonly property bool systemStats: true
-
-    readonly property string emptyWindowTitle: ""
-    readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    readonly property var general: QtObject {
+        readonly property string font: "Hack Nerd Font"
+        readonly property int fontSize: 14
+        readonly property int radius: 8
+        readonly property int animDuration: 250
+        readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    }
 
     readonly property var widgets: QtObject {
+        readonly property bool workspaces: true
+        readonly property bool battery: true
+        readonly property bool network: true
+        readonly property bool bluetooth: true
         readonly property bool audio: true
         readonly property bool title: true
         readonly property bool language: true
@@ -66,6 +77,7 @@ Singleton {
 
     readonly property var logout: QtObject {
         readonly property color background: "#aa202020"
+
         readonly property var commands: QtObject {
             readonly property string lock: "quickshell ipc call topbar lock"
             readonly property string logout: "hyprctl dispatch exit | pkill mango"
