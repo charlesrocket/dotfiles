@@ -6,6 +6,7 @@ import Quickshell
 Singleton {
     readonly property var colors: QtObject {
         readonly property color bg: "#aa000000"
+        readonly property color bgl: "#80404040"
         readonly property color bge: "#151515"
         readonly property color fg: "#b0b4bc"
         readonly property color border: "#aa4e4e4e"
@@ -43,6 +44,7 @@ Singleton {
     }
 
     readonly property var desktop: QtObject {
+        readonly property bool launcher: true
         readonly property bool osd: true
     }
 
@@ -69,6 +71,9 @@ Singleton {
     }
 
     readonly property var lockscreen: QtObject {
+        readonly property bool clock: true
+        readonly property bool battery: true
+        readonly property bool buttons: true
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-general-shot.jpg"
         readonly property bool shadows: true
         readonly property bool username: true
