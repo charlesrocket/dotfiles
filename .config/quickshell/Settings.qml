@@ -48,10 +48,18 @@ Singleton {
         readonly property bool osd: true
     }
 
+    property var dashboard: QtObject {
+        property var player: QtObject {
+            property bool queueButtons: false
+        }
+    }
+
     readonly property var general: QtObject {
+        readonly property string locale: "en_US"
         readonly property string font: "Hack Nerd Font"
         readonly property int fontSize: 14
         readonly property int radius: 8
+        readonly property int borderWidth: 0
         readonly property int animDuration: 250
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
     }
@@ -75,12 +83,12 @@ Singleton {
         readonly property bool battery: true
         readonly property bool buttons: true
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-general-shot.jpg"
-        readonly property bool shadows: true
+        readonly property bool shadows: false
         readonly property bool username: true
         readonly property bool icon: true
     }
 
-    readonly property var logout: QtObject {
+    readonly property var session: QtObject {
         readonly property color background: "#aa202020"
 
         readonly property var commands: QtObject {
