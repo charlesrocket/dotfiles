@@ -4,6 +4,16 @@ import QtQuick
 import Quickshell
 
 Singleton {
+    readonly property var general: QtObject {
+        readonly property string locale: "en_US"
+        readonly property string font: "Hack Nerd Font"
+        readonly property int fontSize: 14
+        readonly property int radius: 8
+        readonly property int borderWidth: 0
+        readonly property int animDuration: 250
+        readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    }
+
     readonly property var colors: QtObject {
         readonly property color bg: "#aa000000"
         readonly property color bgl: "#80404040"
@@ -54,23 +64,18 @@ Singleton {
         }
     }
 
-    readonly property var general: QtObject {
-        readonly property string locale: "en_US"
-        readonly property string font: "Hack Nerd Font"
-        readonly property int fontSize: 14
-        readonly property int radius: 8
-        readonly property int borderWidth: 0
-        readonly property int animDuration: 250
-        readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    property var notifications: QtObject {
+        property bool enabled: true
+        property int width: 300
     }
 
     readonly property var widgets: QtObject {
         readonly property bool workspaces: true
+        readonly property bool title: true
         readonly property bool battery: true
         readonly property bool network: true
         readonly property bool bluetooth: true
         readonly property bool audio: true
-        readonly property bool title: true
         readonly property bool language: true
         readonly property bool weather: true
         readonly property bool clock: true
