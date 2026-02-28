@@ -1,4 +1,33 @@
 {
+  "git_panel": {
+    "fallback_branch_name": "trunk"
+  },
+  "window_decorations": "client",
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_nav_history_buttons": true
+  },
+  "colorize_brackets": false,
+  "inlay_hints": {
+    "enabled": false
+  },
+  "show_whitespaces": "selection",
+  "toolbar": {
+    "code_actions": false,
+    "agent_review": false
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "gutter": {
+    "folds": true,
+    "breakpoints": true,
+    "runnables": true
+  },
+  "sticky_scroll": {
+    "enabled": false
+  },
+  "show_wrap_guides": true,
   "auto_update": false,
   "collaboration_panel": {
     "button": false,
@@ -29,10 +58,13 @@
   },
   "git": {
     "inline_blame": {
+      "delay_ms": 1100,
       "show_commit_summary": true,
     },
   },
   "project_panel": {
+    "sticky_scroll": true,
+    "bold_folder_labels": false,
     "git_status": true,
     "hide_root": true,
     "entry_spacing": "comfortable",
@@ -40,15 +72,20 @@
   },
   "bottom_dock_layout": "contained",
   "tabs": {
+    "activate_on_close": "neighbour",
+    "close_position": "left",
     "file_icons": false,
     "git_status": true,
   },
   "title_bar": {
+    "show_user_menu": false,
+    "show_onboarding_banner": false,
     "show_sign_in": false,
     "show_menus": false,
     "show_branch_icon": true,
   },
   "status_bar": {
+    "active_encoding_button": "enabled",
     "cursor_position_button": true,
   },
   "indent_guides": {
@@ -70,7 +107,7 @@
     "metrics": false,
   },
   "base_keymap": "Atom",
-  "ui_font_size": 16,
+  "ui_font_size": 15.0,
   "buffer_font_size": 13.0,
   "theme": "One Dark - Darkened",
 }
