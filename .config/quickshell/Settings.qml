@@ -8,7 +8,7 @@ Singleton {
         readonly property string locale: "en_US"
         readonly property string fontFamily: "Hack Nerd Font"
         readonly property int fontSize: 14
-        readonly property int radius: 8
+        readonly property int cornerRadius: 8
         readonly property int borderWidth: 1
         readonly property int animDuration: 250
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
