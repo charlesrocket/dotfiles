@@ -5,5 +5,4 @@ if [ "$1" = "clean" ]; then
 	doas pkg autoremove -y && doas pkg clean -y -a
 elif [ -z "$1" ]; then
 	doas pkg update && doas pkg upgrade
-	doom upgrade
 fi
