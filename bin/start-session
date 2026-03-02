@@ -5,34 +5,34 @@ cd ~ || exit
 timer=2
 
 if [ "$1" = mango ]; then
-    while [ $timer -gt 0 ]; do
-        printf "\rStarting \033[35;40;1mMango\033[m in %d" ${timer}
-        sleep 1
-        timer=$((timer - 1))
-    done
+	while [ $timer -gt 0 ]; do
+		printf "\rStarting \033[35;40;1mMango\033[m in %d" ${timer}
+		sleep 1
+		timer=$((timer - 1))
+	done
 
-    hpid=$(/bin/pgrep mango)
+	hpid=$(/bin/pgrep mango)
 
-    if test -z "$hpid"; then
-        exec ck-launch-session dbus-launch --sh-syntax --exit-with-session mango
-    else
-        printf "\rMango is already running!\nPID %d\n" "${hpid}"
-    fi
+	if test -z "$hpid"; then
+		exec ck-launch-session dbus-launch --sh-syntax --exit-with-session mango
+	else
+		printf "\rMango is already running!\nPID %d\n" "${hpid}"
+	fi
 elif [ "$1" = "hypr" ]; then
-    while [ $timer -gt 0 ]; do
-        printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
-        sleep 1
-        timer=$((timer - 1))
-    done
+	while [ $timer -gt 0 ]; do
+		printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
+		sleep 1
+		timer=$((timer - 1))
+	done
 
-    hpid=$(/bin/pgrep Hyprland)
+	hpid=$(/bin/pgrep Hyprland)
 
-    if test -z "$hpid"; then
-        exec ck-launch-session dbus-launch --sh-syntax --exit-with-session start-hyprland
-    else
-        printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
-    fi
+	if test -z "$hpid"; then
+		exec ck-launch-session dbus-launch --sh-syntax --exit-with-session start-hyprland
+	else
+		printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
+	fi
 else
-    echo "Expected 'mango' or 'hypr'"
-    exit 1
+	echo "Expected 'mango' or 'hypr'"
+	exit 1
 fi
