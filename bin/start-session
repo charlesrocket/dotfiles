@@ -20,7 +20,7 @@ if [ "$1" = mango ]; then
 	fi
 elif [ "$1" = "hypr" ]; then
 	while [ $timer -gt 0 ]; do
-		printf "\rStarting \033[35;40;1mHyprland\033[m in %d" ${timer}
+		printf "\rStarting \033[36;40;1mHyprland\033[m in %d" ${timer}
 		sleep 1
 		timer=$((timer - 1))
 	done
