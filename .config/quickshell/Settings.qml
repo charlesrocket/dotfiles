@@ -38,8 +38,8 @@ Singleton {
         readonly property string five: ""
         readonly property string six: "󰉕"
         readonly property string seven: ""
-        readonly property string eight: ""
-        readonly property string nine: ""
+        readonly property string eight: ""
+        readonly property string nine: ""
         readonly property string ten: ""
     }
 
