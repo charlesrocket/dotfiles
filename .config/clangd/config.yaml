@@ -1,0 +1,6 @@
+Hover:
+  ShowAKA: Yes
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
