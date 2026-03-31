@@ -33,6 +33,16 @@
     "button": false,
   },
   "languages": {
+    "SCSS": {
+      "tab_size": 2
+    },
+    "CSS": {
+      "tab_size": 2
+    },
+    "HTML": {
+      "remove_trailing_whitespace_on_save": false,
+      "format_on_save": "off"
+    },
     "Zig": {
       "enable_language_server": false,
       "tasks": {
