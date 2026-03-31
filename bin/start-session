@@ -28,9 +28,23 @@ elif [ "$1" = "kde" ]; then
 	hpid=$(/bin/pgrep -n plasmashell)
 
 	if test -z "$hpid"; then
-	    exec dbus-launch ck-launch-session startplasma-wayland
+		exec dbus-launch ck-launch-session startplasma-wayland
 	else
 		printf "\rKDE is already running!\nPID %d\n" "${hpid}"
+	fi
+elif [ "$1" = "sway" ]; then
+	while [ $timer -gt 0 ]; do
+		printf "\rStarting \033[34;40;1mSway\033[m in %d" ${timer}
+		sleep 1
+		timer=$((timer - 1))
+	done
+
+	hpid=$(/bin/pgrep -n sway)
+
+	if test -z "$hpid"; then
+		exec dbus-launch ck-launch-session sway
+	else
+		printf "\rSway is already running!\nPID %d\n" "${hpid}"
 	fi
 elif [ "$1" = "hypr" ]; then
 	while [ $timer -gt 0 ]; do
