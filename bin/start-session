@@ -11,12 +11,26 @@ if [ "$1" = mango ]; then
 		timer=$((timer - 1))
 	done
 
-	hpid=$(/bin/pgrep mango)
+	hpid=$(/bin/pgrep -n mango)
 
 	if test -z "$hpid"; then
-		exec ck-launch-session dbus-launch --sh-syntax --exit-with-session mango
+		exec dbus-launch ck-launch-session mango
 	else
 		printf "\rMango is already running!\nPID %d\n" "${hpid}"
+	fi
+elif [ "$1" = "kde" ]; then
+	while [ $timer -gt 0 ]; do
+		printf "\rStarting \033[33;40;1mKDE\033[m in %d" ${timer}
+		sleep 1
+		timer=$((timer - 1))
+	done
+
+	hpid=$(/bin/pgrep -n plasmashell)
+
+	if test -z "$hpid"; then
+	    exec dbus-launch ck-launch-session startplasma-wayland
+	else
+		printf "\rKDE is already running!\nPID %d\n" "${hpid}"
 	fi
 elif [ "$1" = "hypr" ]; then
 	while [ $timer -gt 0 ]; do
@@ -25,14 +39,14 @@ elif [ "$1" = "hypr" ]; then
 		timer=$((timer - 1))
 	done
 
-	hpid=$(/bin/pgrep Hyprland)
+	hpid=$(/bin/pgrep -n Hyprland)
 
 	if test -z "$hpid"; then
-		exec ck-launch-session dbus-launch --sh-syntax --exit-with-session start-hyprland
+		exec dbus-launch ck-launch-session start-hyprland
 	else
 		printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
 	fi
 else
-	echo "Expected 'mango' or 'hypr'"
+	echo "Expected mango|kde|sway|hypr"
 	exit 1
 fi
