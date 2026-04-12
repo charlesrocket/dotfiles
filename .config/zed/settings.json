@@ -33,6 +33,9 @@
     "button": false,
   },
   "languages": {
+    "XML": {
+      "format_on_save": "off"
+    },
     "SCSS": {
       "tab_size": 2
     },
