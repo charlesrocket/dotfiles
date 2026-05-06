@@ -47,6 +47,7 @@
       "format_on_save": "off"
     },
     "Zig": {
+      "format_on_save": "off",
       "enable_language_server": false,
       "tasks": {
         "enabled": true,
@@ -76,6 +77,7 @@
     },
   },
   "project_panel": {
+    "dock": "left",
     "sticky_scroll": true,
     "bold_folder_labels": false,
     "git_status": true,
@@ -91,6 +93,7 @@
     "git_status": true,
   },
   "title_bar": {
+    "show_user_picture": false,
     "show_user_menu": false,
     "show_onboarding_banner": false,
     "show_sign_in": false,
