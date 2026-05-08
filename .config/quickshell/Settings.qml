@@ -56,6 +56,7 @@ Singleton {
     readonly property var desktop: QtObject {
         readonly property bool launcher: true
         readonly property bool osd: true
+        readonly property bool blur: true
     }
 
     property var dashboard: QtObject {
