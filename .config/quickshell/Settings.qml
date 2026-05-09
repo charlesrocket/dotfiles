@@ -12,6 +12,7 @@ Singleton {
         readonly property int borderWidth: 1
         readonly property int animDuration: 250
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+        readonly property bool blur: true
     }
 
     readonly property var colors: QtObject {
@@ -56,7 +57,6 @@ Singleton {
     readonly property var desktop: QtObject {
         readonly property bool launcher: true
         readonly property bool osd: true
-        readonly property bool blur: true
     }
 
     property var dashboard: QtObject {
