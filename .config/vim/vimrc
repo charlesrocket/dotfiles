@@ -2,6 +2,7 @@ set encoding=utf8
 set ffs=unix,mac,dos
 
 set mouse=a
+set visualbell
 
 set shiftwidth=4
 set softtabstop=4
