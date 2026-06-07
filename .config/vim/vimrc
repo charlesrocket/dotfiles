@@ -23,3 +23,5 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 syntax on
 colorscheme default
 filetype plugin indent on
+
+highlight LineNr ctermfg=gray
