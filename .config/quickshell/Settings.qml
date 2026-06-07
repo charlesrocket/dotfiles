@@ -13,6 +13,7 @@ Singleton {
         readonly property int animDuration: 250
         readonly property string wallpaper: "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
         readonly property bool blur: true
+        readonly property bool shadows: false
     }
 
     readonly property var colors: QtObject {
@@ -59,15 +60,17 @@ Singleton {
         readonly property bool osd: true
     }
 
-    property var dashboard: QtObject {
-        property var player: QtObject {
-            property bool queueButtons: false
+    readonly property var dashboard: QtObject {
+        readonly property string disk: "/"
+
+        readonly property var player: QtObject {
+            readonly property bool queueButtons: false
         }
     }
 
-    property var notifications: QtObject {
-        property bool enabled: true
-        property int width: 300
+    readonly property var notifications: QtObject {
+        readonly property bool enabled: true
+        readonly property int width: 300
     }
 
     readonly property var widgets: QtObject {
@@ -78,6 +81,7 @@ Singleton {
         readonly property bool bluetooth: true
         readonly property bool audio: true
         readonly property bool language: true
+        readonly property bool jails: true
         readonly property bool weather: true
         readonly property bool clock: true
         readonly property bool stats: true
