@@ -1,5 +1,5 @@
 .{
-    .repository = "https://github.com/charlesrocket/dotfiles",
+    .repository = "https://codeberg.org/charlesrocket/dotfiles",
     .source = "$HOME/src/dotfiles",
     .target = "$HOME",
     .logging = false,
