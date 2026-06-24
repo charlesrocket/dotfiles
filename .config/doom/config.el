@@ -20,8 +20,8 @@
         doom-modeline-major-mode-icon t
         doom-modeline-lsp-icon t
         doom-modeline-major-mode-color-icon t
-        +doom-dashboard-menu-sections
-        (cl-subseq +doom-dashboard-menu-sections 0 3))
+        +dashboard-menu-sections
+        (cl-subseq +dashboard-menu-sections 0 3))
 
 (global-set-key (kbd "C-c c") #'clipboard-kill-ring-save)
 (global-set-key (kbd "C-c v") #'clipboard-yank)
@@ -29,7 +29,7 @@
 ;; (add-hook 'window-setup-hook #'treemacs 'append)
 
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(remove-hook '+dashboard-functions #'dashboard-widget-shortmenu)
 
 (after! projectile
     (setq projectile-enable-caching t)
