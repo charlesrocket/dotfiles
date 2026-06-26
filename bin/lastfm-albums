@@ -1,0 +1,204 @@
+#!/usr/bin/env python3
+
+# Requires LASTFM_USER/LASTFM_KEY/LASTFM_SECRET env variable
+
+import os
+import sys
+import random
+import time
+import requests
+import pylast
+
+API_KEY = os.environ.get('LASTFM_KEY')
+API_SECRET = os.environ.get('LASTFM_SECRET')
+USERNAME = os.environ.get('LASTFM_USER')
+
+SESSION_KEY_FILE = os.path.join(os.path.expanduser("~"), ".session_key")
+ARTISTS_FILE = '/tmp/lastfm-artists.txt'
+BASE_URL = 'https://ws.audioscrobbler.com/2.0/'
+MAX_RETRIES = 10
+PAGE_SIZE = 200
+
+if not all([API_KEY, API_SECRET, USERNAME]):
+    sys.exit('LAST.FM key/secret/user env variable is missing')
+
+network = pylast.LastFMNetwork(API_KEY, API_SECRET)
+
+if not os.path.exists(SESSION_KEY_FILE):
+    skg = pylast.SessionKeyGenerator(network)
+    url = skg.get_web_auth_url()
+    print(f"Authorize the script to access your account: {url}\n")
+    import webbrowser
+    webbrowser.open(url)
+    while True:
+        try:
+            session_key = skg.get_web_auth_session_key(url)
+            with open(SESSION_KEY_FILE, "w") as f:
+                f.write(session_key)
+            break
+        except pylast.WSError:
+            time.sleep(1)
+        except KeyboardInterrupt:
+            sys.exit("\nAborted")
+else:
+    session_key = open(SESSION_KEY_FILE).read()
+
+network.session_key = session_key
+
+def fetch_library_page(page):
+    params = {
+        'method':  'library.getArtists',
+        'api_key': API_KEY,
+        'user':    USERNAME,
+        'limit':   PAGE_SIZE,
+        'page':    page,
+        'format':  'json',
+    }
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            r = requests.get(BASE_URL, params=params, timeout=10)
+            r.raise_for_status()
+            data = r.json()
+
+            if 'error' in data:
+                raise RuntimeError(f"API error {data['error']}: {data['message']}")
+
+            return data['artists']
+        except KeyboardInterrupt:
+            raise
+        except Exception as e:
+            if attempt == MAX_RETRIES:
+                sys.exit(f"Page {page} failed after {MAX_RETRIES} attempts: {e}")
+
+            wait = 2 ** attempt
+            print(f"Page {page} attempt {attempt} failed, retrying in {wait}s: {e}",
+                  file=sys.stderr)
+
+            time.sleep(wait)
+
+if not os.path.exists(ARTISTS_FILE):
+    print(f"File '{ARTISTS_FILE}' not found\nFetching library artists", file=sys.stderr)
+    artist_count = 0
+
+    try:
+        with open(ARTISTS_FILE, 'w') as f:
+            page = 1
+            while True:
+                artists_data = fetch_library_page(page)
+                total_pages = int(artists_data['@attr']['totalPages'])
+                for artist in artists_data['artist']:
+                    f.write(artist['name'] + '\n')
+                    artist_count += 1
+
+                print(f"Page {page}/{total_pages}", file=sys.stderr)
+                if page >= total_pages:
+                    break
+
+                page += 1
+        print(f"{artist_count} artists written to '{ARTISTS_FILE}'", file=sys.stderr)
+    except KeyboardInterrupt:
+        # Remove the incomplete file so the next run fetches cleanly
+        try:
+            os.remove(ARTISTS_FILE)
+        except OSError:
+            pass
+        sys.exit("\nAborted")
+
+# pick a random artist
+
+with open(ARTISTS_FILE) as f:
+    artists = [line.strip() for line in f if line.strip()]
+
+if not artists:
+    sys.exit(f"'{ARTISTS_FILE}' is empty")
+
+artist_name = random.choice(artists)
+print(f"Artist: {artist_name}", file=sys.stderr)
+
+# fetch artist's albums
+
+def fetch_artist_albums(name):
+    params = {
+        'method':  'artist.getTopAlbums',
+        'artist':  name,
+        'api_key': API_KEY,
+        'limit':   1000,
+        'format':  'json',
+    }
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            r = requests.get(BASE_URL, params=params, timeout=10)
+            r.raise_for_status()
+            data = r.json()
+
+            if 'error' in data:
+                raise RuntimeError(f"API error {data['error']}: {data['message']}")
+
+            albums = data.get('topalbums', {}).get('album', [])
+
+            return [a['name'] for a in albums if a.get('name') and a['name'] != '(null)']
+        except KeyboardInterrupt:
+            raise
+        except Exception as e:
+            if attempt == MAX_RETRIES:
+                sys.exit(f"artist.getTopAlbums failed after {MAX_RETRIES} attempts: {e}")
+
+            wait = 2 ** attempt
+            print(f"Attempt {attempt} failed, retrying in {wait}s: {e}", file=sys.stderr)
+            time.sleep(wait)
+
+# check playcount
+
+def get_user_album_playcount(artist, album):
+    params = {
+        'method':   'album.getInfo',
+        'api_key':  API_KEY,
+        'artist':   artist,
+        'album':    album,
+        'username': USERNAME,
+        'format':   'json',
+    }
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            r = requests.get(BASE_URL, params=params, timeout=10)
+            r.raise_for_status()
+            data = r.json()
+            if 'error' in data:
+                return 0  # album not found (treat as unplayed)
+
+            return int(data.get('album', {}).get('userplaycount', 0))
+        except KeyboardInterrupt:
+            raise
+        except Exception as e:
+            if attempt == MAX_RETRIES:
+                print(f"album.getInfo failed for '{album}': {e}", file=sys.stderr)
+                return 0
+
+            time.sleep(2 ** attempt)
+
+try:
+    print("Fetching artist albums", file=sys.stderr)
+    artist_albums = fetch_artist_albums(artist_name)
+
+    if not artist_albums:
+        sys.exit(f"No albums found for '{artist_name}'")
+
+    print(f"Found {len(artist_albums)} albums", file=sys.stderr)
+
+    unplayed = []
+
+    for album in artist_albums:
+        plays = get_user_album_playcount(artist_name, album)
+        print(f"  {album}: {plays}", file=sys.stderr)
+
+        if plays == 0:
+            unplayed.append(album)
+
+except KeyboardInterrupt:
+    sys.exit("\nAborted")
+
+if not unplayed:
+    print(f"No unplayed albums found for '{artist_name}', nice!!")
