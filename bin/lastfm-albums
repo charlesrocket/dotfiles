@@ -39,7 +39,7 @@ if not os.path.exists(SESSION_KEY_FILE):
         except pylast.WSError:
             time.sleep(1)
         except KeyboardInterrupt:
-            sys.exit("\nAborted")
+            sys.exit(0)
 else:
     session_key = open(SESSION_KEY_FILE).read()
 
@@ -98,12 +98,12 @@ if not os.path.exists(ARTISTS_FILE):
                 page += 1
         print(f"{artist_count} artists written to '{ARTISTS_FILE}'", file=sys.stderr)
     except KeyboardInterrupt:
-        # Remove the incomplete file so the next run fetches cleanly
+        # remove the incomplete list
         try:
             os.remove(ARTISTS_FILE)
         except OSError:
             pass
-        sys.exit("\nAborted")
+        sys.exit(0)
 
 # pick a random artist
 
@@ -198,7 +198,7 @@ try:
             unplayed.append(album)
 
 except KeyboardInterrupt:
-    sys.exit("\nAborted")
+    sys.exit(0)
 
 if not unplayed:
     print(f"No unplayed albums found for '{artist_name}', nice!!")
