@@ -3,7 +3,7 @@
 	url = https://github.com/olets/zsh-transient-prompt/
 [submodule "misc"]
 	path = misc
-	url = https://codeberg.org/charlesrocket/misc-files
+	url = ssh://git@codeberg.org/charlesrocket/misc-files.git
 [submodule ".config/quickshell/topbar"]
 	path = .config/quickshell/topbar
-	url = https://codeberg.org/charlesrocket/topbar
+	url = ssh://git@codeberg.org/charlesrocket/topbar.git
