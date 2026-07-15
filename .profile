@@ -15,7 +15,9 @@ export XDG_PUBLICSHARE_DIR="$HOME/Public"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export RUST_BACKTRACE=1
+# {> if SYSTEM.os == freebsd <}
 #export GDK_DEBUG=no-portals
+# {> endif <}
 
 # {> if SYSTEM.os == macos <}
 export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
