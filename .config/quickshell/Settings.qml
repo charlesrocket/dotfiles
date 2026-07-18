@@ -65,6 +65,7 @@ Singleton {
 
         readonly property var player: QtObject {
             readonly property bool queueButtons: false
+            readonly property bool notifications: false
         }
     }
 
