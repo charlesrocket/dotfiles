@@ -103,7 +103,7 @@ Singleton {
         readonly property color background: "#aa202020"
 
         readonly property var commands: QtObject {
-            readonly property string lock: "quickshell ipc call topbar lock"
+            readonly property string lock: "quickshell -c topbar ipc call bar lock"
             readonly property string logout: "hyprctl dispatch exit | pkill mango"
             readonly property string suspend: "zzz"
             readonly property string hibernate: "acpiconf -s 4"
