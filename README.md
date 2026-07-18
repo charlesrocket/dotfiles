@@ -3,4 +3,4 @@
   █▄▀ ▀▄▀  █  █▀ █ █▄▄ █▄▄ ▄██
 ```
 
-+ managed by [DFS](https://github.com/charlesrocket/dfs)
++ managed by [DFS](https://codeberg.org/charlesrocket/dfs)
