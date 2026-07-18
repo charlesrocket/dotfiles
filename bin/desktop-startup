@@ -8,7 +8,7 @@ doas service bluetooth stop ubt0 # TMP
 dbus-update-activation-environment --all
 
 (dsbmc-cli -a >/dev/null 2>&1 &)
-(quickshell -d >/dev/null 2>&1 &)
+(quickshell -c topbar -d >/dev/null 2>&1 &)
 
 #(dfs daemon >/dev/null 2>&1 &)
 
