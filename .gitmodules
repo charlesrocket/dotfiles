@@ -4,6 +4,3 @@
 [submodule "misc"]
 	path = misc
 	url = ssh://git@codeberg.org/charlesrocket/misc-files.git
-[submodule ".config/quickshell/topbar"]
-	path = .config/quickshell/topbar
-	url = ssh://git@codeberg.org/charlesrocket/topbar.git
