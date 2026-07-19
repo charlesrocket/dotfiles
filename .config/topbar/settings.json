@@ -1,0 +1,94 @@
+{
+  "bar": {
+    "height": 30,
+     "padding": 8,
+    "title": {
+         "empty": "",
+          "width": 400
+            },
+  "colors": {
+    "accent": "#cc0000",
+        "action": "#0db9d7",
+    "bg": "#aa000000",
+    "bge": "#151515",
+    "bgl": "#80404040",
+    "border": "#aa4e4e4e",
+        "dark": "#353535",
+    "extraDark": "#2c2c2c",
+    "fg": "#b0b4bc",
+        "green": "#9ece6a",
+    "passive": "#4e4e4e",
+    "purple": "#bf00ff",
+        "red": "#cc0000",
+        "yellow": "#ffd700"
+    },
+    "dashboard": {
+        "disk": "/",
+        "player": {
+         "notifications": false,
+           "queueButtons": false
+        }
+    }
+    "desktop": {
+    "launcher": true,
+    "osd": true
+    },
+    "general": {
+        "animDuration": 250,
+        "blur": true,
+    "borderWidth": 1,
+       "cornerRadius": 8,
+    "fontFamily": "Hack Nerd t",
+    "fontSize": 14,
+    "locale": "en_US",
+    "shadows": false,
+    "wallpaper": tures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    },
+    "lockscreen": {
+    "battery": true,
+        "buttons": true,
+        "clock": true,
+    "icon": true,
+    "shadows": false,
+    "username": true,
+    "wallpaper": "~/Pictures/hardcoding/zaki-aby-general-shot.jpg"
+    },
+    "notifications": {
+    "enabled": true,
+    "width": 300
+  },
+  "session": {
+    "background": "#aa202020",
+    "commands": {
+      "hibernate": "acpiconf -s 4",
+            "lock": "quickshell -c topbar ipc call bar lock",
+      "logout": "hyprctl dispatch exit | pkill mango",
+      "reboot": "shutdown -r now",
+            "shutdown": "shutdown -p now",
+            "suspend": "zzz"
+        }
+    },
+      "audio": true,
+        "battery": true,
+        "bluetooth": "clock": true,
+        "jails": true,
+      "language": true,
+        "network": "stats": true,
+        "title": true,
+        "tray": true,
+        "weather": true,
+        "workspaces": true
+    },
+    "workspaces": {
+        "eight": "",
+      "five": "",
+        "four": "",
+        "nine": "",
+        "one": "",
+        "seven": "",
+        "six": "󰉕",
+        "ten "",
+        "thr "
+        "two": ""
+  }
+}
