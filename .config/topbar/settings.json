@@ -32,7 +32,7 @@
     },
     "desktop": {
         "launcher": true,
-        "osd": false
+        "osd": true
     },
     "general": {
         "animDuration": 250,
