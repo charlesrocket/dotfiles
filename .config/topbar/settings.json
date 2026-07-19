@@ -38,7 +38,7 @@
         "animDuration": 250,
         "blur": true,
         "borderWidth": 0,
-        "configWatch": true,
+        "configWatch": false,
         "cornerRadius": 8,
         "fontFamily": "Hack Nerd Font",
         "fontSize": 14,
