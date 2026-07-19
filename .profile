@@ -2,6 +2,7 @@ PATH=$PATH:~/.local/bin:~/.cargo/bin:~/.emacs.d/bin
 
 export PATH
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_DIRS="/usr/local/etc/xdg:/etc/xdg"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DESKTOP_DIR="$HOME/Desktop"
