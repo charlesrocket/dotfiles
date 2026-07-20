@@ -16,6 +16,7 @@ export XDG_PUBLICSHARE_DIR="$HOME/Public"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export RUST_BACKTRACE=1
+export DIRENV_WARN_TIMEOUT=1m
 # {> if SYSTEM.os == freebsd <}
 #export GDK_DEBUG=no-portals
 # {> endif <}
