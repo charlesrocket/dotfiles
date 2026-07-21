@@ -14,7 +14,7 @@ if [ "$1" = mango ]; then
 	hpid=$(/bin/pgrep -n mango)
 
 	if test -z "$hpid"; then
-		exec dbus-launch ck-launch-session mango
+		exec dbus-launch mango
 	else
 		printf "\rMango is already running!\nPID %d\n" "${hpid}"
 	fi
@@ -28,7 +28,7 @@ elif [ "$1" = "kde" ]; then
 	hpid=$(/bin/pgrep -n plasmashell)
 
 	if test -z "$hpid"; then
-		exec dbus-launch ck-launch-session startplasma-wayland
+		exec dbus-launch startplasma-wayland
 	else
 		printf "\rKDE is already running!\nPID %d\n" "${hpid}"
 	fi
@@ -42,7 +42,7 @@ elif [ "$1" = "sway" ]; then
 	hpid=$(/bin/pgrep -n sway)
 
 	if test -z "$hpid"; then
-		exec dbus-launch ck-launch-session sway
+		exec dbus-launch sway
 	else
 		printf "\rSway is already running!\nPID %d\n" "${hpid}"
 	fi
@@ -56,7 +56,7 @@ elif [ "$1" = "hypr" ]; then
 	hpid=$(/bin/pgrep -n Hyprland)
 
 	if test -z "$hpid"; then
-		exec dbus-launch ck-launch-session start-hyprland
+		exec dbus-launch start-hyprland
 	else
 		printf "\rHyprland is already running!\nPID %d\n" "${hpid}"
 	fi
