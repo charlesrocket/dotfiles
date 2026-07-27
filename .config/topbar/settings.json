@@ -69,6 +69,7 @@
             "shutdown": "shutdown -p now",
             "suspend": "zzz"
         }
+    }
     },
     "widgets": {
         "audio": true,
