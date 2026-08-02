@@ -63,7 +63,7 @@
         "background": "#aa202020",
         "commands": {
             "hibernate": "acpiconf -s 4",
-            "lock": "quickshell -c topbar ipc call bar lock",
+            "lock": "quickshell -c topbar ipc call main lock",
             "logout": "pkill mango | hyprctl dispatch exit",
             "reboot": "shutdown -r now",
             "shutdown": "shutdown -p now",
