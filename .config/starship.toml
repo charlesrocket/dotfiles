@@ -1,6 +1,7 @@
 add_newline = false
 format = '$character$directory$git_branch$pijul_channel$fossil_branch$hg_branch '
 right_format = '$all'
+continuation_prompt = '[{ ](red) '
 
 [character]
 success_symbol = '[](bold red) '
