@@ -73,7 +73,14 @@ disabled = true
 disabled = true
 
 [direnv]
-disabled = true
+format = '[$allowed]($style) '
+style = 'bold cyan'
+disabled = false
+allowed_msg = '󰲃'
+not_allowed_msg = '󱧹'
+loaded_msg = '󱥿'
+denied_msg = '󱧹'
+unloaded_msg = '󰉖'
 
 [package]
 disabled = false
