@@ -5,6 +5,20 @@
         "title": {
             "empty": "",
             "width": 400
+        },
+        "widgets": {
+            "audio": true,
+            "battery": true,
+            "bluetooth": true,
+            "clock": true,
+            "jails": true,
+            "language": true,
+            "network": true,
+            "stats": true,
+            "title": true,
+            "tray": true,
+            "weather": true,
+            "workspaces": true
         }
     },
     "colors": {
@@ -69,20 +83,6 @@
             "shutdown": "shutdown -p now",
             "suspend": "zzz"
         }
-    },
-    "widgets": {
-        "audio": true,
-        "battery": true,
-        "bluetooth": true,
-        "clock": true,
-        "jails": true,
-        "language": true,
-        "network": true,
-        "stats": true,
-        "title": true,
-        "tray": true,
-        "weather": true,
-        "workspaces": true
     },
     "workspaces": {
         "eight": "",
