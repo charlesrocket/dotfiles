@@ -62,27 +62,27 @@ local mod = "SUPER"
 
 hl.layer_rule({
     match = { namespace = "match:namespace notifications" },
-    -- TODO: unmapped layer rule: "blur on"
+    blur = true,
 })
 
 hl.layer_rule({
     match = { namespace = "match:namespace quickshell" },
-    -- TODO: unmapped layer rule: "blur on"
+    blur = true,
 })
 
 hl.layer_rule({
     match = { namespace = "match:namespace eww-bar" },
-    -- TODO: unmapped layer rule: "blur on"
+    blur = true,
 })
 
 hl.layer_rule({
     match = { namespace = "match:namespace rofi" },
-    -- TODO: unmapped layer rule: "blur on"
+    blur = true,
 })
 
 hl.layer_rule({
     match = { namespace = "match:namespace logout_dialog" },
-    -- TODO: unmapped layer rule: "blur on"
+    blur = true,
 })
 
 hl.layer_rule({
