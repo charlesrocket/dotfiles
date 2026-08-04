@@ -78,7 +78,7 @@
         "commands": {
             "hibernate": "acpiconf -s 4",
             "lock": "quickshell -c topbar ipc call main lock",
-            "logout": "pkill mango | hyprctl dispatch exit",
+            "logout": "pkill mango | hyprshutdown",
             "reboot": "shutdown -r now",
             "shutdown": "shutdown -p now",
             "suspend": "zzz"
