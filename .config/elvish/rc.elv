@@ -1,6 +1,7 @@
 use path
 use str
 use math
+use direnv
 
 set E:LC_ALL = "en_US.UTF-8"
 
