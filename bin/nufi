@@ -1,0 +1,148 @@
+#!/usr/bin/env nu
+
+# Compact Wi-Fi manager (wpa_cli).
+#
+# Usage:
+#   doas nufi       # uses wlan0
+#   doas nufi wlan1 # uses wlan1
+#
+# Only handles open networks and WPA-PSK
+# (needs root to control the interface).
+
+def wpa [iface: string, ...rest: string] {
+    ^wpa_cli -i $iface ...$rest
+}
+
+def show-status [iface: string] {
+    let status = (
+        wpa $iface status
+        | lines
+        | split column "=" key value
+        | reduce -f {} { |row, acc| $acc | insert $row.key $row.value }
+    )
+
+    print $status
+}
+
+def scan-networks [iface: string] {
+    wpa $iface scan | ignore
+    sleep 3sec
+    wpa $iface scan_results
+    | lines
+    | skip 1
+    | each { |line|
+        let f = ($line | split row "\t")
+        {
+            bssid: ($f | get 0)
+            freq: ($f | get 1)
+            signal: ($f | get 2 | into int)
+            flags: ($f | get 3)
+            ssid: (if ($f | length) > 4 { $f | get 4 } else { "" })
+        }
+    }
+    | where ssid != ""
+    | sort-by signal --reverse
+    | uniq-by ssid
+}
+
+def list-known [iface: string] {
+    wpa $iface list_networks
+    | lines
+    | skip 1
+    | each { |line|
+        let f = ($line | split row "\t")
+        {
+            id: ($f | get 0)
+            ssid: ($f | get 1)
+            bssid: ($f | get 2)
+            flags: (if ($f | length) > 3 { $f | get 3 } else { "" })
+        }
+    }
+}
+
+def connect-network [iface: string] {
+    print "Scanning"
+
+    let nets = (scan-networks $iface)
+    if ($nets | is-empty) {
+        print "No networks found"
+        return
+    }
+
+    print ($nets | select ssid signal flags)
+
+    let ssid = (input "SSID # to connect: " | str trim)
+    if ($ssid | is-empty) { return }
+
+    let pass = (input -s "Password (empty = open network): ")
+    print "\n"
+
+    let id = (wpa $iface add_network | str trim)
+    wpa $iface set_network $id ssid $"\"($ssid)\"" | ignore
+
+    if ($pass | is-empty) {
+        wpa $iface set_network $id key_mgmt NONE | ignore
+    } else {
+        wpa $iface set_network $id psk $"\"($pass)\"" | ignore
+    }
+
+    wpa $iface enable_network $id | ignore
+    wpa $iface select_network $id | ignore
+    wpa $iface save_config | ignore
+
+    print $"Connecting to ($ssid)"
+}
+
+def remove-network [iface: string] {
+    let known = (list-known $iface)
+    if ($known | is-empty) {
+        print "No known networks"
+        return
+    }
+
+    print ($known | select id ssid)
+    let id = (input "Network to remove: " | str trim)
+    if ($id | is-empty) { return }
+
+    wpa $iface remove_network $id | ignore
+    wpa $iface save_config | ignore
+
+    print "Removed"
+}
+
+def disconnect-network [iface: string] {
+    wpa $iface disconnect | ignore
+    print "Disconnected"
+}
+
+def main [iface: string = "wlan0"] {
+    print "==== WiFi Manager ===="
+    print $"Using interface ($iface)"
+
+    loop {
+        print "1) Status"
+        print "2) Scan & connect"
+        print "3) Known networks"
+        print "4) Remove network"
+        print "5) Disconnect"
+        print "q) Quit"
+
+        let choice = (input "? " | str trim)
+        match $choice {
+            "1" => { show-status $iface }
+            "2" => { connect-network $iface }
+            "3" => {
+                let known = (list-known $iface)
+                if ($known | is-empty) {
+                    print "No known networks"
+                } else {
+                    print ($known | select id ssid)
+                }
+            }
+            "4" => { remove-network $iface }
+            "5" => { disconnect-network $iface }
+            "q" | "Q" => { break }
+            _ => { print "Invalid choice" }
+        }
+    }
+}
