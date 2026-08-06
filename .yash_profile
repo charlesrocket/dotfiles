@@ -1,0 +1,2 @@
+# shellcheck source=/dev/null
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
