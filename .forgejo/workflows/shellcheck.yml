@@ -4,7 +4,6 @@
   pull_request:
 
 name: ShellCheck
-permissions: {}
 
 jobs:
   shellcheck:
