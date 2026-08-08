@@ -1,3 +1,7 @@
+if [ -n "${NETBSD_SHELL-}" ]; then
+	set -o promptcmds
+fi
+
 alias h='fc -l'
 alias j=jobs
 alias m="$PAGER"
