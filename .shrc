@@ -2,6 +2,8 @@ if [ -n "${NETBSD_SHELL-}" ]; then
 	set -o promptcmds
 fi
 
+export GPG_TTY=$(tty)
+
 alias h='fc -l'
 alias j=jobs
 alias m="$PAGER"

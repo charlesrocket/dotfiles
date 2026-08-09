@@ -1,3 +1,5 @@
+[[ -f $HOME/.shrc ]] && . "$HOME/.shrc"
+
 ZSH_CUSTOM=$HOME/.zsh-custom
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' verbose silent
@@ -9,5 +11,4 @@ else
 fi
 
 eval "$(direnv hook zsh)"
-export GPG_TTY=$(tty)
 source $ZSH/oh-my-zsh.sh
