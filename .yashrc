@@ -1,4 +1,9 @@
-. --autoload --no-alias initialization/common
+set --brace-expand
+set --extended-glob
+set --no-clobber
+set --no-unset
+
+[ -f $HOME/.shrc ] && . "$HOME/.shrc"
 
 _update_direnv() {
   eval "$(
