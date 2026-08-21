@@ -6,6 +6,13 @@
             "empty": "",
             "width": 400
         },
+        "dashboard": {
+            "disk": "/",
+            "player": {
+                "notifications": false,
+                "queueButtons": false
+            }
+        },
         "widgets": {
             "audio": true,
             "battery": true,
@@ -21,34 +28,15 @@
             "workspaces": true
         }
     },
-    "colors": {
-        "accent": "#cc0000",
-        "action": "#0db9d7",
-        "bg": "#aa000000",
-        "bge": "#000000",
-        "bgl": "#80404040",
-        "border": "#aa4e4e4e",
-        "dark": "#343434",
-        "extraDark": "#2b2b2b",
-        "fg": "#b0b4bc",
-        "green": "#9ece6a",
-        "passive": "#4e4e4e",
-        "purple": "#bf00ff",
-        "red": "#cc0000",
-        "yellow": "#ffd700"
-    },
-    "dashboard": {
-        "disk": "/",
-        "player": {
-            "notifications": false,
-            "queueButtons": false
-        }
-    },
     "desktop": {
         "launcher": true,
         "osd": true
     },
     "general": {
+        "locale": "en_US",
+        "wallpaper": "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+    },
+    "appearance": {
         "animDuration": 250,
         "blur": true,
         "borderWidth": 1,
@@ -56,9 +44,7 @@
         "cornerRadius": 8,
         "fontFamily": "Hack Nerd Font",
         "fontSize": 14,
-        "locale": "en_US",
-        "shadows": true,
-        "wallpaper": "~/Pictures/hardcoding/zaki-aby-fisheye-top-0-064.jpg"
+        "shadows": true
     },
     "lockscreen": {
         "battery": true,
@@ -72,6 +58,10 @@
     "notifications": {
         "enabled": true,
         "width": 300
+    },
+    "services": {
+        "codeberg": false,
+        "github": false
     },
     "session": {
         "background": "#aa202020",
