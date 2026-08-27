@@ -1,4 +1,4 @@
-PATH=$PATH:~/.local/bin:~/.cargo/bin:~/.emacs.d/bin
+PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin"
 
 export PATH
 export XDG_CONFIG_HOME="$HOME/.config"
