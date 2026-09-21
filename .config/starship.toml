@@ -85,8 +85,8 @@ unloaded_msg = '󰉖'
 
 [package]
 disabled = false
-format = '[pkg](italic) [$symbol$version]($style) '
-symbol = '󰏗 '
+format = '[$symbol$version]($style) '
+symbol = ' '
 version_format = '${raw}'
 
 [fossil_metrics]
