@@ -1,0 +1,52 @@
+{
+  "scrollbar": {
+    "axes": {
+      "horizontal": true
+    }
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "toolbar": {
+    "code_actions": false,
+    "selections_menu": false,
+    "quick_actions": false,
+    "breadcrumbs": false
+  },
+  "middle_click_paste": false,
+  "show_whitespaces": "selection",
+  "cursor_blink": true,
+  "ui_font_weight": 400.0,
+  "ui_font_family": ".GramSans",
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 400.0,
+  "buffer_font_family": "RobotoMono Nerd Font Mono",
+  "project_panel": {
+    "hide_root": true
+  },
+  "tabs": {
+    "file_icons": false
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_onboarding_banner": false,
+    "show": true
+  },
+  "gutter": {
+    "folds": true,
+    "breakpoints": true
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Gram (Default)",
+    "dark": "Gram (Default)"
+  },
+  "base_keymap": "Emacs",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 13.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Kanagawa Wave - No Italics",
+    "dark": "Kanagawa Dragon - No Italics",
+  },
+}
