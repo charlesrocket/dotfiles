@@ -41,7 +41,7 @@
     "light": "Gram (Default)",
     "dark": "Gram (Default)"
   },
-  "base_keymap": "Emacs",
+  "base_keymap": "Atom",
   "ui_font_size": 14.0,
   "buffer_font_size": 13.0,
   "theme": {
