@@ -18,7 +18,7 @@ def show-status [iface: string] {
         wpa $iface status
         | lines
         | split column "=" key value
-        | reduce -f {} { |row, acc| $acc | insert $row.key $row.value }
+        | reduce -f {} {|row, acc| $acc | insert $row.key $row.value }
     )
 
     print $status
@@ -31,7 +31,7 @@ def scan-networks [iface: string] {
     | lines
     | skip 1
     | each { |line|
-        let f = ($line | split row "\t")
+        let f = $line | split row "\t"
         {
             bssid: ($f | get 0)
             freq: ($f | get 1)
@@ -50,7 +50,7 @@ def list-known [iface: string] {
     | lines
     | skip 1
     | each { |line|
-        let f = ($line | split row "\t")
+        let f = $line | split row "\t"
         {
             id: ($f | get 0)
             ssid: ($f | get 1)
@@ -71,13 +71,13 @@ def connect-network [iface: string] {
 
     print ($nets | select ssid signal flags)
 
-    let ssid = (input "SSID # to connect: " | str trim)
+    let ssid = input "SSID # to connect: " | str trim
     if ($ssid | is-empty) { return }
 
     let pass = (input -s "Password (empty = open network): ")
     print "\n"
 
-    let id = (wpa $iface add_network | str trim)
+    let id = wpa $iface add_network | str trim
     wpa $iface set_network $id ssid $"\"($ssid)\"" | ignore
 
     if ($pass | is-empty) {
@@ -101,7 +101,7 @@ def remove-network [iface: string] {
     }
 
     print ($known | select id ssid)
-    let id = (input "Network to remove: " | str trim)
+    let id = input "Network to remove: " | str trim
     if ($id | is-empty) { return }
 
     wpa $iface remove_network $id | ignore
@@ -127,7 +127,7 @@ def main [iface: string = "wlan0"] {
         print "5) Disconnect"
         print "q) Quit"
 
-        let choice = (input "? " | str trim)
+        let choice = input "? " | str trim
         match $choice {
             "1" => { show-status $iface }
             "2" => { connect-network $iface }
