@@ -22,6 +22,8 @@
   "buffer_font_weight": 400.0,
   "buffer_font_family": "RobotoMono Nerd Font Mono",
   "project_panel": {
+    "folder_icons": true,
+    "file_icons": true,
     "hide_root": true
   },
   "tabs": {
