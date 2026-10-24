@@ -1,0 +1,72 @@
+default_layout=vtile
+gaps=8
+smart_gaps=false
+nmasters=2
+mfact=0.5
+center_overspread=false
+center_when_single_stack=true
+
+cmd_start=desktop-startup
+cmd_terminal=foot
+cmd_f1=
+cmd_f2=foot
+cmd_f3=firefox
+cmd_f4=gram
+cmd_f5=gedit
+cmd_f6=thunar
+cmd_f7=Claws-mail
+cmd_f8=
+cmd_f9=
+cmd_f10=
+
+window_rule=space:1,appid:thunar
+window_rule=space:2,title:foot
+window_rule=space:2,appid:Alacritty
+window_rule=space:2,appid:com.mitchellh.ghostty
+window_rule=space:3,appid:firefox
+window_rule=space:4,appid:emacs
+window_rule=space:4,appid:app.liten.Gram
+window_rule=space:4,appid:ev.zed.Zed
+window_rule=space:5,appid:gedit
+window_rule=space:6,appid:thunar
+window_rule=space:7,appid:Claws-mail
+window_rule=space:7,appid:signal
+window_rule=space:8,appid:blender
+window_rule=space:8,appid:smplayer
+window_rule=space:8,appid:mpv
+window_rule=space:8,appid:vlc
+window_rule=space:9,appid:org.nicotine_plus.Nicotine
+
+focus_follow=true
+focus_on_activate=true
+
+kb_options=grp:alt_space_toggle
+kb_layouts=us,no
+kb_rate_hz=26
+kb_delay_ms=600
+
+libinput_tap_state=1
+libinput_natural_scroll=1
+libinput_left_handed=-1
+libinput_middle_emulation=-1
+libinput_dwt=-1
+libinput_drag=-1
+libinput_drag_lock=-1
+libinput_three_finger_drag=-1
+libinput_accel_profile=1
+libinput_accel_speed=-2
+libinput_click_method=-1
+libinput_scroll_method=-1
+
+wallpaper_path=.local/share/nullspace/wallpaper.ppm
+xwayland=true
+
+bind = SUPER,d,spawn,quickshell -c topbar ipc call main launcher
+bind = SUPER,r,spawn,quickshell -c topbar ipc call main logout
+bind = SUPER,s,spawn,quickshell -c topbar ipc call main settings
+
+bind = NONE,XF86MonBrightnessUp,spawn,backlight +
+bind = NONE,XF86MonBrightnessDown,spawn,backlight -
+bind = NONE,XF86AudioRaiseVolume,spawn,quickshell -c topbar ipc call audio volumeUp
+bind = NONE,XF86AudioLowerVolume,spawn,quickshell -c topbar ipc call audio volumeDown
+bind = NONE,XF86AudioMute,spawn,quickshell -c topbar ipc call audio toggleMute
