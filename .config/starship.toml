@@ -58,8 +58,8 @@ format = ' [$user]($style) '
 [sudo]
 disabled = false
 format = '[$symbol]($style) '
-style = 'bold green'
-symbol = ''
+style = 'bold white'
+symbol = ''
 
 [status]
 disabled = true
