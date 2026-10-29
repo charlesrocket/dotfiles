@@ -1,5 +1,7 @@
 default_layout=vtile
 gaps=8
+cursor_size=20
+cursor_theme=Bibata-Original-Classic
 smart_gaps=false
 nmasters=2
 mfact=0.5
