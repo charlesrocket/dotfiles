@@ -4,21 +4,7 @@ cd ~ || exit
 
 timer=2
 
-if [ "$1" = mango ]; then
-	while [ $timer -gt 0 ]; do
-		printf "\rStarting \033[35;40;1mMango\033[m in %d" ${timer}
-		sleep 1
-		timer=$((timer - 1))
-	done
-
-	pid=$(/bin/pgrep -n mango)
-
-	if test -z "$pid"; then
-		exec dbus-run-session mango
-	else
-		printf "\rMango is already running!\nPID %d\n" "${pid}"
-	fi
-elif [ "$1" = "nullspace" ]; then
+if [ "$1" = "nullspace" ]; then
 	while [ $timer -gt 0 ]; do
 		printf "\rStarting \033[32;40;1mNullspace\033[m in %d" ${timer}
 		sleep 1
@@ -31,6 +17,20 @@ elif [ "$1" = "nullspace" ]; then
 		exec nullspace-start
 	else
 		printf "\rNullspace is already running!\nPID %d\n" "${pid}"
+	fi
+elif [ "$1" = mango ]; then
+	while [ $timer -gt 0 ]; do
+		printf "\rStarting \033[35;40;1mMango\033[m in %d" ${timer}
+		sleep 1
+		timer=$((timer - 1))
+	done
+
+	pid=$(/bin/pgrep -n mango)
+
+	if test -z "$pid"; then
+		exec dbus-run-session mango
+	else
+		printf "\rMango is already running!\nPID %d\n" "${pid}"
 	fi
 elif [ "$1" = "kde" ]; then
 	while [ $timer -gt 0 ]; do
