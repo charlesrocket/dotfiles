@@ -21,6 +21,8 @@ cmd_f8=
 cmd_f9=
 cmd_f10=
 
+space_rule=id:0,layout:float
+
 window_rule=space:1,appid:thunar
 window_rule=space:2,appid:foot,blur:on
 window_rule=space:2,appid:Alacritty,blur:on
