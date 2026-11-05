@@ -22,7 +22,7 @@ cmd_f9=
 cmd_f10=
 
 window_rule=space:1,appid:thunar
-window_rule=space:2,title:foot,blur:on
+window_rule=space:2,appid:foot,blur:on
 window_rule=space:2,appid:Alacritty,blur:on
 window_rule=space:2,appid:com.mitchellh.ghostty,blur:on
 window_rule=space:3,appid:firefox
