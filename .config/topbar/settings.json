@@ -56,7 +56,7 @@
     },
     "notifications": {
         "enabled": true,
-        "width": 300
+        "width": 340
     },
     "services": {
         "codeberg": false,
