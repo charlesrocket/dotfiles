@@ -9,5 +9,4 @@ dbus-update-activation-environment --all
 
 #dfs daemon >/dev/null 2>&1 &
 dsbmc-cli -a >/dev/null 2>&1 &
-quickshell -c topbar >/dev/null 2>&1 &
 wait
