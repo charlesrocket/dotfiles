@@ -21,6 +21,7 @@ cmd_f8=
 cmd_f9=
 cmd_f10=
 
+permission = *,*,ask
 space_rule=id:0,layout:float
 
 window_rule=space:1,appid:thunar
@@ -65,7 +66,7 @@ input_click_method=-1
 input_scroll_method=-1
 
 wallpaper_path=.local/share/nullspace/wallpaper.ppm
-xwayland=true
+xwayland=false
 
 bind = SUPER,d,spawn,quickshell -c topbar ipc call main launcher
 bind = SUPER,r,spawn,quickshell -c topbar ipc call main logout
